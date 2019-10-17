@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
 ##Bellevue University web-450 group project.
-# contributors - Group 4
+# CUpontributors - Group 4
 Griselda Balmaceda - Bellevue University <br >
 William Thomason - Bellevue University <br >
 Andrew Hemminger - Bellevue University
