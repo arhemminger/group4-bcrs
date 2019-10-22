@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: user-edit.component.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: user-edit.component.ts
+======================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

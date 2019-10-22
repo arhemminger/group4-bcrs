@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: status500.component.spec.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: status500.component.spec.ts this component will handle all the status 500
+======================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

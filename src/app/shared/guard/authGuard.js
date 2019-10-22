@@ -1,14 +1,10 @@
 /*
 =====================================
-  ; Title: environment.prod.ts
+  ; Title: authGuard.js
   ; Authors: William Thomason
   ;          Griselda Balmaceda
   ;          Andrew Hemminger
   ; Date: October 21 2019
-  ; Description: environment.prod.ts
+  ; Description: authGuard.js
 ======================================
 */
-
-export const environment = {
-  production: true
-};

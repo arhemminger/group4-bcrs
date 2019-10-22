@@ -19,7 +19,7 @@ import { Status500Component } from './pages/status500/status500.component';
 import { GraphComponent } from './pages/graph/graph.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
-import { AuthGuardComponent } from './shared/auth-guard/auth-guard.component';
+
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
@@ -41,7 +41,6 @@ import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summar
     GraphComponent,
     UsersComponent,
     SecurityQuestionsComponent,
-    AuthGuardComponent,
     UserEditComponent,
     ForgotPasswordComponent,
     InvoiceSummaryComponent

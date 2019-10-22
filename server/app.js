@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: app.js
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: app.js
+======================================
+*/
+
 const express = require('express');
 const http = require('http');
 const morgan = require('morgan');

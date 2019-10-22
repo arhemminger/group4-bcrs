@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: not-found.component.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: not-found.component.ts This page will handle all the 404 page not found.
+======================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

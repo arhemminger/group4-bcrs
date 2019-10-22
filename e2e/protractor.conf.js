@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: protractor.conf.js
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: protractor.conf.js
+======================================
+*/
+
 // @ts-check
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts

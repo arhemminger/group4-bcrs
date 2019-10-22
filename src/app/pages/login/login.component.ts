@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: login.component.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: login.component.ts This will handle the login screen.
+======================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

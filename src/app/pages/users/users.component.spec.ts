@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: users.component.spec.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: users.component.spec.ts this component will display all users to admin
+======================================
+*/
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersComponent } from './users.component';

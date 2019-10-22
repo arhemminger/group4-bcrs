@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: forgot-password.component.spec.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: forgot-password.component.spec.ts
+======================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
