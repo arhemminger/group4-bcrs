@@ -30,6 +30,13 @@ const serverPort = 3000;
 
 /************************* Mongoose connection strings go below this line  ***************/
 
+// MongoDB (Atlas) connection string
+const connString = 'mongodb+srv://admin:bu12345@bcrs-waeqk.mongodb.net/bcrs?retryWrites=true&w=majority'
+
+// MongoDB connect
+mongoose.connect(connString, {promiseLibrary: require('bluebird'), useNewUrlParser: true})
+        .then(() => console.debug('Connection to the MongoDB instance was successful'))
+        .catch((err) => console.debug('MongoDB Error: ' + err.message));
 
 /************************* API routes go below this line ********************/
 
