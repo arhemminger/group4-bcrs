@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
 
 import { AppComponent } from './app.component';
+import { AuthGuard } from './shared/guard/AuthGuard';
 import { BaseLayoutComponent } from './shared';
 import { HomeComponent } from './pages/home/home.component';
 import { SessionLayoutComponent } from './shared';
@@ -43,7 +44,8 @@ import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summar
     SecurityQuestionsComponent,
     UserEditComponent,
     ForgotPasswordComponent,
-    InvoiceSummaryComponent
+    InvoiceSummaryComponent,
+    AuthGuard
   ],
   imports: [
     BrowserModule,
