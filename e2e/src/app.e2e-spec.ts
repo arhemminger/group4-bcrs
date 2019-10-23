@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: app.e2e-spec.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: app.e2e-spec.ts
+======================================
+*/
+
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 

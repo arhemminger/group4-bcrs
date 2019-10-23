@@ -1,3 +1,14 @@
+/*
+=====================================
+  ; Title: test.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: test.ts
+======================================
+*/
+
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
 import 'zone.js/dist/zone-testing';
