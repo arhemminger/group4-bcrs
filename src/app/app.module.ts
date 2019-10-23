@@ -22,6 +22,20 @@ import { SecurityQuestionsComponent } from './pages/security-questions/security-
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './shared/guard/authGuard';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule, matMenuAnimations} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule} from '@angular/forms';
+import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatCheckboxModule} from '@angular/material/checkbox'
+import {MatListModule} from '@angular/material/list';
+
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
@@ -49,6 +63,20 @@ import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summar
   ],
   imports: [
     BrowserModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule,
+    FormsModule,
+    MatSidenavModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatListModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false})
   ],
