@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { AuthGuard } from './shared/guard/AuthGuard';
 import { BaseLayoutComponent } from './shared';
 import { HomeComponent } from './pages/home/home.component';
 import { SessionLayoutComponent } from './shared';
@@ -20,6 +19,8 @@ import { Status500Component } from './pages/status500/status500.component';
 import { GraphComponent } from './pages/graph/graph.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthGuard } from './shared/guard/authGuard';
 
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
@@ -44,15 +45,17 @@ import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summar
     SecurityQuestionsComponent,
     UserEditComponent,
     ForgotPasswordComponent,
-    InvoiceSummaryComponent,
-    AuthGuard
+    InvoiceSummaryComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false})
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
