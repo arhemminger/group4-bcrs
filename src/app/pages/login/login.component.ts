@@ -10,7 +10,8 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,21 +19,26 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-
+loginForm:FormGroup;
+userEmail:FormControl;
+userPassword:FormControl;
   constructor() { }
-  userLoginForm = new FormGroup({
-    'email': new FormControl(''),
-    'password':new FormControl('')
-  });
+    ngOnInit() {
+      this.userEmail= new FormControl('',Validators.required)
+      this.userPassword = new FormControl('',Validators.required)
+      this.loginForm = new FormGroup({
+     email:this.userEmail,
+     password:this.userPassword
+      });
+
+  }
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.userLoginForm.value);
+    console.warn(this.loginForm.value);
   }
 
 
 
-  ngOnInit() {
 
-  }
 
 }

@@ -2,22 +2,30 @@
   <mat-card style="margin: auto;margin-top: 30%;width: 50%;">
     <mat-card-title style="text-align: center;">Login Form</mat-card-title>
     <mat-card-content style="text-align: center;">
-    <form [formGroup]="userLoginForm" >
+    <form [formGroup]="loginForm" >
         <div class="form-group">
           <label>
             Email:
-            <input type="text" formControlName="email">
+            <input type="text" [formControl]="userEmail" required>
           </label>
+          <div *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)">
+                      <p *ngIf="userEmail.errors.required">Email is required!</p>
+
+          </div>
           </div>
           <br/>
           <div class="form-group">
            <label>
             Password:
-            <input type="text" formControlName="password">
+            <input type="text" [formControl]="userPassword">
           </label>
           </div>
+           <div *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
+                      <p *ngIf="userPassword.errors.required">Password is required!</p>
+
+          </div>
         </form>
-        <button mat-flat-button (click)="onSubmit()" color=primary style="margin-top: 20px;">Login</button>
+        <button mat-flat-button (click)="onSubmit()"  [disabled]="!loginForm.valid" color=primary style="margin-top: 20px;">Login</button>
     </mat-card-content>
   </mat-card>
 
