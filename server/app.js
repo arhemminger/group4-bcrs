@@ -34,6 +34,13 @@ app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
 const serverPort = 3000;
 const saltRounds = 10; //default salt rounds for hashing algorithm
 
+//Use this function to Hash the passwords.
+function hashPassword(password){
+
+  return bcrypt.hashSync(password, saltRounds);
+
+}
+
 /************************* Mongoose connection strings go below this line  ***************/
 
 // MongoDB (Atlas) connection string
@@ -48,7 +55,78 @@ mongoose.connect(connString, {promiseLibrary: require('bluebird'), useNewUrlPars
 
 /****************************USER API*******************************  */
 
-//Get all users
+
+/**
+ * Create/Register New user
+ */
+app.post('/api/users/register', function(req, res, next){
+
+  //Check to see if userName is already in use.
+  User.findOne({'userName': req.body.userName}, function(err, user){
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    else{
+      if(!user){
+        //The selected username is unique
+        let hashedPassword = hashPassword(req.body.password); //Hashing the password before it goes into the DB
+
+        //This creates a addUser object to insert into DB
+        let addUser = {
+          userName: req.body.userName,
+          password: hashedPassword,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          phone: req.body.phone,
+          address: req.body.address,
+          selectedSecurityQuestions: req.body.questions
+           /*
+            * the req.body.selectedSecurityQuestions is an array sent from the Angular UI
+            * the questionId needs to be the _id that mongoDB generates
+            * the bellow example needs to be done on client
+            * Example:
+            * let questions = [
+            * {questionId: '1234', answerText: 'Blue'},
+            * {questionId: '5678', answerText: 'Red'},
+            * {questionId: '9012', answerText: 'White'}
+            * ]
+            */
+
+        }//end of user object
+
+        User.create(addUser, function(err, newUser){
+          if(err){
+            console.log('The bellow error is associated with the User.create inside the register API Route')
+            console.log(err);
+            return next(err);
+          }
+          else{
+            console.log('User registered');
+            console.log(newUser);
+            res.json(newUser);
+          }
+        })
+
+      }
+      else{
+        //The username is already in use.
+        console.log('The selected userName: ${req.body.username} is already in use');
+        res.status(500).send({
+          text: 'The selected userName: ${req.body.username} is already in use',
+          time_stamp: new Date()
+        });
+      }
+    }
+  })
+});
+
+
+
+/*
+*   Get all users
+*/
 app.get('/api/users/all', function(req, res, next) {
   User.find(function(err, users) {
     if (err) {
@@ -62,12 +140,16 @@ app.get('/api/users/all', function(req, res, next) {
 });
 
 
-//Get User by email
-//Pass the password so we can hash it and check against password returned from the DB
+
+
+/*
+*  Get User by email
+*  Pass the password so we can hash it and check against password returned from the DB
+*/
 app.get('/api/users/:email/:password', function(req, res, next) {
   User.findOne({'email': req.params.email}, function(err, user) {
     //takes password and hashes it
-    password = bcrypt.hashSync(req.params.password, saltRounds);
+    password = hashPassword(req.params.password);
 
     if (err) {
       console.log(err);
@@ -81,7 +163,13 @@ app.get('/api/users/:email/:password', function(req, res, next) {
   })
 });
 
-//Delete User by id
+
+
+
+/**
+ * Delete User by id
+ */
+
 app.delete('/api/users/delete/:id', function(req, res, next){
   User.findByIdAndDelete({'_id': req.params.id}, function(err, user){
     if(err){
@@ -115,6 +203,9 @@ app.post('/api/questions', function(req, res, next) {
   });
 });
 
+
+
+
 //Get all Questions
 app.get('/api/questions/all', function(req, res, next) {
   SecurityQuestion.find(function(err, securityQuestion) {
@@ -127,6 +218,9 @@ app.get('/api/questions/all', function(req, res, next) {
     }
   })
 });
+
+
+
 
 //Delete Security Question by id
 app.delete('/api/questions/delete/:id', function(req, res, next){
