@@ -25,7 +25,7 @@
 
           </div>
         </form>
-        <button mat-flat-button (click)="onSubmit()" color=primary style="margin-top: 20px;">Login</button>
+        <button mat-flat-button (click)="onSubmit()"  [disabled]="!loginForm.valid" color=primary style="margin-top: 20px;">Login</button>
     </mat-card-content>
   </mat-card>
 
