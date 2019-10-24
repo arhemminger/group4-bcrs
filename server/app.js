@@ -15,6 +15,10 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const User = require('./db-models/users');
+const SecurityQuestion = require('./db-models/securityQuestions');
 
 let app = express();
 
@@ -39,6 +43,100 @@ mongoose.connect(connString, {promiseLibrary: require('bluebird'), useNewUrlPars
         .catch((err) => console.debug('MongoDB Error: ' + err.message));
 
 /************************* API routes go below this line ********************/
+
+/****************************USER API*******************************  */
+
+//Get all users
+app.get('/api/users/all', function(req, res, next) {
+  User.find(function(err, users) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(users);
+      res.json(users);
+    }
+  })
+});
+
+
+//Get User by Id
+app.get('/api/users/:email/:password', function(req, res, next) {
+  User.findOne({'email': req.params.email}, function(err, user) {
+    password = req.params.password
+
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    else if(password === user.password){
+      console.log(user);
+      res.json(user);
+    }
+
+  })
+});
+
+//Delete User by id
+app.delete('/api/users/delete/:id', function(req, res, next){
+  User.findByIdAndDelete({'_id': req.params.id}, function(err, user){
+    if(err){
+      console.log(err);
+      return next(err);
+    }
+    else{
+      console.log(user);
+      res.json(user);
+    }
+  })
+});
+
+
+/***************************SECURITY QUESTION API*******************/
+
+//Creat Security Question
+app.post('/api/questions', function(req, res, next) {
+  const securityQuestion = {
+    questionText: req.body.text,
+  };
+
+  SecurityQuestion.create(securityQuestion, function(err, securityQuestion) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(securityQuestion);
+      res.json(securityQuestion);
+    }
+  });
+});
+
+//Get all Questions
+app.get('/api/questions/all', function(req, res, next) {
+  SecurityQuestion.find(function(err, securityQuestion) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(securityQuestion);
+      res.json(securityQuestion);
+    }
+  })
+});
+
+//Delete Security Question by id
+app.delete('/api/questions/delete/:id', function(req, res, next){
+  SecurityQuestion.findByIdAndDelete({'_id': req.params.id}, function(err, securityQuestion){
+    if(err){
+      console.log(err);
+      return next(err);
+    }
+    else{
+      console.log(securityQuestion);
+      res.json(securityQuestion);
+    }
+  })
+});
 
 
 /**
