@@ -24,8 +24,8 @@ let userSchema = mongoose.Schema({
   email: {type: String},
   role: {type: String, default: 'standard'},
   selectedSecurityQuestions: [securityQuestions],
-  dateCreated: new date(),
-  dateModified: {String}
+  dateCreated: {type: Date, default: new date()},
+  dateModified: {type: Date}
 
 });
 
