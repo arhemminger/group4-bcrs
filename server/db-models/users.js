@@ -10,8 +10,8 @@
 const mongoose = require('mongoose');
 
 let securityQuestions = mongoose.Schema({
-  questionId: {type: string},
-  answerText: {type: string}
+  questionId: {type: String},
+  answerText: {type: String}
 });
 
 let userSchema = mongoose.Schema({
@@ -24,7 +24,7 @@ let userSchema = mongoose.Schema({
   email: {type: String},
   role: {type: String, default: 'standard'},
   selectedSecurityQuestions: [securityQuestions],
-  dateCreated: {type: Date, default: new date()},
+  dateCreated: {type: Date, default: new Date()},
   dateModified: {type: Date}
 
 });
