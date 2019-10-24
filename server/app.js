@@ -124,6 +124,19 @@ app.post('/api/users/register', function(req, res, next){
 
 
 
+/**
+ * Update user by _id
+ */
+
+app.put('/api/user/update/:id', function(req, res, next){
+
+   User.findOne({'_id': req.params.id})
+
+});
+
+
+
+
 /*
 *   Get all users
 */
@@ -146,7 +159,8 @@ app.get('/api/users/all', function(req, res, next) {
 *  Get User by email
 *  Pass the password so we can hash it and check against password returned from the DB
 */
-app.get('/api/users/:email/:password', function(req, res, next) {
+
+app.post('/api/users/login', function(req, res, next) {
   User.findOne({'email': req.params.email}, function(err, user) {
     //takes password and hashes it
     password = hashPassword(req.params.password);
