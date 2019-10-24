@@ -17,6 +17,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+
 const User = require('./db-models/users');
 const SecurityQuestion = require('./db-models/securityQuestions');
 
@@ -31,6 +32,7 @@ app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
 
 // Global variables
 const serverPort = 3000;
+const saltRounds = 10; //default salt rounds for hashing algorithm
 
 /************************* Mongoose connection strings go below this line  ***************/
 
@@ -60,16 +62,18 @@ app.get('/api/users/all', function(req, res, next) {
 });
 
 
-//Get User by Id
+//Get User by email
+//Pass the password so we can hash it and check against password returned from the DB
 app.get('/api/users/:email/:password', function(req, res, next) {
   User.findOne({'email': req.params.email}, function(err, user) {
-    password = req.params.password
+    //takes password and hashes it
+    password = bcrypt.hashSync(req.params.password, saltRounds);
 
     if (err) {
       console.log(err);
       return next(err);
     }
-    else if(password === user.password){
+    else if(password === user.password){ //checks hashed password in DB to hashed the password variable that we just hashed
       console.log(user);
       res.json(user);
     }
