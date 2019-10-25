@@ -16,6 +16,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
+import { Status500Component } from './pages/status500/status500.component';
 
 export const AppRoutes: Routes = [
   {
@@ -37,6 +38,10 @@ export const AppRoutes: Routes = [
         //needs authguard for admin role
       },
     ]
+  },
+  {
+    path: 'Internal-Server-Error',
+    component: Status500Component
   },
   {
     path: 'session',
