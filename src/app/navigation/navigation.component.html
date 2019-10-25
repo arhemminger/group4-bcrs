@@ -14,10 +14,16 @@
         <mat-icon> perm_contact_calendar</mat-icon>
         <span>My Profile</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item [matMenuTriggerFor]="admin">
         <mat-icon>settings</mat-icon>
-        <span>Settings</span>
+        <span>Admin</span>
       </button>
+
+        <mat-menu #admin="matMenu">
+          <button routerLink="/admin/user-edit" mat-menu-item>User Management</button>
+          <button routerLink="/admin/security-questions" mat-menu-item>Security Questions</button>
+        </mat-menu>
+
       <button mat-menu-item>
         <mat-icon>exit_to_app</mat-icon>
         <span>LogOut</span>
