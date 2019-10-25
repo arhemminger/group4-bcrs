@@ -131,7 +131,35 @@ app.post('/api/users/register', function(req, res, next){
 
 app.put('/api/user/update/:id', function(req, res, next){
 
-   User.findOne({'_id': req.params.id})
+   User.findOne({'_id': req.params.id}, function(err, user){
+     if(err){
+       console.log("ERROR inside the user update by ID");
+       console.log(err);
+       return next(err);
+     }
+     else{
+       console.log(user);
+       user.set({
+         firstName: req.body.firstName,
+         lastName: req.body.lastName,
+         phone: req.body.phone,
+         address: req.body.address
+       })
+
+       user.save(function(err, savedUser){
+         if(err){
+          console.log("ERROR inside the user.save of the update user API Route");
+          console.log(err);
+          return next(err);
+         }
+         else{
+           console.log("User was updated");
+           console.log(savedUser);
+           res.json(savedUser);
+         }
+       })
+     }
+   })
 
 });
 
