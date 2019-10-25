@@ -192,22 +192,31 @@ app.get('/api/users/all', function(req, res, next) {
 app.post('/api/users/login', function(req, res, next) {
 
   console.log(req.body.email);
+  console.log(req.body.password);
   //takes password and hashes it
-  let password = hashPassword(req.body.password);
+  const password = hashPassword(req.body.password);
   console.log(password);
 
   User.findOne({'email': req.body.email}, function(err, foundUser) {
-
+    console.log("Password found: " + foundUser.password);
     if (err) {
       console.log(err);
       return next(err);
     }
-    else if(password === foundUser.password){ //checks hashed password in DB to the hashed password variable that we just hashed
+    if( bcrypt.compare(req.body.password, foundUser.password)) { //checks hashed password in DB to the hashed password variable that we just hashed
       console.log(foundUser);
       res.json(foundUser);
     }
+    else{
+      console.log("Password didn't match!");
+      res.status(500).send({
+        text: 'You have entered an incorrect password. Please try again!',
+        time_stamp: new Date()
+      });
+    }
 
   })
+
 });
 
 
