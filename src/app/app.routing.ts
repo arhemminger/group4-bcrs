@@ -15,6 +15,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {HomeComponent} from './pages/home/home.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
+import {UsersComponent} from './pages/users/users.component';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { Status500Component } from './pages/status500/status500.component';
 import { AuthGuard } from './shared/guard/authGuard';
@@ -57,14 +58,22 @@ export const AppRoutes: Routes = [
       {
         path: 'shop',
         component: ShopComponent
+        //canActivate: [AuthGuard]
       },
       {
         path: 'contact-us',
         component: ContactComponent
+        //canActivate: [AuthGuard]
       },
       {
         path: 'about-us',
         component: AboutComponent
+        //canActivate: [AuthGuard]
+      },
+      {
+        path: 'users',
+        component: UsersComponent
+        //canActivate: [AuthGuard]
       },
     ]
   },

@@ -47,13 +47,20 @@ userPassword:FormControl;
 
     }).subscribe(
       res =>{
+
       console.log(res)
+
       },
       err => {
+
         console.log("POST login failed see error: ", err);
+
       },
       () => {
+
         console.log("The POST login works, You are now logged in.");
+        //add cookie
+        //add router.navigate to desired page.
       });
   }
 
