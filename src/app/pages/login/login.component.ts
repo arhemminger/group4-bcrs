@@ -36,10 +36,10 @@ userPassword:FormControl;
   }
   onSubmit(loginForm:FormGroup) {
     console.log(loginForm)
-    const loginEmail=loginForm.value;
-    console.log(loginEmail)
+    const userLogin=loginForm.value;
+    console.log(userLogin)
     this.http.post('/api/users/login', {
-      result: JSON.stringify(loginEmail.value)
+      result: JSON.stringify(userLogin.value)
 
     }).subscribe(
       res =>{
