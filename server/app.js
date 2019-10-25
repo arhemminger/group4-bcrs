@@ -192,6 +192,7 @@ app.get('/api/users/all', function(req, res, next) {
 app.post('/api/users/login', function(req, res, next) {
 
   User.findOne({'email': req.body.email}, function(err, user) {
+
     //takes password and hashes it
     password = hashPassword(req.body.password);
 
@@ -199,7 +200,7 @@ app.post('/api/users/login', function(req, res, next) {
       console.log(err);
       return next(err);
     }
-    else if(password === user.password){ //checks hashed password in DB to hashed the password variable that we just hashed
+    else if(password === user.password){ //checks hashed password in DB to the hashed password variable that we just hashed
       console.log(user);
       res.json(user);
     }
