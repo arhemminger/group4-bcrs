@@ -81,6 +81,7 @@ app.post('/api/users/register', function(req, res, next){
           email: req.body.email,
           phone: req.body.phone,
           address: req.body.address,
+          dateCreated: new Date(),
           selectedSecurityQuestions: req.body.questions
            /*
             * the req.body.selectedSecurityQuestions is an array sent from the Angular UI
@@ -112,9 +113,9 @@ app.post('/api/users/register', function(req, res, next){
       }
       else{
         //The username is already in use.
-        console.log('The selected userName: ${req.body.username} is already in use');
+        console.log('The selected userName: ' + req.body.userName + ' is already in use');
         res.status(500).send({
-          text: 'The selected userName: ${req.body.username} is already in use',
+          text: 'The selected userName: ' + req.body.userName + ' is already in use',
           time_stamp: new Date()
         });
       }
