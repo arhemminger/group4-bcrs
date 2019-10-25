@@ -39,10 +39,11 @@ userPassword:FormControl;
     const userLogin=loginForm.value;
     console.log(userLogin)
     this.http.post('/api/users/login', {
-      result: JSON.stringify(userLogin)
+    email:userLogin.email,
+    password:userLogin.password
     }).subscribe(
       res =>{
-
+      console.log(res)
       },
       err => {
         console.log("POST login failed see error: ", err);

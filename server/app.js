@@ -190,9 +190,10 @@ app.get('/api/users/all', function(req, res, next) {
 */
 
 app.post('/api/users/login', function(req, res, next) {
-  User.findOne({'email': req.params.email}, function(err, user) {
+
+  User.findOne({'email': req.body.email}, function(err, user) {
     //takes password and hashes it
-    password = hashPassword(req.params.password);
+    password = hashPassword(req.body.password);
 
     if (err) {
       console.log(err);
