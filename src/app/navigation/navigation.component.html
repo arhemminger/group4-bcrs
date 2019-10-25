@@ -4,8 +4,8 @@
     <button routerLink="/" mat-button class="toolbar__icon-button mat-button">
       <span style="margin-left:5px !important">Bobs Repair Shop</span>
     </button>
-    <button mat-button class="mat-button">About</button>
-    <button mat-button class="mat-button">Contact Us</button>
+    <button mat-button class="mat-button" [routerLink]="['/about-us']">About</button>
+    <button mat-button class="mat-button" [routerLink]="['/contact-us']">Contact Us</button>
     <button class="toolbar_icon_button" [matMenuTriggerFor]="menu" mat-icon-button>
       <mat-icon>account_circle</mat-icon>
     </button>
@@ -21,6 +21,7 @@
         <mat-menu #admin="matMenu">
           <button routerLink="/admin/user-edit" mat-menu-item>User Management</button>
           <button routerLink="/admin/security-questions" mat-menu-item>Security Questions</button>
+          <button routerLink="/admin/sales-chart" mat-menu-item>Sales Chart</button>
         </mat-menu>
       <button mat-menu-item>
         <mat-icon>exit_to_app</mat-icon>

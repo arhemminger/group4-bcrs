@@ -32,7 +32,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatListModule} from '@angular/material/list';
@@ -40,6 +40,7 @@ import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false})
+    RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false}),
+    MatTableModule
   ],
   providers: [
     CookieService,
