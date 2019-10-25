@@ -10,7 +10,7 @@
 */
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-user-delete-confirmation-dialog',
@@ -19,7 +19,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDeleteConfirmationDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+
+   }
 
   ngOnInit() {
   }
