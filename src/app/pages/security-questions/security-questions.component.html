@@ -1,1 +1,48 @@
-<p>security-questions works!</p>
+<!-- Security questions management card -->
+<div fxLayout="column">
+  <mat-card fx-Flex style="margin-top: 5%; width: 80%; margin-left: 10%;" class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Security Question Management</mat-card-title>
+      <mat-card-subtitle>Create, read, update, and delete user registration security questions</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <br><br>
+    <mat-card-content>
+      <!-- Material Table -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- ID Column -->
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef> ID: </th>
+            <td mat-cell *matCellDef="let element"> {{element.ID}} </td>
+          </ng-container>
+          <!-- Question Column -->
+          <ng-container matColumnDef="Question">
+            <th mat-header-cell *matHeaderCellDef> Question </th>
+            <td mat-cell *matCellDef="let element"> {{element.Question}} </td>
+          </ng-container>
+          <!-- Edit Column -->
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-raised-button color="accent">Edit</button> <!-- Need edit solution, Dialog? -->
+              <span> | </span>
+              <button mat-raised-button color="warn">Delete</button> <!--Add delete function here-->
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+    <!--Add a new question form-->
+    <div fxLayout="column" class="input-container">
+      <mat-form-field hintLabel="Max 60 characters">
+        <input matInput #input required maxlength="60" placeholder="Enter a new question here:">
+        <mat-hint align="end">{{input.value?.length || 0}}/60</mat-hint>
+      </mat-form-field>
+    </div>
+    <mat-card-actions fxLayoutAlign="end">
+      <button mat-raised-button color="accent" type="submit">Add Question</button> <!--Add post request function here-->
+    </mat-card-actions>
+  </mat-card>
+</div>

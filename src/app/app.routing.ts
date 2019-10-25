@@ -17,6 +17,12 @@ import {NotFoundComponent} from './pages/not-found/not-found.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { Status500Component } from './pages/status500/status500.component';
+import { AuthGuard } from './shared/guard/authGuard';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { GraphComponent } from './pages/graph/graph.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { ShopComponent } from './pages/shop/shop.component';
 
 export const AppRoutes: Routes = [
   {
@@ -26,16 +32,39 @@ export const AppRoutes: Routes = [
       {
         path: '',
         component: HomeComponent
+        //canActivate: [AuthGuard]
       },
       {
         path: 'admin/user-edit',
         component: UserEditComponent
-        //needs authguard for admin role
+        //canActivate: [AuthGuard]   <-how to route for admin only?
       },
       {
         path: 'admin/security-questions',
         component: SecurityQuestionsComponent
-        //needs authguard for admin role
+        //canActivate: [AuthGuard]   <-how to route for admin only?
+      },
+      {
+        path: 'admin/sales-chart',
+        component: GraphComponent
+        //canActivate: [AuthGuard]   <-how to route for admin only?
+      },
+      {
+        path: 'my-profile',
+        component: ProfileComponent
+        //canActivate: [AuthGuard]
+      },
+      {
+        path: 'shop',
+        component: ShopComponent
+      },
+      {
+        path: 'contact-us',
+        component: ContactComponent
+      },
+      {
+        path: 'about-us',
+        component: AboutComponent
       },
     ]
   },
