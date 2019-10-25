@@ -191,18 +191,20 @@ app.get('/api/users/all', function(req, res, next) {
 
 app.post('/api/users/login', function(req, res, next) {
 
-  User.findOne({'email': req.body.email}, function(err, user) {
+  console.log(req.body.email);
+  //takes password and hashes it
+  let password = hashPassword(req.body.password);
+  console.log(password);
 
-    //takes password and hashes it
-    password = hashPassword(req.body.password);
+  User.findOne({'email': req.body.email}, function(err, foundUser) {
 
     if (err) {
       console.log(err);
       return next(err);
     }
-    else if(password === user.password){ //checks hashed password in DB to the hashed password variable that we just hashed
-      console.log(user);
-      res.json(user);
+    else if(password === foundUser.password){ //checks hashed password in DB to the hashed password variable that we just hashed
+      console.log(foundUser);
+      res.json(foundUser);
     }
 
   })
@@ -233,17 +235,17 @@ app.delete('/api/users/delete/:id', function(req, res, next){
 
 //Creat Security Question
 app.post('/api/questions', function(req, res, next) {
-  const securityQuestion = {
-    questionText: req.body.text,
+  const addedQuestion = {
+    questionText: req.body.questionText,
   };
 
-  SecurityQuestion.create(securityQuestion, function(err, securityQuestion) {
+  SecurityQuestion.create(addedQuestion, function(err, newQuestion) {
     if (err) {
       console.log(err);
       return next(err);
     } else {
-      console.log(securityQuestion);
-      res.json(securityQuestion);
+      console.log(newQuestion);
+      res.json(newQuestion);
     }
   });
 });

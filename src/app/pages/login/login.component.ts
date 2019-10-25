@@ -36,9 +36,9 @@ userPassword:FormControl;
   }
   onSubmit(loginForm:FormGroup) {
 
-    console.log(loginForm)
+    //console.log(loginForm)
     const userLogin=loginForm.value;
-    console.log(userLogin)
+    //console.log(userLogin)
 
     this.http.post('/api/users/login', {
 
