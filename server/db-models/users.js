@@ -30,3 +30,22 @@ let userSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('User', userSchema);
+
+/*
+Use for add record in SoapUI
+
+{
+  "userName": "wthomason" ,
+  "password": "Redblue123",
+  "firstName": "William",
+  "lastName": "Thomason",
+  "phone": "5159758349",
+  "address": "3811 SE 5th Des Moines IA 50315",
+  "email": "williamthomason92@yahoo.com",
+  "role": "",
+  "selectedSecurityQuestions": "",
+  "dateCreated": "",
+  "dateModified": ""
+}
+
+*/
