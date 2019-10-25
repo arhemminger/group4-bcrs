@@ -11,7 +11,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import {CookieService} from 'ngx-cookie-service';
+import {HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,19 +24,33 @@ export class LoginComponent implements OnInit {
 loginForm:FormGroup;
 userEmail:FormControl;
 userPassword:FormControl;
-  constructor() { }
-    ngOnInit() {
-      this.userEmail= new FormControl('',Validators.required)
-      this.userPassword = new FormControl('',Validators.required)
-      this.loginForm = new FormGroup({
-     email:this.userEmail,
-     password:this.userPassword
+  constructor(private http:HttpClient,private router:Router,private cookieService:CookieService) { }
+      ngOnInit() {
+           this.userEmail= new FormControl('',Validators.required)
+           this.userPassword = new FormControl('',Validators.required)
+           this.loginForm = new FormGroup({
+           email:this.userEmail,
+           password:this.userPassword
       });
 
   }
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.loginForm.value);
+  onSubmit(loginForm:FormGroup) {
+    console.log(loginForm)
+    const loginEmail=loginForm.value;
+    console.log(loginEmail)
+    this.http.post('/api/users/login', {
+      result: JSON.stringify(loginEmail.value)
+
+    }).subscribe(
+      res =>{
+
+      },
+      err => {
+        console.log("POST login failed see error: ", err);
+      },
+      () => {
+        console.log("The POST login works, You are now logged in.");
+      });
   }
 
 

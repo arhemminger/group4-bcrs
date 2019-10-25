@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
+import {HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BaseLayoutComponent } from './shared';
@@ -62,7 +63,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     InvoiceSummaryComponent,
     NavigationComponent
   ],
-  exports:[ReactiveFormsModule],
+  exports:[
+    ReactiveFormsModule
+  ],
     imports: [
     BrowserModule,
     MatButtonModule,
@@ -81,6 +84,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatListModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false})
   ],
   providers: [

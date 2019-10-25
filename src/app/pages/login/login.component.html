@@ -9,23 +9,21 @@
             <input type="text" [formControl]="userEmail" required>
           </label>
           <div *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)">
-                      <p *ngIf="userEmail.errors.required">Email is required!</p>
-
+             <p *ngIf="userEmail.errors.required">Email is required!</p>
           </div>
           </div>
           <br/>
           <div class="form-group">
            <label>
             Password:
-            <input type="text" [formControl]="userPassword">
+            <input type="password" [formControl]="userPassword">
           </label>
           </div>
            <div *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
-                      <p *ngIf="userPassword.errors.required">Password is required!</p>
-
+             <p *ngIf="userPassword.errors.required">Password is required!</p>
           </div>
         </form>
-        <button mat-flat-button (click)="onSubmit()"  [disabled]="!loginForm.valid" color=primary style="margin-top: 20px;">Login</button>
+        <button mat-flat-button (click)="onSubmit(loginForm)"  [disabled]="!loginForm.valid" color=primary style="margin-top: 20px;">Login</button>
     </mat-card-content>
   </mat-card>
 
