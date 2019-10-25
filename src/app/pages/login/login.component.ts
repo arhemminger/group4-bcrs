@@ -39,8 +39,7 @@ userPassword:FormControl;
     const userLogin=loginForm.value;
     console.log(userLogin)
     this.http.post('/api/users/login', {
-      result: JSON.stringify(userLogin.value)
-
+      result: JSON.stringify(userLogin)
     }).subscribe(
       res =>{
 
