@@ -47,7 +47,8 @@ userPassword:FormControl;
 
     }).subscribe(
       res =>{
-
+        this.cookieService.set('isAuthenticated','true',1);
+        this.router.navigate(['my-profile'])
       console.log(res)
 
       },
@@ -59,8 +60,6 @@ userPassword:FormControl;
       () => {
 
         console.log("The POST login works, You are now logged in.");
-        //add cookie
-        //add router.navigate to desired page.
       });
   }
 

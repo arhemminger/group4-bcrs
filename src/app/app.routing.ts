@@ -52,8 +52,8 @@ export const AppRoutes: Routes = [
       },
       {
         path: 'my-profile',
-        component: ProfileComponent
-        //canActivate: [AuthGuard]
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'shop',
