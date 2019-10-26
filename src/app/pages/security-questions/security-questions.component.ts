@@ -36,21 +36,21 @@ export class SecurityQuestionsComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['ID', 'Question', 'Actions'];
-  dataSource = ELEMENT_DATA;
+  dataSource : any;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder) {
-  }
- /*
- this.http.get('/api/questions/' + this.quizId).subscribe(res => {
+   this.http.get('/api/questions/all').subscribe(res => {
     if (res){
       console.log(res);
-      return this.questions = res;
+      this.dataSource=res;
     } else {
       console.log("Error: Could not find quiz");
     }
     })
-}
-*/
+  }
+
+
+
 
   ngOnInit() {
     this.form = this.fb.group({
