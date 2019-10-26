@@ -190,7 +190,6 @@ app.get('/api/users/all', function(req, res, next) {
 */
 
 app.post('/api/users/login', function(req, res, next) {
-
   console.log(req.body.email);
   console.log(req.body.password);
   //takes password and hashes it
@@ -199,10 +198,6 @@ app.post('/api/users/login', function(req, res, next) {
 
   User.findOne({'email': req.body.email}, function(err, foundUser) {
     console.log("Password found: " + foundUser.password);
-    if (err) {
-      console.log(err);
-      return next(err);
-    }
     if( bcrypt.compare(req.body.password, foundUser.password)) { //checks hashed password in DB to the hashed password variable that we just hashed
       console.log(foundUser);
       res.json(foundUser);
@@ -214,10 +209,8 @@ app.post('/api/users/login', function(req, res, next) {
         time_stamp: new Date()
       });
     }
-
-  })
-
-});
+})
+})
 
 
 
@@ -247,7 +240,6 @@ app.post('/api/questions', function(req, res, next) {
   const addedQuestion = {
     questionText: req.body.questionText,
   };
-
   SecurityQuestion.create(addedQuestion, function(err, newQuestion) {
     if (err) {
       console.log(err);
