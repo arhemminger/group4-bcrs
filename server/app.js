@@ -242,7 +242,7 @@ app.delete('/api/users/delete/:id', function(req, res, next){
 
 /***************************SECURITY QUESTION API*******************/
 
-//Creat Security Question
+//Create Security Question
 app.post('/api/questions', function(req, res, next) {
   const addedQuestion = {
     questionText: req.body.questionText,
@@ -259,9 +259,6 @@ app.post('/api/questions', function(req, res, next) {
   });
 });
 
-
-
-
 //Get all Questions
 app.get('/api/questions/all', function(req, res, next) {
   SecurityQuestion.find(function(err, securityQuestion) {
@@ -274,9 +271,6 @@ app.get('/api/questions/all', function(req, res, next) {
     }
   })
 });
-
-
-
 
 //Delete Security Question by id
 app.delete('/api/questions/delete/:id', function(req, res, next){

@@ -34,15 +34,32 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </mat-card-content>
-    <!--Add a new question form-->
-    <div fxLayout="column" class="input-container">
-      <mat-form-field hintLabel="Max 60 characters">
-        <input matInput #input required maxlength="60" placeholder="Enter a new question here:">
-        <mat-hint align="end">{{input.value?.length || 0}}/60</mat-hint>
-      </mat-form-field>
-    </div>
-    <mat-card-actions fxLayoutAlign="end">
-      <button mat-raised-button color="accent" type="submit">Add Question</button> <!--Add post request function here-->
-    </mat-card-actions>
   </mat-card>
 </div>
+
+<!-- Add security question card -->
+<div fxLayout="column">
+  <mat-card fx-Flex style="margin-top: 5%; width: 80%; margin-left: 10%;" class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Add Security Question</mat-card-title>
+      <mat-card-subtitle>Add a new security question to the database</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <br>
+    <!--Add a new question form-->
+    <form [formGroup]='form' (ngSubmit)="create(); form.reset()" #securityQuestionForm>
+      <mat-card-content>
+        <div fxLayout="column" class="input-container">
+          <mat-form-field hintLabel="Max 60 characters">
+            <input type="text" matInput [formControl]="form.controls['text']" placeholder="Enter a new question here:" autocomplete="off" />
+            <mat-hint align="end">{{form.controls['text'].value?.length || 0}}/60</mat-hint>
+          </mat-form-field>
+        </div>
+      <mat-card-actions fxLayoutAlign="end">
+        <button mat-raised-button color="accent" type="submit">Submit</button>
+      </mat-card-actions>
+  </mat-card-content>
+    </form>
+  </mat-card>
+</div>
+

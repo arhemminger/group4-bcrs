@@ -9,18 +9,16 @@
 ======================================
 */
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormBuilder, Validators, FormGroup} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export interface PeriodicElement {
-  ID: string;
-  Question: string;
+  questions: any;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {ID: '1', Question: 'What is your favorite animal?'},
-  {ID: '2', Question: 'What street did you grow up on?'},
-  {ID: '3', Question: 'What is the name of your childhood best friend?'},
-  {ID: '4', Question: 'What is your favorite place to visit?'}
+
 ];
 
 @Component({
@@ -30,6 +28,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class SecurityQuestionsComponent implements OnInit {
   question = new FormControl('', [Validators.required]);
+  form: FormGroup;
 
   getErrorMessage() {
     return this.question.hasError('required') ? 'You must enter a value' :
@@ -39,9 +38,32 @@ export class SecurityQuestionsComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'Question', 'Actions'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder) {
+  }
+ /*
+ this.http.get('/api/questions/' + this.quizId).subscribe(res => {
+    if (res){
+      console.log(res);
+      return this.questions = res;
+    } else {
+      console.log("Error: Could not find quiz");
+    }
+    })
+}
+*/
 
   ngOnInit() {
+    this.form = this.fb.group({
+      text: [null, Validators.compose([Validators.required])]
+    })
+  }
+
+  create() {
+    this.http.post('/api/questions', {
+      questionText: this.form.controls['text'].value,
+    }).subscribe(res => {
+      this.router.navigate(['/admin/security-questions'])
+    })
   }
 
 }
