@@ -190,33 +190,21 @@ app.get('/api/users/all', function(req, res, next) {
 */
 
 app.post('/api/users/login', function(req, res, next) {
+console.log(req.body)
+  User.findOne({'email': req.body.email}, function(err, user) {
+    //takes password and hashes it
+    password = hashPassword(req.body.password);
 
-  console.log(req.body.email);
-  console.log(req.body.password);
-  //takes password and hashes it
-  const password = hashPassword(req.body.password);
-  console.log(password);
-
-  User.findOne({'email': req.body.email}, function(err, foundUser) {
-    console.log("Password found: " + foundUser.password);
     if (err) {
       console.log(err);
       return next(err);
     }
-    if( bcrypt.compare(req.body.password, foundUser.password)) { //checks hashed password in DB to the hashed password variable that we just hashed
-      console.log(foundUser);
-      res.json(foundUser);
-    }
-    else{
-      console.log("Password didn't match!");
-      res.status(500).send({
-        text: 'You have entered an incorrect password. Please try again!',
-        time_stamp: new Date()
-      });
+    else if(password === user.password){ //checks hashed password in DB to hashed the password variable that we just hashed
+      console.log(user);
+      res.json(user);
     }
 
   })
-
 });
 
 
@@ -244,17 +232,17 @@ app.delete('/api/users/delete/:id', function(req, res, next){
 
 //Creat Security Question
 app.post('/api/questions', function(req, res, next) {
-  const addedQuestion = {
-    questionText: req.body.questionText,
+  const securityQuestion = {
+    questionText: req.body.text,
   };
 
-  SecurityQuestion.create(addedQuestion, function(err, newQuestion) {
+  SecurityQuestion.create(securityQuestion, function(err, securityQuestion) {
     if (err) {
       console.log(err);
       return next(err);
     } else {
-      console.log(newQuestion);
-      res.json(newQuestion);
+      console.log(securityQuestion);
+      res.json(securityQuestion);
     }
   });
 });
