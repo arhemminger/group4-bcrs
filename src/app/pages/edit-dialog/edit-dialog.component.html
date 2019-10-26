@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>{{edit.action}}</h1>
+<div mat-dialog-actions>
+  <input placeholder="{{edit.questionText}}" [(ngModel)]="edit.questionText"/>
+  <button mat-button (click)="doEdit()">{{edit.action}}</button>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+</div>

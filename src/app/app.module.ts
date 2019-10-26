@@ -42,6 +42,7 @@ import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summar
 import { NavigationComponent } from './navigation/navigation.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserDeleteConfirmationDialogComponent } from './shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
+import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -64,11 +65,14 @@ import { UserDeleteConfirmationDialogComponent } from './shared/user-delete-conf
     ForgotPasswordComponent,
     InvoiceSummaryComponent,
     NavigationComponent,
-    UserDeleteConfirmationDialogComponent
+    UserDeleteConfirmationDialogComponent,
+    EditDialogComponent
   ],
   exports:[
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EditDialogComponent
   ],
+  entryComponents:[EditDialogComponent],
     imports: [
     BrowserModule,
     MatButtonModule,

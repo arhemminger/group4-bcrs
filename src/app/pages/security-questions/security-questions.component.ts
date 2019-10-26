@@ -12,15 +12,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-
-export interface PeriodicElement {
-  questions: any;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-
-];
-
+import { MatDialog, throwMatDialogContentAlreadyAttachedError} from '@angular/material';
+import {EditDialogComponent} from '../edit-dialog/edit-dialog.component'
 @Component({
   selector: 'app-security-questions',
   templateUrl: './security-questions.component.html',
@@ -38,7 +31,7 @@ export class SecurityQuestionsComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'Question', 'Actions'];
   dataSource : any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder,public dialog: MatDialog) {
    this.http.get('/api/questions/all').subscribe(res => {
     if (res){
       console.log(res);
@@ -58,6 +51,18 @@ export class SecurityQuestionsComponent implements OnInit {
     })
   }
 
+  editTable(typeEdit,obj){
+    console.log(typeEdit)
+    obj.action = typeEdit;
+    const dialogRef= this.dialog.open(EditDialogComponent,{
+      width:'250px',
+      data:obj
+    });
+      dialogRef.afterClosed().subscribe(result=>{
+      console.log('dialog is closed')
+      console.log(result.event)
+    });
+    }
   create() {
     this.http.post('/api/questions', {
       questionText: this.form.controls['text'].value,
