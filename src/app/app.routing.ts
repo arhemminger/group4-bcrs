@@ -51,6 +51,11 @@ export const AppRoutes: Routes = [
         //canActivate: [AuthGuard]   <-how to route for admin only?
       },
       {
+        path: 'admin/users',
+        component: UsersComponent
+        //canActivate: [AuthGuard]
+      },
+      {
         path: 'my-profile',
         component: ProfileComponent,
         canActivate: [AuthGuard]
@@ -69,12 +74,8 @@ export const AppRoutes: Routes = [
         path: 'about-us',
         component: AboutComponent
         //canActivate: [AuthGuard]
-      },
-      {
-        path: 'users',
-        component: UsersComponent
-        //canActivate: [AuthGuard]
-      },
+      }
+
     ]
   },
   {
