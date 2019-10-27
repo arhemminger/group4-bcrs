@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, throwMatDialogContentAlreadyAttachedError} from '@angular/material';
 import {EditDialogComponent} from '../edit-dialog/edit-dialog.component'
+import { IfStmt } from '@angular/compiler';
 @Component({
   selector: 'app-security-questions',
   templateUrl: './security-questions.component.html',
@@ -60,7 +61,11 @@ export class SecurityQuestionsComponent implements OnInit {
     });
       dialogRef.afterClosed().subscribe(result=>{
       console.log('dialog is closed')
-      console.log(result.event)
+          if(result.event==='Update'){
+            this.updateData(result.data)
+          }else{
+            console.log('something went wrong')
+          }
     });
     }
   create() {
@@ -70,5 +75,11 @@ export class SecurityQuestionsComponent implements OnInit {
       this.router.navigate(['/admin/security-questions'])
     })
   }
-
+updateData(question_obj){
+this.http.put('/api/questions/update/'+ question_obj._id,{
+  questionText:question_obj.questionText
+}).subscribe(res=>{
+  console.log(res)
+})
+}
 }

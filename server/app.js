@@ -278,6 +278,44 @@ app.delete('/api/questions/delete/:id', function(req, res, next){
   })
 });
 
+//update security question by id
+app.put('/api/questions/update/:id', function(req, res, next){
+
+  SecurityQuestion.findOne({'_id': req.params.id}, function(err, question){
+    console.log(question)
+    if(err){
+      console.log("ERROR inside the questionText update by ID");
+      console.log(err);
+      return next(err);
+    }
+    else{
+
+      question.set({
+        questionText: req.body.questionText,
+      })
+
+      question.save(function(err, savedQuestion){
+        if(err){
+         console.log("ERROR inside the Question.save of the update Question API Route");
+         console.log(err);
+         return next(err);
+        }
+        else{
+          console.log("question was updated");
+          console.log(savedQuestion);
+          res.json(savedQuestion);
+        }
+      })
+    }
+  })
+
+});
+
+// app.delete('/api/questions/update/:id',function(req,res){
+//   SecurityQuestion.findOneAndRemove({'_id':req.params.id,'questionText':req.body.questionText}).then(text=>{
+//     res.json(text)
+//   })
+// })
 
 /**
  * Creates an express server and listens on port 3000
