@@ -64,10 +64,10 @@ export class SecurityQuestionsComponent implements OnInit {
     });
       dialogRef.afterClosed().subscribe(result=>{
       console.log('dialog is closed')
-          if(result.event==='Update'){
+          if(result.event === 'Update'){
             this.updateData(result.data)
-          }else{
-            console.log('something went wrong')
+          }else if(result.event === 'Delete'){
+            this.deleteData(result.data)
           }
     });
     }
@@ -78,11 +78,16 @@ export class SecurityQuestionsComponent implements OnInit {
       this.router.navigate(['/admin/security-questions'])
     })
   }
-updateData(question_obj){
-this.http.put('/api/questions/update/'+ question_obj._id,{
-  questionText:question_obj.questionText
-}).subscribe(res=>{
-  console.log(res)
-})
-}
+    updateData(question_obj){
+    this.http.put('/api/questions/update/'+ question_obj._id,{
+      questionText:question_obj.questionText
+    }).subscribe(res=>{
+      console.log(res)
+    })
+    }
+    deleteData(question_obj){
+      this.http.delete('/api/questions/delete/' + question_obj._id).subscribe(res=>{
+        console.log(res)
+      })
+    }
 }
