@@ -1,3 +1,15 @@
+/*
+=====================================
+  ; Title: edit-dialog.component.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: edit-dialog.component.ts
+  ; This dialog is used to edit security questions.
+======================================
+*/
+
 import { Component, OnInit,Inject } from '@angular/core';
 import {SecurityQuestionsComponent} from '../security-questions/security-questions.component'
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
