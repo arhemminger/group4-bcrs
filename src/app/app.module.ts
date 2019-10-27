@@ -73,7 +73,7 @@ import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
     EditDialogComponent,
     UserDeleteConfirmationDialogComponent
   ],
-  entryComponents:[EditDialogComponent],
+  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent],
     imports: [
     BrowserModule,
     MatButtonModule,

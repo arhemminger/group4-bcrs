@@ -220,14 +220,15 @@ app.post('/api/users/login', function(req, res, next) {
  */
 
 app.delete('/api/users/delete/:id', function(req, res, next){
-  User.findByIdAndDelete({'_id': req.params.id}, function(err, user){
+  User.findByIdAndDelete({'_id': req.params.id}, function(err, deletedUser){
+    console.log(deletedUser);
     if(err){
       console.log(err);
       return next(err);
     }
     else{
-      console.log(user);
-      res.json(user);
+      console.log(deletedUser);
+      res.json(deletedUser);
     }
   })
 });

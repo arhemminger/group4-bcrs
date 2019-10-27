@@ -59,14 +59,18 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       console.log('dialog is closed')
       console.log(result.event)
+      if(result.event === 'Delete'){
+        this.deleteUser(result.data)
+      }
     });
 
   }
 
-  deleteUser(id){
+  deleteUser(data){
 
-    this.http.get('/api/users/delete/' + id).subscribe(res => {
+    this.http.delete('/api/users/delete/' + data._id).subscribe(res => {
       if (res) {
+        delete this.deletedUser;
         return this.deletedUser = res;
       } else {
         return this.errorMessage = "OH NO, I couldn't find any users to delete!!!";
