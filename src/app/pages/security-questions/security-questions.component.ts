@@ -13,13 +13,14 @@ import {FormControl, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, throwMatDialogContentAlreadyAttachedError} from '@angular/material';
-import {EditDialogComponent} from '../edit-dialog/edit-dialog.component'
-import { IfStmt } from '@angular/compiler';
+import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
+
 @Component({
   selector: 'app-security-questions',
   templateUrl: './security-questions.component.html',
   styleUrls: ['./security-questions.component.css']
 })
+
 export class SecurityQuestionsComponent implements OnInit {
   question = new FormControl('', [Validators.required]);
   form: FormGroup;
@@ -33,14 +34,16 @@ export class SecurityQuestionsComponent implements OnInit {
   dataSource : any;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder,public dialog: MatDialog) {
+
    this.http.get('/api/questions/all').subscribe(res => {
     if (res){
       console.log(res);
       this.dataSource=res;
     } else {
-      console.log("Error: Could not find quiz");
+      console.log("Error: Could not find Questions");
     }
     })
+
   }
 
 

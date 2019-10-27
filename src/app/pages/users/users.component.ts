@@ -12,9 +12,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { MatDialog, throwMatDialogContentAlreadyAttachedError} from '@angular/material';
+import {UserDeleteConfirmationDialogComponent} from '../../shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -23,11 +25,12 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 })
 export class UsersComponent implements OnInit {
 
+  deletedUser: any;
   users: any;
   errorMessage: string;
 
   constructor(private route: ActivatedRoute, private cookieService: CookieService, private http: HttpClient, private router:Router,
-    private fb: FormBuilder, private location: Location) {
+    private fb: FormBuilder, private location: Location, public dialog: MatDialog) {
 
       this.http.get('/api/users/all').subscribe(res => {
         if (res) {
@@ -42,5 +45,36 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  deleteUserConfirmation(typeEdit, obj){
+
+    console.log(typeEdit);
+    obj.action = typeEdit;
+
+    const dialogRef = this.dialog.open(UserDeleteConfirmationDialogComponent,{
+      width:'250px',
+      data:obj
+    });
+
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log('dialog is closed')
+      console.log(result.event)
+    });
+
+  }
+
+  deleteUser(id){
+
+    this.http.get('/api/users/delete/' + id).subscribe(res => {
+      if (res) {
+        return this.deletedUser = res;
+      } else {
+        return this.errorMessage = "OH NO, I couldn't find any users to delete!!!";
+      }
+
+    })
+
+  }
+
 
 }
