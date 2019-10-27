@@ -46,10 +46,11 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteUserConfirmation(typeEdit, obj){
+  deleteUserConfirmation(typeEdit, obj, i){
 
     console.log(typeEdit);
     obj.action = typeEdit;
+    obj.index = i
 
     const dialogRef = this.dialog.open(UserDeleteConfirmationDialogComponent,{
       width:'250px',
@@ -57,10 +58,12 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      console.log('dialog is closed')
-      console.log(result.event)
+      //console.log('dialog is closed');
+      //console.log(result.event);
+      console.log(result.data.index);
       if(result.event === 'Delete'){
-        this.deleteUser(result.data)
+        this.deleteUser(result.data);
+        this.users.splice(result.data.index, 1);
       }
     });
 
@@ -70,7 +73,7 @@ export class UsersComponent implements OnInit {
 
     this.http.delete('/api/users/delete/' + data._id).subscribe(res => {
       if (res) {
-        delete this.deletedUser;
+
         return this.deletedUser = res;
       } else {
         return this.errorMessage = "OH NO, I couldn't find any users to delete!!!";
