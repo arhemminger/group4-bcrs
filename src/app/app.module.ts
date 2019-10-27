@@ -70,7 +70,8 @@ import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
   ],
   exports:[
     ReactiveFormsModule,
-    EditDialogComponent
+    EditDialogComponent,
+    UserDeleteConfirmationDialogComponent
   ],
   entryComponents:[EditDialogComponent],
     imports: [
