@@ -1,3 +1,13 @@
+/*
+=====================================
+  ; Title: group4-bcrs
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 27 2019
+  ; Description: Web-450 Group 4 Bob's Computer Repair Shop application.
+======================================
+*/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,10 +49,11 @@ import {MatListModule} from '@angular/material/list';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
-import { NavigationComponent } from './navigation/navigation.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserDeleteConfirmationDialogComponent } from './shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
 import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +77,8 @@ import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
     InvoiceSummaryComponent,
     NavigationComponent,
     UserDeleteConfirmationDialogComponent,
-    EditDialogComponent
+    EditDialogComponent,
+    UnauthorizedComponent
   ],
   exports:[
     ReactiveFormsModule,

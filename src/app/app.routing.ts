@@ -24,6 +24,7 @@ import { GraphComponent } from './pages/graph/graph.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 export const AppRoutes: Routes = [
   {
@@ -32,23 +33,23 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
         //canActivate: [AuthGuard]
       },
       {
         path: 'admin/user-edit',
         component: UserEditComponent
-        //canActivate: [AuthGuard]   <-how to route for admin only?
+        //canActivate: [AuthGuard]
       },
       {
         path: 'admin/security-questions',
         component: SecurityQuestionsComponent
-        //canActivate: [AuthGuard]   <-how to route for admin only?
+        //canActivate: [AuthGuard]
       },
       {
         path: 'admin/sales-chart',
         component: GraphComponent
-        //canActivate: [AuthGuard]   <-how to route for admin only?
+        //canActivate: [AuthGuard]
       },
       {
         path: 'admin/users',
@@ -91,13 +92,17 @@ export const AppRoutes: Routes = [
         component: LoginComponent
       },
       {
-        path: '404',
+        path: 'unauthorized',
+        component: UnauthorizedComponent
+      },
+      {
+        path: 'page-not-found',
         component: NotFoundComponent
       }
     ]
   },
   {
     path: '**',
-    redirectTo: 'session/404'
+    redirectTo: '/session/page-not-found'
   }
 ];
