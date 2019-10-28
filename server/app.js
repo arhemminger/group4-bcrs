@@ -82,6 +82,7 @@ app.post('/api/users/register', function(req, res, next){
           phone: req.body.phone,
           address: req.body.address,
           dateCreated: new Date(),
+          dateModified: new Date(),
           selectedSecurityQuestions: req.body.questions
            /*
             * the req.body.selectedSecurityQuestions is an array sent from the Angular UI
@@ -143,7 +144,8 @@ app.put('/api/users/update/:id', function(req, res, next){
          firstName: req.body.firstName,
          lastName: req.body.lastName,
          phone: req.body.phone,
-         address: req.body.address
+         address: req.body.address,
+         dateModified: new Date()
        })
 
        user.save(function(err, savedUser){
