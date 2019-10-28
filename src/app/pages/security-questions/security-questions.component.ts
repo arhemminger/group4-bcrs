@@ -46,14 +46,14 @@ export class SecurityQuestionsComponent implements OnInit {
 
   // Function to edit question record in table
   editTable(typeEdit,obj){
-    console.log(typeEdit)
+    console.log(typeEdit);
     obj.action = typeEdit;
     const dialogRef= this.dialog.open(EditDialogComponent,{
       width:'40%',
       data:obj
     });
       dialogRef.afterClosed().subscribe(result=>{
-      console.log('dialog is closed')
+      console.log('dialog is closed');
           if(result.event === 'Update'){
             this.updateData(result.data)
           }else if(result.event === 'Delete'){
@@ -67,9 +67,11 @@ export class SecurityQuestionsComponent implements OnInit {
     this.http.post('/api/questions', {
       questionText: this.form.controls['text'].value,
     }).subscribe(res => {
-      this.router.navigate(['/admin/security-questions'])
+      location.reload();
       console.log("New security question added to DB: " + this.question);
-    })
+    }), err => {
+      console.log("Error adding question record: " + this.form.controls['text'].value);
+    }
   }
 
     // Function to update an existing question record in table
@@ -77,15 +79,21 @@ export class SecurityQuestionsComponent implements OnInit {
     this.http.put('/api/questions/update/'+ question_obj._id,{
       questionText:question_obj.questionText
     }).subscribe(res=>{
-      console.log(res)
-    })
+      location.reload();
+      console.log(res);
+    }), err => {
+      console.log("Error updating question record: " + question_obj._id);
+    }
     }
 
     // Function to remove an existing question record in db
     deleteData(question_obj){
       this.http.delete('/api/questions/delete/' + question_obj._id).subscribe(res=>{
-        console.log(res)
-      })
+        location.reload();
+        console.log(res);
+      }), err => {
+        console.log("Error deleting question record: " + question_obj._id);
+      }
     }
 
 }
