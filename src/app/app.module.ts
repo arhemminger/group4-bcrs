@@ -71,9 +71,10 @@ import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
   exports:[
     ReactiveFormsModule,
     EditDialogComponent,
-    UserDeleteConfirmationDialogComponent
+    UserDeleteConfirmationDialogComponent,
+    UserEditComponent
   ],
-  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent],
+  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent, UserEditComponent],
     imports: [
     BrowserModule,
     MatButtonModule,

@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { MatDialog, throwMatDialogContentAlreadyAttachedError} from '@angular/material';
 import {UserDeleteConfirmationDialogComponent} from '../../shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
+import {UserEditComponent} from '../../shared/user-edit/user-edit.component';
 
 @Component({
   selector: 'app-users',
@@ -81,6 +82,34 @@ export class UsersComponent implements OnInit {
 
     })
 
+  }
+
+
+  editUserConfirmation(typeEdit, obj, i){
+
+    console.log(typeEdit);
+    obj.action = typeEdit;
+    obj.index = i
+
+    const dialogRef = this.dialog.open(UserEditComponent,{
+      width:'500px',
+      data:obj
+    });
+
+    dialogRef.afterClosed().subscribe(result=>{
+      //console.log('dialog is closed');
+      //console.log(result.event);
+      //console.log(result.data.index);
+      if(result.event === 'Update'){
+        this.updateUser(result.data);
+
+      }
+    });
+
+  }
+
+  updateUser(data){
+    console.log(data);
   }
 
 
