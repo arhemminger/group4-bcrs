@@ -36,6 +36,7 @@ export class UserEditComponent implements OnInit {
     }
 
      closeDialog(){
+
       this.dialogRef.close()
     }
 

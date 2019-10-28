@@ -5,6 +5,7 @@
 
           <div *ngIf="users">
               <br><br><br>
+              <div *ngIf="show">
               <div *ngIf="deletedUser">
                 <h2 style="color:red;">User associated with Email: <span style="font-weight: bold;">{{deletedUser.email}}</span> has been deleted.</h2>
               </div>
@@ -28,7 +29,7 @@
                         <td><button mat-raised-button color="warn" (click)="deleteUserConfirmation('Delete',user, i)">Delete</button></td>
                       </tr>
                   </table>
-
+                </div>
               </div>
 
 

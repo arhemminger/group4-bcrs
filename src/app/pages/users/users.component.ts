@@ -18,6 +18,7 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 import { MatDialog, throwMatDialogContentAlreadyAttachedError} from '@angular/material';
 import {UserDeleteConfirmationDialogComponent} from '../../shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
 import {UserEditComponent} from '../../shared/user-edit/user-edit.component';
+import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-users',
@@ -29,9 +30,12 @@ export class UsersComponent implements OnInit {
   deletedUser: any;
   users: any;
   errorMessage: string;
+  show: boolean = true;
 
   constructor(private route: ActivatedRoute, private cookieService: CookieService, private http: HttpClient, private router:Router,
     private fb: FormBuilder, private location: Location, public dialog: MatDialog) {
+
+
 
       this.http.get('/api/users/all').subscribe(res => {
         if (res) {
@@ -42,10 +46,13 @@ export class UsersComponent implements OnInit {
 
       })
 
-    }
+
+  }
 
   ngOnInit() {
+
   }
+
 
   deleteUserConfirmation(typeEdit, obj, i){
 
@@ -54,6 +61,7 @@ export class UsersComponent implements OnInit {
     obj.index = i
 
     const dialogRef = this.dialog.open(UserDeleteConfirmationDialogComponent,{
+      disableClose: true,
       width:'250px',
       data:obj
     });
@@ -92,6 +100,7 @@ export class UsersComponent implements OnInit {
     obj.index = i
 
     const dialogRef = this.dialog.open(UserEditComponent,{
+      disableClose: true,
       width:'500px',
       data:obj
     });
@@ -104,12 +113,13 @@ export class UsersComponent implements OnInit {
         this.updateUser(result.data);
 
       }
+
     });
 
   }
 
   updateUser(data){
-    console.log(data);
+    //console.log(data);
 
     this.http.put('/api/users/update/'+ data._id,{
 
