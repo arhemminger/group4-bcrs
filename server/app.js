@@ -129,7 +129,7 @@ app.post('/api/users/register', function(req, res, next){
  * Update user by _id
  */
 
-app.put('/api/user/update/:id', function(req, res, next){
+app.put('/api/users/update/:id', function(req, res, next){
 
    User.findOne({'_id': req.params.id}, function(err, user){
      if(err){

@@ -110,6 +110,18 @@ export class UsersComponent implements OnInit {
 
   updateUser(data){
     console.log(data);
+
+    this.http.put('/api/users/update/'+ data._id,{
+
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phone: data.phone,
+        address: data.address
+
+    }).subscribe(res=>{
+      console.log(res)
+    })
+
   }
 
 
