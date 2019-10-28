@@ -24,17 +24,10 @@ import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
 export class SecurityQuestionsComponent implements OnInit {
   question = new FormControl('', [Validators.required]);
   form: FormGroup;
-
-  getErrorMessage() {
-    return this.question.hasError('required') ? 'You must enter a value' :
-            '';
-  }
-
   displayedColumns: string[] = ['ID', 'Question', 'Actions'];
   dataSource : any;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder,public dialog: MatDialog) {
-
    this.http.get('/api/questions/all').subscribe(res => {
     if (res){
       console.log(res);
@@ -43,11 +36,7 @@ export class SecurityQuestionsComponent implements OnInit {
       console.log("Error: Could not find Questions");
     }
     })
-
   }
-
-
-
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -55,11 +44,12 @@ export class SecurityQuestionsComponent implements OnInit {
     })
   }
 
+  // Function to edit question record in table
   editTable(typeEdit,obj){
     console.log(typeEdit)
     obj.action = typeEdit;
     const dialogRef= this.dialog.open(EditDialogComponent,{
-      width:'250px',
+      width:'40%',
       data:obj
     });
       dialogRef.afterClosed().subscribe(result=>{
@@ -71,13 +61,18 @@ export class SecurityQuestionsComponent implements OnInit {
           }
     });
     }
-  create() {
+
+    // Function to add new question record to db
+    create() {
     this.http.post('/api/questions', {
       questionText: this.form.controls['text'].value,
     }).subscribe(res => {
       this.router.navigate(['/admin/security-questions'])
+      console.log("New security question added to DB: " + this.question);
     })
   }
+
+    // Function to update an existing question record in table
     updateData(question_obj){
     this.http.put('/api/questions/update/'+ question_obj._id,{
       questionText:question_obj.questionText
@@ -85,9 +80,12 @@ export class SecurityQuestionsComponent implements OnInit {
       console.log(res)
     })
     }
+
+    // Function to remove an existing question record in db
     deleteData(question_obj){
       this.http.delete('/api/questions/delete/' + question_obj._id).subscribe(res=>{
         console.log(res)
       })
     }
+
 }
