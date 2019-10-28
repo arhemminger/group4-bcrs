@@ -27,7 +27,7 @@
           <button routerLink="/admin/security-questions" mat-menu-item>Security Questions</button>
           <button routerLink="/admin/sales-chart" mat-menu-item>Sales Chart</button>
         </mat-menu>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>LogOut</span>
       </button>

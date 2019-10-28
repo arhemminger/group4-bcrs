@@ -8,7 +8,6 @@
   ; Description: app.js
 ======================================
 */
-
 const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
@@ -16,7 +15,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
 
 const User = require('./db-models/users');
 const SecurityQuestion = require('./db-models/securityQuestions');
@@ -54,7 +52,6 @@ mongoose.connect(connString, {promiseLibrary: require('bluebird'), useNewUrlPars
 /************************* API routes go below this line ********************/
 
 /****************************USER API*******************************  */
-
 
 /**
  * Create/Register New user
@@ -124,8 +121,6 @@ app.post('/api/users/register', function(req, res, next){
   })
 });
 
-
-
 /**
  * Update user by _id
  */
@@ -165,9 +160,6 @@ app.put('/api/users/update/:id', function(req, res, next){
 
 });
 
-
-
-
 /*
 *   Get all users
 */
@@ -182,9 +174,6 @@ app.get('/api/users/all', function(req, res, next) {
     }
   })
 });
-
-
-
 
 /*
 *  Get User by email
@@ -214,9 +203,6 @@ app.post('/api/users/login', function(req, res, next) {
 })
 })
 
-
-
-
 /**
  * Delete User by id
  */
@@ -234,7 +220,6 @@ app.delete('/api/users/delete/:id', function(req, res, next){
     }
   })
 });
-
 
 /***************************SECURITY QUESTION API*******************/
 
@@ -313,12 +298,6 @@ app.put('/api/questions/update/:id', function(req, res, next){
   })
 
 });
-
-// app.delete('/api/questions/update/:id',function(req,res){
-//   SecurityQuestion.findOneAndRemove({'_id':req.params.id,'questionText':req.body.questionText}).then(text=>{
-//     res.json(text)
-//   })
-// })
 
 /**
  * Creates an express server and listens on port 3000

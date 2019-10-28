@@ -9,6 +9,8 @@
 ======================================
 */
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -17,9 +19,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private cookieService: CookieService) { }
 
   ngOnInit() {
   }
 
+  // Function to logout the user. Remove isAuthenticated cookie
+  logout () {
+    this.cookieService.delete('isAuthenticated');
+    location.reload();
+    console.log("User logged out.");
+  }
 }
