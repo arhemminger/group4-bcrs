@@ -30,7 +30,8 @@ doEdit(){
   this.dialogRef.close({event:this.edit.action, data:this.edit})
 }
 closeDialog(){
-  this.dialogRef.close()
+  this.edit.action = "Cancel";
+  this.dialogRef.close({event:this.edit.action})
 }
   ngOnInit() {
   }

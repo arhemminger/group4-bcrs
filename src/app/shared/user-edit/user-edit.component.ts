@@ -22,6 +22,7 @@ export class UserEditComponent implements OnInit {
 
   edit:any;
 
+
   constructor(public dialogRef: MatDialogRef<UsersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -35,8 +36,9 @@ export class UserEditComponent implements OnInit {
       this.dialogRef.close({event:this.edit.action, data:this.edit})
     }
 
-     closeDialog(){
-      this.dialogRef.close()
+     closeDialog(): void{
+      this.edit.action = "Cancel";
+      this.dialogRef.close({event:this.edit.action})
     }
 
   ngOnInit() {
