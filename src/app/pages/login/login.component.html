@@ -1,29 +1,35 @@
 
-  <mat-card style="margin: auto;margin-top: 15%;width: 50%;">
-    <mat-card-title style="text-align: center;">Login Form</mat-card-title>
-    <mat-card-content style="text-align: center;">
-    <form [formGroup]="loginForm" >
+  <div class="flex-container" fxLayout="row"  fxLayoutAlign="none" style="height: 100vh;">
+   <div fxFlex="50%"><div class="loginImage"></div></div>
+  <div fxFlex="50%">
+    <div class="loginContainer">
+        <h1>Log In</h1>
+          <form [formGroup]="loginForm" >
         <div class="form-group">
-          <label>
-            Email:
-            <input type="text" [formControl]="userEmail" required>
-          </label>
+            <mat-form-field appearance="fill" style="width:50%">
+                <mat-label>Email:</mat-label>
+                <input type="text" [formControl]="userEmail" required matInput placeholder="yourEmail@email.com">
+              </mat-form-field>
           <div *ngIf="userEmail.invalid && (userEmail.dirty || userEmail.touched)">
              <p *ngIf="userEmail.errors.required">Email is required!</p>
           </div>
           </div>
           <br/>
           <div class="form-group">
-           <label>
-            Password:
-            <input type="password" [formControl]="userPassword">
-          </label>
+              <mat-form-field appearance="fill" style="width:50%">
+                  <mat-label>Password:</mat-label>
+                  <input  type="password" [formControl]="userPassword" required matInput placeholder="Secret Password">
+                </mat-form-field>
           </div>
            <div *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
              <p *ngIf="userPassword.errors.required">Password is required!</p>
           </div>
         </form>
-        <button mat-flat-button (click)="onSubmit(loginForm)"  [disabled]="!loginForm.valid" color=primary style="margin-top: 20px;">Login</button>
-    </mat-card-content>
-  </mat-card>
-
+        <button mat-raised-button (click)="onSubmit(loginForm)"  [disabled]="!loginForm.valid" color=primary style="margin-top: 20px; width:50%">Login</button>
+        <p>Forgot Password?</p>
+    </div>
+    <div class="registerSection">
+      <button mat-flat-button>Register</button>
+    </div>
+  </div>
+</div>

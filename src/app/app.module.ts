@@ -46,6 +46,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
@@ -107,7 +108,8 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false}),
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [
     CookieService,

@@ -1,1 +1,48 @@
-<p>register works!</p>
+
+          <form [formGroup]="loginForm" >
+              <div class="form-group">
+                  <mat-form-field appearance="fill" style="width:50%">
+                      <mat-label>User Name</mat-label>
+                      <input type="text" [formControl]="userName" required matInput placeholder="Groovy nickname">
+                    </mat-form-field>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" style="width:50%">
+                        <mat-label>First Name</mat-label>
+                        <input [formControl]="userFirstName" required matInput placeholder="First Name">
+                      </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" style="width:50%">
+                        <mat-label>Last Name</mat-label>
+                        <input [formControl]="userLastName" required matInput placeholder="Last Name">
+                      </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" style="width:50%">
+                        <mat-label>Phone Number</mat-label>
+                        <input [formControl]="userPhone" required matInput placeholder="Phone Number">
+                      </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" style="width:50%">
+                        <mat-label>Address</mat-label>
+                        <input [formControl]="userAddress" required matInput placeholder="Address">
+                      </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" style="width:50%">
+                        <mat-label>Email</mat-label>
+                        <input [formControl]="userEmail" required matInput placeholder="Email">
+                      </mat-form-field>
+                </div>
+                <mat-form-field>
+                    <mat-label>Select your Security Questions</mat-label>
+                    <mat-select>
+                      <mat-option>
+                      </mat-option>
+                    </mat-select>
+                    <input/>
+                  </mat-form-field>
+             </form>
