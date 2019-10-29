@@ -1,1 +1,31 @@
-<p>user-edit works!</p>
+<h1 mat-dialog-title>{{edit.action}}</h1>
+<div mat-dialog-actions>
+  <p>Edit user associated with {{edit.email}}</p>
+
+  <div style="width: 90%;">
+    First Name:
+    <input type="text" matInput placeholder="{{edit.firstName}}" autocomplete="off" size="50" [(ngModel)]="edit.firstName" />
+  </div>
+  <br><br><br>
+
+  <div style="width: 90%;">
+    Last Name:
+    <input type="text" matInput placeholder="{{edit.lastName}}" autocomplete="off" size="50" [(ngModel)]="edit.lastName" />
+  </div>
+  <br><br><br>
+
+  <div style="width: 90%;">
+    Phone:
+    <input type="text" matInput placeholder="{{edit.phone}}" autocomplete="off" size="50" [(ngModel)]="edit.phone"/>
+  </div>
+  <br><br><br>
+
+  <div style="width: 90%;">
+    Address:
+    <input type="text" matInput  placeholder="{{edit.address}}" autocomplete="off" size="50" [(ngModel)]="edit.address"/>
+  </div>
+  <br><br><br><br><br>
+
+  <button mat-button (click)="updateUser(edit._id)">{{edit.action}}</button>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+</div>

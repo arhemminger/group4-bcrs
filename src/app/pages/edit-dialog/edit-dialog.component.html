@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>{{edit.action}}</h1>
+<div mat-dialog-actions fxLayoutAlign="end" class="input-container">
+  <input style="width: 100%;" placeholder="{{edit.questionText}}" [(ngModel)]="edit.questionText"/>
+  <br>
+  <button mat-button="warn" (click)="closeDialog()">Cancel</button>
+  <button mat-button color="accent" (click)="doEdit()">{{edit.action}}</button>
+</div>

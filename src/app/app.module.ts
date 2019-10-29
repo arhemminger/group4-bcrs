@@ -1,8 +1,19 @@
+/*
+=====================================
+  ; Title: group4-bcrs
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 27 2019
+  ; Description: Web-450 Group 4 Bob's Computer Repair Shop application.
+======================================
+*/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
+import {HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BaseLayoutComponent } from './shared';
@@ -31,14 +42,18 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatListModule} from '@angular/material/list';
-
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
+import { MatTableModule } from '@angular/material/table';
+import { UserDeleteConfirmationDialogComponent } from './shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
+import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -59,9 +74,20 @@ import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summar
     SecurityQuestionsComponent,
     UserEditComponent,
     ForgotPasswordComponent,
-    InvoiceSummaryComponent
+    InvoiceSummaryComponent,
+    NavigationComponent,
+    UserDeleteConfirmationDialogComponent,
+    EditDialogComponent,
+    UnauthorizedComponent
   ],
-  imports: [
+  exports:[
+    ReactiveFormsModule,
+    EditDialogComponent,
+    UserDeleteConfirmationDialogComponent,
+    UserEditComponent
+  ],
+  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent, UserEditComponent],
+    imports: [
     BrowserModule,
     MatButtonModule,
     MatIconModule,
@@ -78,7 +104,10 @@ import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summar
     MatFormFieldModule,
     MatListModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false})
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false}),
+    MatTableModule
   ],
   providers: [
     CookieService,

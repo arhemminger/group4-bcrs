@@ -3,8 +3,7 @@
     <h1>Bobs Repair Shop</h1>
     <p style="width:50%">We offer repair and salvaging for many different types of devices including computers,
       smartphones, tablets, gaming consoles etc....</p>
-    <button mat-flat-button color=accent style="margin-right: 10px">View Services</button>
-    <button mat-flat-button color=primary>Get Repair</button>
+    <button mat-flat-button color=accent style="margin-right: 10px" [routerLink]="['/shop']">View Services</button>
   </div>
 </div>
 <div class="services" style="padding:100px;margin-top: 20px;">
@@ -57,7 +56,6 @@
         <img class="image"  src="../assets/images/computer.jpg">
       </div>
       <div fxFlex="50%" class="reviewSection">
-
       </div>
 </div>
 </div>

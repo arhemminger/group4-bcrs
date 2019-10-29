@@ -1,1 +1,65 @@
-<p>security-questions works!</p>
+<!-- Security questions management card -->
+<div fxLayout="column">
+  <mat-card fx-Flex style="margin-top: 5%; width: 80%; margin-left: 10%;" class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Security Question Management</mat-card-title>
+      <mat-card-subtitle>Create, read, update, and delete user registration security questions</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <br><br>
+    <mat-card-content>
+      <!-- Material Table -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- ID Column -->
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef> ID: </th>
+            <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+          </ng-container>
+          <!-- Question Column -->
+          <ng-container matColumnDef="Question">
+            <th mat-header-cell *matHeaderCellDef> Question </th>
+            <td mat-cell *matCellDef="let element"> {{element.questionText}} </td>
+          </ng-container>
+          <!-- Edit Column -->
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-raised-button color="accent" (click)="editTable('Update',element)">Edit</button> <!-- Need edit solution, Dialog? -->
+              <span> | </span>
+              <button mat-raised-button color="warn" (click)="editTable('Delete',element)" >Delete</button> <!--Add delete function here-->
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Add security question card -->
+<div fxLayout="column">
+  <mat-card fx-Flex style="margin-top: 5%; width: 80%; margin-left: 10%; margin-bottom: 5%;" class="mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Add Security Question</mat-card-title>
+      <mat-card-subtitle>Add a new security question to the database</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <br>
+    <!--Add a new question form-->
+    <form [formGroup]='form' (ngSubmit)="create(); form.reset()" #securityQuestionForm>
+      <mat-card-content>
+        <div fxLayout="column" class="input-container">
+          <mat-form-field hintLabel="Max 60 characters">
+            <input type="text" matInput [formControl]="form.controls['text']" placeholder="Enter a new question here:" autocomplete="off" />
+            <mat-hint align="end">{{form.controls['text'].value?.length || 0}}/60</mat-hint>
+          </mat-form-field>
+        </div>
+      <mat-card-actions fxLayoutAlign="end">
+        <button mat-raised-button color="accent" type="submit">Submit</button>
+      </mat-card-actions>
+  </mat-card-content>
+    </form>
+  </mat-card>
+</div>
+

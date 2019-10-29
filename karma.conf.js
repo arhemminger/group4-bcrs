@@ -1,3 +1,13 @@
+/*
+=====================================
+  ; Title: group4-bcrs
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 27 2019
+  ; Description: Web-450 Group 4 Bob's Computer Repair Shop application.
+======================================
+*/
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
