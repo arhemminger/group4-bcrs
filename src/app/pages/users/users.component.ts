@@ -102,8 +102,10 @@ export class UsersComponent implements OnInit {
     const dialogRef = this.dialog.open(UserEditComponent,{
       disableClose: true,
       width:'500px',
-      data:obj
+      data: obj
+
     });
+
 
     dialogRef.afterClosed().subscribe(result=>{
       //console.log('dialog is closed');
@@ -111,6 +113,18 @@ export class UsersComponent implements OnInit {
       //console.log(result.data.index);
       if(result.event === 'Update'){
         this.updateUser(result.data);
+
+      }if(result.event === 'Cancel'){
+
+        //Do something
+        this.http.get('/api/users/all').subscribe(res => {
+          if (res) {
+            return this.users = res;
+          } else {
+            return this.errorMessage = "OH NO, I couldn't find any users!!!";
+          }
+
+        })
 
       }
 
