@@ -62,12 +62,23 @@ export class SecurityQuestionsComponent implements OnInit {
     });
     }
 
+
     // Function to add new question record to db
     create() {
     this.http.post('/api/questions', {
       questionText: this.form.controls['text'].value,
     }).subscribe(res => {
-      location.reload();
+      //this will pull all questions from database and reload the table.
+      this.http.get('/api/questions/all').subscribe(res => {
+        if (res){
+          console.log(res);
+          this.dataSource=res;
+        } else {
+          console.log("Error: Could not find Questions");
+        }
+        })
+
+      //location.reload();
       console.log("New security question added to DB: " + this.question);
     }), err => {
       console.log("Error adding question record: " + this.form.controls['text'].value);
