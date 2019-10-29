@@ -78,7 +78,7 @@ export class SecurityQuestionsComponent implements OnInit {
         }
         })
 
-      //location.reload();
+
       console.log("New security question added to DB: " + this.question);
     }), err => {
       console.log("Error adding question record: " + this.form.controls['text'].value);
