@@ -95,7 +95,6 @@ export const AppRoutes: Routes = [
       {
         path: 'register',
         component : RegisterComponent,
-        outlet:'registration'
       },
       {
         path: 'unauthorized',
