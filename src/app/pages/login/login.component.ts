@@ -47,9 +47,10 @@ userPassword:FormControl;
 
     }).subscribe(
       res =>{
+
         this.cookieService.set('isAuthenticated','true',1);
-        this.router.navigate(['my-profile'])
-      console.log(res)
+        this.router.navigate(['my-profile']);
+        console.log(res);
 
       },
       err => {

@@ -1,0 +1,17 @@
+body{
+  color:#b71c1c;
+}
+.loginImage{
+  background-size: cover;
+  height:100%;
+  background-image: url('../../../assets/images/bobs-home.jpg')
+}
+.loginContainer{
+  text-align: center;
+  margin-top: 20%;
+}
+.registerSection{
+  position: absolute;
+  bottom: 0;
+  margin-left: 25%;
+}
