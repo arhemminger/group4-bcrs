@@ -21,7 +21,7 @@ import { Component, OnInit } from '@angular/core';
           <p style="text-align: center;">The requested page does not exist.</p>
           <p style="text-align: center;">Please go to the Bob's Computer Repair Shop home page by clicking the link below.</p>
         <mat-card-actions>
-          <button fxFlex mat-raised-button color="primary" [routerLink]="['/']">Return to home page</button>
+          <button fxFlex mat-raised-button color="primary" [routerLink]="['/']">Return to Homepage</button>
         </mat-card-actions>
       </mat-card>
     </div>
