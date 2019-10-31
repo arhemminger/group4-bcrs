@@ -1,74 +1,84 @@
 
-          <form [formGroup]="registrationForm " >
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value); ">
+
               <div class="form-group">
                   <mat-form-field appearance="fill" style="width:50%">
                       <mat-label>User Name</mat-label>
-                      <input type="text" [formControl]="userName" required matInput placeholder="Groovy nickname">
+                      <input type="text" [formControl]="registrationForm.controls['userName']" required matInput placeholder="Groovy nickname">
                     </mat-form-field>
                 </div>
                 <br/>
+
                 <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
                         <mat-label>First Name</mat-label>
-                        <input type="text" [formControl]="userFirstName" required matInput placeholder="First Name">
+                        <input type="text" [formControl]="registrationForm.controls['firstName']" required matInput placeholder="First Name">
                       </mat-form-field>
                 </div>
+
                 <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
                         <mat-label>Last Name</mat-label>
-                        <input type="text"  [formControl]="userLastName" required matInput placeholder="Last Name">
+                        <input type="text"  [formControl]="registrationForm.controls['lastName']" required matInput placeholder="Last Name">
                       </mat-form-field>
                 </div>
+
                 <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
                         <mat-label>Phone Number</mat-label>
-                        <input type="text"  [formControl]="userPhone" required matInput placeholder="Phone Number">
+                        <input type="text"  [formControl]="registrationForm.controls['phone']" required matInput placeholder="Phone Number">
                       </mat-form-field>
                 </div>
+
                 <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
                         <mat-label>Address</mat-label>
-                        <input type="text" [formControl]="userAddress" required matInput placeholder="Address">
+                        <input type="text" [formControl]="registrationForm.controls['address']" required matInput placeholder="Address">
                       </mat-form-field>
                 </div>
+
                 <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
                         <mat-label>Email</mat-label>
-                        <input type="text" [formControl]="userEmail" required matInput placeholder="Email">
+                        <input type="text" [formControl]="registrationForm.controls['email']" required matInput placeholder="Email">
                       </mat-form-field>
                 </div>
+
                 <mat-form-field>
                     <mat-label>Select your Security Questions</mat-label>
                     <mat-select [(value)]="selectedValue1" name=question>
-                      <mat-option [value]="option.questionText" *ngFor="let option of securityQuestions">
+                      <mat-option [value]="option._id" *ngFor="let option of securityQuestions">
                         {{option.questionText}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <br/>
-                  <input type="text" matInput [(ngModel)]="securityAnswer1"/>
+                  <input type="text" matInput [formControl]="registrationForm.controls['securityAnswer1']"/>
                   <br/>
+
                   <mat-form-field>
                     <mat-label>Select your Security Questions</mat-label>
                     <mat-select name=question  [(value)]="selectedValue2">
-                      <mat-option [value]="option.questionText" *ngFor="let option of securityQuestions">
+                      <mat-option [value]="option._id" *ngFor="let option of securityQuestions">
                           {{option.questionText}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <br/>
-                  <input type="text" matInput [(ngModel)]="securityAnswer2"/>
+
+                  <input type="text" matInput [formControl]="registrationForm.controls['securityAnswer2']"/>
                   <br/>
                   <mat-form-field>
                     <mat-label>Select your Security Questions</mat-label>
                     <mat-select name=question [(value)]="selectedValue3">
-                      <mat-option [value]="option.questionText"  *ngFor="let option of securityQuestions">
+                      <mat-option [value]="option._id"  *ngFor="let option of securityQuestions">
                           {{option.questionText}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
                   <br/>
-                  <input type="text" matInput [(ngModel)]="securityAnswer3"/>
+                  <input type="text" matInput [formControl]="registrationForm.controls['securityAnswer3']"/>
              </form>
-             <button mat-raised-button (click)="onSubmit(registrationForm)">Login</button>
+             <button mat-raised-button type="submit" (click)="onSubmit(registrationForm.value)">Login</button>
+             <!--(click)="onSubmit(registrationForm)"-->
 

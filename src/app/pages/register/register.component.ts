@@ -10,9 +10,13 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, Form } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -20,30 +24,32 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  selectedValue1 : any
-  selectedValue2 : any
-  selectedValue3 : any
-  securityAnswer1 :  string = ''
-  securityAnswer2 :  string = ''
-  securityAnswer3 :  string = ''
+  selectedValue1 : any;
+  selectedValue2 : any;
+  selectedValue3 : any;
+ securityAnswer1 :  String;
+ securityAnswer2 :  String;
+ securityAnswer3 :  String;
   securityQuestions : any;
-  registrationForm:FormGroup;
-  userName:FormControl;
-  userFirstName:FormControl;
-  userLastName:FormControl;
-  userPhone:FormControl;
-  userAddress:FormControl;
-  userEmail:FormControl;
-  userRole:FormControl;
-  userSelectedSecurityQuestion:any;
-  userCreated:FormControl;
-  userModified:FormControl;
-  userPassword:FormControl;
 
-  constructor(private http:HttpClient) {
+
+  registeringUser: any;
+
+  registrationForm:FormGroup;
+  userName:String;
+  firstName:String;
+  lastName:String;
+  phone:String;
+  address:String;
+  email:String;
+  userSelectedSecurityQuestion:any = [];
+  password:String;
+
+
+  constructor(private http:HttpClient, private cookieService: CookieService, private fb: FormBuilder) {
     this.http.get('/api/questions/all').subscribe(res => {
       if (res){
-        console.log(res);
+        //console.log(res);
         this.securityQuestions=res;
       } else {
         console.log("Error: Could not find Questions");
@@ -62,38 +68,66 @@ export class RegisterComponent implements OnInit {
   // dateCreated: {type: Date, default: new Date()},
   // dateModified: {type: Date}
   ngOnInit() {
-  this.userName = new FormControl('');
-  this.userPassword = new FormControl('');
-  this.userFirstName = new FormControl('');
-  this.userLastName = new FormControl('');
-  this.userPhone = new FormControl('');
-  this.userAddress = new FormControl('');
-  this.userEmail = new FormControl('');
-  this.userRole = new FormControl('');
-    this.registrationForm = new FormGroup({
-    userName:this.userName,
-    password:this.userPassword,
-    firstName:this.userFirstName,
-    lastName:this.userLastName,
-    phone:this.userPhone,
-    address:this.userAddress,
-    email:this.userEmail,
-    role:this.userRole,
-  })
+
+    this.registrationForm = this.fb.group({
+      userName: new FormControl(),
+      password:  new FormControl(),
+      firstName:  new FormControl(),
+      lastName:  new FormControl(),
+      phone:  new FormControl(),
+      address:  new FormControl(),
+      email:  new FormControl(),
+      securityAnswer1 :  new FormControl(),
+      securityAnswer2 :  new FormControl(),
+      securityAnswer3 :  new FormControl()
+
+    });
+
 }
-onSubmit(registrationForm:FormGroup) {
+onSubmit() {
+
+
   this.userSelectedSecurityQuestion=[
-    {selectedQuestion:this.selectedValue1,
-     selectedAnswer:this.securityAnswer1},
+    {selectedQuestion: this.selectedValue1,
+     selectedAnswer: this.registrationForm.value.securityAnswer1},
      {selectedQuestion:this.selectedValue2,
-      selectedAnswer:this.securityAnswer2},
+      selectedAnswer:this.registrationForm.value.securityAnswer2},
       {selectedQuestion:this.selectedValue3,
-        selectedAnswer:this.securityAnswer3},
+        selectedAnswer:this.registrationForm.value.securityAnswer3},
     ]
-  console.log(registrationForm)
-  const userLogin=registrationForm.value;
-  console.log(userLogin)
-  console.log(this.userSelectedSecurityQuestion)
+
+    /**
+     * The values returned by the form include the security question answers.
+     *
+     * We need to save all the values into an array and omit the three security question answers.
+     *
+     *
+     * then we need to add the above userSelectedSecurityQuestion array to the registeringUser array as a nested array
+     *
+     * Then we need to take the registeringUser array and insert it into the database.
+     *
+     */
+    //this.registeringUser['userName'] = this.registrationForm.value['userName'];
+    //this.registeringUser = this.registrationForm.value.firstName;
+    //this.registeringUser = this.registrationForm.value.lastName;
+    //this.registeringUser = this.registrationForm.value.phone;
+    //this.registeringUser = this.registrationForm.value.address;
+    //this.registeringUser = this.registrationForm.value.email;
+    //this.registeringUser = this.registrationForm.value.password;
+    //this.registeringUser['selectedSecurityQuestions'] = this.userSelectedSecurityQuestion;
+
+
+   this.registrationForm['selectedSecurityQuestions'] = this.userSelectedSecurityQuestion;
+
+  console.log("registrationForm");
+  console.log(this.registrationForm);
+
+  //const userLogin=registrationForm.value;
+  console.log("registeredUser")
+  console.log(this.registeringUser);
+
+  console.log("Security questions array.......");
+  console.log(this.userSelectedSecurityQuestion);
 
 
 }
