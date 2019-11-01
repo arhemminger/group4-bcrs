@@ -65,7 +65,76 @@ app.post('/api/users/register', function(req, res, next){
       return next(err);
     }
     else{
+      if(user){
+        res.status(500).send({
+          text: 'The selected userName: ' + req.body.userName + ' is already in use',
+          time_stamp: new Date()
+        });
+      }
       if(!user){
+
+
+        //Check to see if email is already in use.
+        User.findOne({'email': req.body.email}, function(err, user){
+          if (err) {
+            console.log(err);
+            return next(err);
+          }
+          else{
+            if(user){
+              res.status(500).send({
+                text: 'The selected email: ' + req.body.email + ' is already in use',
+                time_stamp: new Date()
+              });
+            }
+            if(!user){
+              //The selected email is unique
+              let hashedPassword = hashPassword(req.body.password); //Hashing the password before it goes into the DB
+
+              //This creates a addUser object to insert into DB
+              let addUser = {
+                userName: req.body.userName,
+                password: hashedPassword,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                phone: req.body.phone,
+                address: req.body.address,
+                dateCreated: new Date(),
+                dateModified: new Date(),
+                selectedSecurityQuestions: req.body.questions
+                /*
+                  * the req.body.selectedSecurityQuestions is an array sent from the Angular UI
+                  * the questionId needs to be the _id that mongoDB generates
+                  * the bellow example needs to be done on client
+                  * Example:
+                  * let questions = [
+                  * {questionId: '1234', answerText: 'Blue'},
+                  * {questionId: '5678', answerText: 'Red'},
+                  * {questionId: '9012', answerText: 'White'}
+                  * ]
+                  */
+
+              }//end of user object
+
+              User.create(addUser, function(err, newUser){
+                if(err){
+                  console.log('The bellow error is associated with the User.create inside the register API Route')
+                  console.log(err);
+                  return next(err);
+                }
+                else{
+                  console.log('User registered');
+                  console.log(newUser);
+                  res.json(newUser);
+                }
+              })
+
+            }
+
+    }
+  })
+
         //The selected username is unique
         let hashedPassword = hashPassword(req.body.password); //Hashing the password before it goes into the DB
 
