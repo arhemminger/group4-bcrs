@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BaseLayoutComponent } from './shared';
@@ -32,6 +32,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './shared/guard/authGuard';
+import {ErrorInterceptor} from './shared/route-interceptors/error.interceptor';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -113,7 +114,8 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
   ],
   providers: [
     CookieService,
-    AuthGuard
+    AuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

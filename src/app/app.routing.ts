@@ -77,12 +77,7 @@ export const AppRoutes: Routes = [
         component: AboutComponent
         //canActivate: [AuthGuard]
       }
-
     ]
-  },
-  {
-    path: 'Internal-Server-Error',
-    component: Status500Component
   },
   {
     path: 'session',
@@ -103,6 +98,10 @@ export const AppRoutes: Routes = [
       {
         path: 'page-not-found',
         component: NotFoundComponent
+      },
+      {
+        path: 'internal-server-error',
+        component: Status500Component
       }
     ]
   },
