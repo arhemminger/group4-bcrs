@@ -33,6 +33,7 @@ import { SecurityQuestionsComponent } from './pages/security-questions/security-
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './shared/guard/authGuard';
 import {ErrorInterceptor} from './shared/route-interceptors/error.interceptor';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -49,7 +50,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
-import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { MatTableModule } from '@angular/material/table';
@@ -80,7 +80,8 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
     NavigationComponent,
     UserDeleteConfirmationDialogComponent,
     EditDialogComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    ForgotPasswordComponent
   ],
   exports:[
     ReactiveFormsModule,

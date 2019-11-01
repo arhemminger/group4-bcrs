@@ -26,6 +26,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 export const AppRoutes: Routes = [
   {
@@ -90,6 +91,10 @@ export const AppRoutes: Routes = [
       {
         path: 'register',
         component : RegisterComponent,
+      },
+      {
+        path: 'forgot-password',
+        component : ForgotPasswordComponent,
       },
       {
         path: 'unauthorized',

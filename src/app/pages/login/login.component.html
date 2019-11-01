@@ -25,11 +25,11 @@
              <p *ngIf="userPassword.errors.required">Password is required!</p>
           </div>
         </form>
-        <button mat-raised-button (click)="onSubmit(loginForm)"  [disabled]="!loginForm.valid" color=primary style="margin-top: 20px; width:50%">Login</button>
-        <p>Forgot Password?</p>
-    </div>
-    <div class="registerSection">
-      <button mat-flat-button>Register</button>
+        <button mat-raised-button (click)="onSubmit(loginForm)" [disabled]="!loginForm.valid" color=primary style="margin-top: 20px; width:50%">Login</button>
+        <br>
+        <button mat-button style="color: grey; width:20%;" [routerLink]="['/session/register']">Register</button>
+          &nbsp;&nbsp;
+        <button mat-button style="color: grey; width:20%;" [routerLink]="['/session/forgot-password']">Forgot Password?</button>
     </div>
   </div>
 </div>
