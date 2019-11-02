@@ -73,7 +73,6 @@ app.post('/api/users/register', function(req, res, next){
       }
       if(!user){
 
-
         //Check to see if email is already in use.
         User.findOne({'email': req.body.email}, function(err, user1){
           if (err) {
@@ -139,12 +138,9 @@ app.post('/api/users/register', function(req, res, next){
   });//end of post
 
 
-
-
 /**
  * Update user by _id
  */
-
 app.put('/api/users/update/:id', function(req, res, next){
 
    User.findOne({'_id': req.params.id}, function(err, user){
@@ -199,7 +195,6 @@ app.get('/api/users/all', function(req, res, next) {
 *  Get User by email
 *  Pass the password so we can hash it and check against password returned from the DB
 */
-
 app.post('/api/users/login', function(req, res, next) {
   console.log(req.body.email);
   console.log(req.body.password);
@@ -226,7 +221,6 @@ app.post('/api/users/login', function(req, res, next) {
 /**
  * Delete User by id
  */
-
 app.delete('/api/users/delete/:id', function(req, res, next){
   User.findByIdAndDelete({'_id': req.params.id}, function(err, deletedUser){
     console.log(deletedUser);
@@ -242,7 +236,6 @@ app.delete('/api/users/delete/:id', function(req, res, next){
 });
 
 /***************************SECURITY QUESTION API*******************/
-
 //Create Security Question
 app.post('/api/questions', function(req, res, next) {
   const addedQuestion = {
@@ -317,6 +310,104 @@ app.put('/api/questions/update/:id', function(req, res, next){
     }
   })
 
+});
+
+/***************************FORGOT PASSWORD APIs*******************/
+// verify user email
+app.get('/api/verify/email/:email', function(req, res, next) {
+  User.findOne({'email': req.params.email}, function(err, email) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(email);
+      res.json(email);
+    }
+  })
+});
+
+// return user selected security questions
+app.get('/api/users/selectedSecurityQuestions/:email', function(req, res, next) {
+  User.findOne({'email': req.params.email}, function(err, questions) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      res.json(questions.selectedSecurityQuestions);
+    }
+  })
+});
+
+// verify user security question answers
+app.post('/api/users/verify/securityQuestions/:email', function(req, res, next) {
+  const answerToSecurityQuestion1 = req.body.answerToSecurityQuestion1;
+  console.log(answerToSecurityQuestion1);
+
+  const answerToSecurityQuestion2 = req.body.answerToSecurityQuestion2;
+  console.log(answerToSecurityQuestion2);
+
+  const answerToSecurityQuestion3 = req.body.answerToSecurityQuestion3;
+  console.log(answerToSecurityQuestion3);
+
+  User.findOne({'email': req.params.email}, function (err, users) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(users); //need to comment this log out for production deploy 
+
+      let answer1IsValid = answerToSecurityQuestion1 === users.selectedSecurityQuestions[0].answerText;
+      console.log(answer1IsValid);
+
+      let answer2IsValid = answerToSecurityQuestion2 === users.selectedSecurityQuestions[1].answerText;
+      console.log(answer2IsValid);
+
+      let answer3IsValid = answerToSecurityQuestion3 === users.selectedSecurityQuestions[2].answerText;
+      console.log(answer3IsValid);
+
+      if (answer1IsValid && answer2IsValid && answer3IsValid) {
+        res.status(200).send({
+          type: 'success',
+          auth: true
+        })
+      } else {
+        res.status(200).send({
+          type: 'error',
+          auth: false
+        })
+      }
+    }
+  })
+});
+
+// reset user password
+app.post('/api/users/reset-password/:email', function(req, res, next) {
+  const password = req.body.password;
+
+  User.findOne({'email': req.params.email}, function(err, user) {
+    if(err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(user);
+
+      let hashedPassword = bcrypt.hashSync(password, saltRounds);
+
+      user.set({
+        password: hashedPassword
+      });
+
+      user.save(function (err, user) {
+        if(err) {
+          console.log(err);
+          return next(err);
+        } else {
+          console.log(user);
+          res.json(user);
+        }
+      })
+    }
+  })
 });
 
 /**

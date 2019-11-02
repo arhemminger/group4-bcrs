@@ -33,7 +33,6 @@ import { SecurityQuestionsComponent } from './pages/security-questions/security-
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './shared/guard/authGuard';
 import {ErrorInterceptor} from './shared/route-interceptors/error.interceptor';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -56,6 +55,9 @@ import { MatTableModule } from '@angular/material/table';
 import { UserDeleteConfirmationDialogComponent } from './shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
 import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { VerifySecurityQuestionsComponent } from './pages/verify-security-questions/verify-security-questions.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -75,13 +77,14 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
     UsersComponent,
     SecurityQuestionsComponent,
     UserEditComponent,
-    ForgotPasswordComponent,
     InvoiceSummaryComponent,
     NavigationComponent,
     UserDeleteConfirmationDialogComponent,
     EditDialogComponent,
     UnauthorizedComponent,
-    ForgotPasswordComponent
+    VerifyEmailComponent,
+    VerifySecurityQuestionsComponent,
+    ResetPasswordComponent
   ],
   exports:[
     ReactiveFormsModule,
