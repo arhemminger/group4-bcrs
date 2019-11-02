@@ -60,6 +60,7 @@ export class VerifySecurityQuestionsComponent implements OnInit {
     });
   }
 
+  // function to validate security question answers on submission
   verifySecurityQuestions() {
     const answerToSecurityQuestion1 = this.verifyQuestionsForm.controls['answerToSecurityQuestion1'].value;
     const answerToSecurityQuestion2 = this.verifyQuestionsForm.controls['answerToSecurityQuestion2'].value;
@@ -71,7 +72,8 @@ export class VerifySecurityQuestionsComponent implements OnInit {
       answerToSecurityQuestion3: answerToSecurityQuestion3
     }).subscribe(res => {
       if(res['auth']) {
-        this.router.navigate(['/session/reset-password'], {queryParams: {isAuthenticated: 'true', email: this.email}, skipLocationChange: true});
+        this.router.navigate(['/session/reset-password'], {skipLocationChange: true});
+        this.cookieService.set('isAuthenticated', 'true');
       } else {
         console.log('Security quesiton answers failed validation');
         this.errorMessage = 'The answers you entered are invalid'; 

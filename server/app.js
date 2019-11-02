@@ -380,6 +380,36 @@ app.post('/api/users/verify/securityQuestions/:email', function(req, res, next) 
   })
 });
 
+// reset user password
+app.post('/api/users/reset-password/:email', function(req, res, next) {
+  const password = req.body.password;
+
+  User.findOne({'email': req.params.email}, function(err, user) {
+    if(err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(user);
+
+      let hashedPassword = bcrypt.hashSync(password, saltRounds);
+
+      user.set({
+        password: hashedPassword
+      });
+
+      user.save(function (err, user) {
+        if(err) {
+          console.log(err);
+          return next(err);
+        } else {
+          console.log(user);
+          res.json(user);
+        }
+      })
+    }
+  })
+});
+
 /**
  * Creates an express server and listens on port 3000
  */

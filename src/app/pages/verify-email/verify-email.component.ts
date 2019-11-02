@@ -39,7 +39,7 @@ export class VerifyEmailComponent implements OnInit {
 
     this.http.get('api/verify/email/' + email).subscribe(res => {
       if(res) {
-        this.router.navigate(['/session/verify-security-questions'], {queryParams: {email: email}, skipLocationChange: true});
+        this.router.navigate(['/session/verify-security-questions'], {skipLocationChange: true});
         this.cookieService.set('verifyEmail', email); //set verifyEmail in cookies
       } else {
         this.cookieService.delete('verifyEmail'); //remove verifyEmail in cookies
