@@ -1,13 +1,33 @@
 .aboutImage{
   background-size: cover;
-  height:100%;
-  background-image: url('../../../assets/images/bobs-home.jpg')
+  width: 100%;
 }
-/* .man1{
-  height: 100%;
-  background-image: url('assets/images/man2.jpg')
-} */
+.aboutSection{
+  height:300px;
+}
+.aboutUsSection{
+  height: 350px;
+}
+.aboutText{
+  padding: 20px;
+}
 .aboutContainer{
+  height: 100vh;
+}
+.employeeBox{
+  padding: 25px;
+}
+.employeeText{
   text-align: center;
-  margin-top: 20%;
+}
+.circleImage{
+  width:200px;
+  height:200px;
+  border-radius: 50%;
+}
+.imageAlign{
+  text-align: center;
+}
+.aboutContainer{
+  padding: 20px;
 }
