@@ -51,7 +51,7 @@
       <mat-card-content>
         <div fxLayout="column" class="input-container">
           <mat-form-field hintLabel="Max 60 characters">
-            <input type="text" matInput [formControl]="form.controls['text']" placeholder="Enter a new question here:" autocomplete="off" />
+            <input type="text" maxlength="60" matInput [formControl]="form.controls['text']" placeholder="Enter a new question here:" autocomplete="off" />
             <mat-hint align="end">{{form.controls['text'].value?.length || 0}}/60</mat-hint>
           </mat-form-field>
         </div>
