@@ -24,20 +24,27 @@ export class ResetPasswordComponent implements OnInit {
   email: string;
   resetPwForm: FormGroup;
   errorMessage: string;
-
+userPassword:FormControl;
   constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService) {
     this.isAuthenticated = this.cookieService.get('isAuthenticated');
     this.email = this.cookieService.get('verifyEmail');
    }
 
   ngOnInit() {
-    this.resetPwForm = this.fb.group({
-      password: [null, Validators.compose([
-          Validators.required, 
-          Validators.minLength(8)
-          //Validators.pattern^((?=\S*?[A-Z])(?=\S*?[0-9]).{7,})\S$
-        ])] //regEx for password requirements (min 8 char, min 1 uppercase letter, min 1 number)
-    });
+    this.userPassword=new FormControl('',
+    [
+    Validators.required,
+    ])
+    this.resetPwForm = new FormGroup({
+      password:this.userPassword
+      });
+    // this.resetPwForm = this.fb.group({
+    //   password: [null, Validators.compose([
+    //       Validators.required, 
+    //       Validators.minLength(8)
+    //       //Validators.pattern^((?=\S*?[A-Z])(?=\S*?[0-9]).{7,})\S$
+    //     ])] //regEx for password requirements (min 8 char, min 1 uppercase letter, min 1 number)
+    // });
   }
 
   // function to reset users password on forgot password submission/validation

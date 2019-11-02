@@ -52,17 +52,6 @@ export class RegisterComponent implements OnInit {
       }
       });
   }
-  // userName: {type: String, required: true, unique: true, dropDups: true},
-  // password: {type: String},
-  // firstName: {type: String},
-  // lastName: {type: String},
-  // phone: {type: String},
-  // address: {type: String},
-  // email: {type: String},
-  // role: {type: String, default: 'standard'},
-  // selectedSecurityQuestions: [securityQuestions],
-  // dateCreated: {type: Date, default: new Date()},
-  // dateModified: {type: Date}
   ngOnInit() {
 
     this.registrationForm = this.fb.group({
