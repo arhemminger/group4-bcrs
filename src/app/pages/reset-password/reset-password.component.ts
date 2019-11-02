@@ -34,6 +34,7 @@ userPassword:FormControl;
     this.userPassword=new FormControl('',
     [
     Validators.required,
+    Validators.pattern('/^(?=.*[A-Z])(?=.*\d)')
     ])
     this.resetPwForm = new FormGroup({
       password:this.userPassword
@@ -42,7 +43,7 @@ userPassword:FormControl;
     //   password: [null, Validators.compose([
     //       Validators.required, 
     //       Validators.minLength(8)
-    //       //Validators.pattern^((?=\S*?[A-Z])(?=\S*?[0-9]).{7,})\S$
+    //       //Validators.pattern^((?=\S*?[A-Z])(?=\S*?[0-9]).{7,})
     //     ])] //regEx for password requirements (min 8 char, min 1 uppercase letter, min 1 number)
     // });
   }
