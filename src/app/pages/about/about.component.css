@@ -3,6 +3,10 @@
   height:100%;
   background-image: url('../../../assets/images/bobs-home.jpg')
 }
+/* .man1{
+  height: 100%;
+  background-image: url('assets/images/man2.jpg')
+} */
 .aboutContainer{
   text-align: center;
   margin-top: 20%;
