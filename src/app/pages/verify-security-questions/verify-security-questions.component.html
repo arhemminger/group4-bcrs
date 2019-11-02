@@ -1,1 +1,48 @@
-<p>verify-security-questions works!</p>
+<!--Forgot password card - security questions-->
+<div>
+    <div fxLayout="column">
+        <mat-card fx-Flex style="margin-top: 10%; width: 50%; margin-left: 25%;" class="mat-elevation-z8">
+        <mat-card-title class="mat-headline">Forgot Password</mat-card-title>
+        <mat-card-subtitle>Security questions</mat-card-subtitle>
+            <!-- if there is an error message -->
+            <small style="color: red; text-align: center;" *ngIf="errorMessage">{{ errorMessage }}</small>
+            <!--Question form-->
+            <form *ngIf="selectedSecurityQuestions" [formGroup]="verifyQuestionsForm" (ngSubmit)="verifySecurityQuestions(); verifyQuestionsForm.reset()" #userquestionform autocomplete="off">
+            <mat-card-content fxLayout="column">
+                
+                <mat-list>
+                    <mat-list-item>
+                        {{question1}} &nbsp; &nbsp;
+                        <mat-form-field fxFlex>
+                            <input matInput required type="text" maxlength="30" [formControl]="verifyQuestionsForm.controls['answerToSecurityQuestion1']" placeholder="Answer 1" autocomplete="off"/>
+                            <mat-error fxLayoutAlign="end" *ngIf="verifyQuestionsForm.controls['answerToSecurityQuestion1'].invalid">You must enter a value</mat-error>
+                        </mat-form-field>
+                    </mat-list-item>
+                    <br>
+                    <mat-list-item>
+                        {{question2}} &nbsp; &nbsp;
+                        <mat-form-field fxFlex>
+                            <input matInput required type="text" maxlength="30" [formControl]="verifyQuestionsForm.controls['answerToSecurityQuestion2']" placeholder="Answer 2" autocomplete="off"/>
+                            <mat-error fxLayoutAlign="end" *ngIf="verifyQuestionsForm.controls['answerToSecurityQuestion2'].invalid">You must enter a value</mat-error>
+                        </mat-form-field>
+                    </mat-list-item>
+                    <br>
+                    <mat-list-item>
+                        {{question3}} &nbsp; &nbsp;
+                        <mat-form-field fxFlex>
+                            <input matInput required type="text" maxlength="30" [formControl]="verifyQuestionsForm.controls['answerToSecurityQuestion3']" placeholder="Answer 3" autocomplete="off"/>
+                            <mat-error fxLayoutAlign="end" *ngIf="verifyQuestionsForm.controls['answerToSecurityQuestion3']">You must enter a value</mat-error>
+                        </mat-form-field>
+                    </mat-list-item>
+                </mat-list>
+
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="end">
+                <button mat-button color="warn" type="button" [routerLink]="['/session/login']">Cancel</button>
+                <button mat-button color="primary" type="submit">Submit</button>
+            </mat-card-actions>
+            </form>
+        </mat-card>
+    </div>
+</div>
+      

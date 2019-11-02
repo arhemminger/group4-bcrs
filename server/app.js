@@ -326,6 +326,60 @@ app.get('/api/verify/email/:email', function(req, res, next) {
   })
 });
 
+// return user selected security questions
+app.get('/api/users/selectedSecurityQuestions/:email', function(req, res, next) {
+  User.findOne({'email': req.params.email}, function(err, questions) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      res.json(questions.selectedSecurityQuestions);
+    }
+  })
+});
+
+// verify user security question answers
+app.post('/api/users/verify/securityQuestions/:email', function(req, res, next) {
+  const answerToSecurityQuestion1 = req.body.answerToSecurityQuestion1;
+  console.log(answerToSecurityQuestion1);
+
+  const answerToSecurityQuestion2 = req.body.answerToSecurityQuestion2;
+  console.log(answerToSecurityQuestion2);
+
+  const answerToSecurityQuestion3 = req.body.answerToSecurityQuestion3;
+  console.log(answerToSecurityQuestion3);
+
+  User.findOne({'email': req.params.email}, function (err, users) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(users); //need to comment this log out for production deploy 
+
+      let answer1IsValid = answerToSecurityQuestion1 === users.selectedSecurityQuestions[0].answerText;
+      console.log(answer1IsValid);
+
+      let answer2IsValid = answerToSecurityQuestion2 === users.selectedSecurityQuestions[1].answerText;
+      console.log(answer2IsValid);
+
+      let answer3IsValid = answerToSecurityQuestion3 === users.selectedSecurityQuestions[2].answerText;
+      console.log(answer3IsValid);
+
+      if (answer1IsValid && answer2IsValid && answer3IsValid) {
+        res.status(200).send({
+          type: 'success',
+          auth: true
+        })
+      } else {
+        res.status(200).send({
+          type: 'error',
+          auth: false
+        })
+      }
+    }
+  })
+});
+
 /**
  * Creates an express server and listens on port 3000
  */

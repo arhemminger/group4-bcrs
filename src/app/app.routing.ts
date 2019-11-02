@@ -28,6 +28,7 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
 import { RegisterComponent } from './pages/register/register.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './pages/verify-security-questions/verify-security-questions.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 export const AppRoutes: Routes = [
   {
@@ -100,6 +101,10 @@ export const AppRoutes: Routes = [
       {
         path: 'verify-security-questions',
         component : VerifySecurityQuestionsComponent,
+      },
+      {
+        path: 'reset-password',
+        component : ResetPasswordComponent,
       },
       {
         path: 'unauthorized',

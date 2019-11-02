@@ -11,7 +11,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -24,7 +24,7 @@ export class VerifyEmailComponent implements OnInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   errorMessage: string;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService) {
   }
 
   ngOnInit() {
