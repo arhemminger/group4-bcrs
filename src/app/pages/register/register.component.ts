@@ -52,6 +52,9 @@ export class RegisterComponent implements OnInit {
       }
       });
   }
+
+
+
   ngOnInit() {
 
     this.registrationForm = this.fb.group({
@@ -68,78 +71,81 @@ export class RegisterComponent implements OnInit {
 
     });
 
-}
-onSubmit() {
+
+  }
+  onSubmit() {
 
 
-  this.userSelectedSecurityQuestion=[
-    {question: this.selectedValue1,
-      answerText: this.registrationForm.value.securityAnswer1},
-     {question:this.selectedValue2,
-      answerText:this.registrationForm.value.securityAnswer2},
-      {question:this.selectedValue3,
-        answerText:this.registrationForm.value.securityAnswer3},
-    ]
+    this.userSelectedSecurityQuestion=[
+      {question: this.selectedValue1,
+        answerText: this.registrationForm.value.securityAnswer1},
+      {question:this.selectedValue2,
+        answerText:this.registrationForm.value.securityAnswer2},
+        {question:this.selectedValue3,
+          answerText:this.registrationForm.value.securityAnswer3},
+      ]
 
-    /**
-     *
-     * Then we need to take the registeringUser array and insert it into the database.
-     *
-     */
+      /**
+       *
+       * Then we need to take the registeringUser array and insert it into the database.
+       *
+       */
 
-    //creates desired object to be sent to DB
-    this.registeringUser = [{
-      'userName' : this.registrationForm.value.userName,
-      'firstName': this.registrationForm.value.firstName,
-      'lastName': this.registrationForm.value.lastName,
-      'phone': this.registrationForm.value.phone,
-      'address': this.registrationForm.value.address,
-      'email': this.registrationForm.value.email,
-      'password': this.registrationForm.value.password,
-      'selectedSecurityQuestions': this.userSelectedSecurityQuestion
-    }];
+      //creates desired object to be sent to DB
+      this.registeringUser = [{
+        'userName' : this.registrationForm.value.userName,
+        'firstName': this.registrationForm.value.firstName,
+        'lastName': this.registrationForm.value.lastName,
+        'phone': this.registrationForm.value.phone,
+        'address': this.registrationForm.value.address,
+        'email': this.registrationForm.value.email,
+        'password': this.registrationForm.value.password,
+        'selectedSecurityQuestions': this.userSelectedSecurityQuestion
+      }];
 
-    this.http.post('/api/users/register', {
+      this.http.post('/api/users/register', {
 
-      userName : this.registrationForm.value.userName,
-      firstName: this.registrationForm.value.firstName,
-      lastName: this.registrationForm.value.lastName,
-      phone: this.registrationForm.value.phone,
-      address: this.registrationForm.value.address,
-      email: this.registrationForm.value.email,
-      password: this.registrationForm.value.password,
-      questions: this.userSelectedSecurityQuestion
+        userName : this.registrationForm.value.userName,
+        firstName: this.registrationForm.value.firstName,
+        lastName: this.registrationForm.value.lastName,
+        phone: this.registrationForm.value.phone,
+        address: this.registrationForm.value.address,
+        email: this.registrationForm.value.email,
+        password: this.registrationForm.value.password,
+        questions: this.userSelectedSecurityQuestion
 
-    }).subscribe(
-      res =>{
+      }).subscribe(
+        res =>{
 
-        this.cookieService.set('isAuthenticated','true',1);
-        this.router.navigate(['my-profile']);
-        console.log(res);
+          this.cookieService.set('isAuthenticated','true',1);
+          this.router.navigate(['my-profile']);
+          console.log(res);
 
-      },
-      err => {
+        },
+        err => {
 
-        console.log("POST Registration failed see error: ", err);
+          console.log("POST Registration failed see error: ", err);
 
-      },
-      () => {
+        },
+        () => {
 
-        console.log("The POST Registration works, You are now Registered and logged in.");
-      });
-
-
-
-  console.log("registrationForm");
-  console.log(this.registrationForm);
-
-  //const userLogin=registrationForm.value;
-  console.log("registeredUser")
-  console.log(this.registeringUser);
-
-  console.log("Security questions array.......");
-  console.log(this.userSelectedSecurityQuestion);
+          console.log("The POST Registration works, You are now Registered and logged in.");
+        });
 
 
-}
+
+    console.log("registrationForm");
+    console.log(this.registrationForm);
+
+    //const userLogin=registrationForm.value;
+    console.log("registeredUser")
+    console.log(this.registeringUser);
+
+    console.log("Security questions array.......");
+    console.log(this.userSelectedSecurityQuestion);
+
+
+  }
+
+
 }
