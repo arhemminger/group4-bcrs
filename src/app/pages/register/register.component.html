@@ -37,6 +37,7 @@
                         <mat-label>Email</mat-label>
                         <input type="email" [formControl]="registrationForm.controls['email']" (keyup)="checkEmail($event)" (blur)="checkEmail($event)" email required matInput placeholder="Email">
                       </mat-form-field>
+                      <br>
                       <span *ngIf="emailInUse" style="color:red;">{{emailInUse}}</span>
                 </div>
 
@@ -48,6 +49,7 @@
                         <mat-label>User Name</mat-label>
                         <input type="text" [formControl]="registrationForm.controls['userName']" (keyup)="checkUserName($event)" (blur)="checkUserName($event)" required matInput placeholder="Groovy nickname">
                       </mat-form-field>
+                      <br>
                       <span *ngIf="userNameInUse" style="color:red;">{{userNameInUse}}</span>
                       <span *ngIf="userNameNotInUse" style="color:green;">{{userNameNotInUse}}</span>
                   </div>
