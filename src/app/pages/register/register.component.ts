@@ -40,9 +40,15 @@ export class RegisterComponent implements OnInit {
   email:String;
   userSelectedSecurityQuestion:any = [];
   password:String;
-
+  emailInputValue: String;
+  getUsersErrorMessage:String;
+  registeredUsers: any;
+  emailInUse: String;
+  emailResult: String;
 
   constructor(private http:HttpClient, private cookieService: CookieService, private fb: FormBuilder, private router:Router) {
+
+    //Gets all security questions for user to choose from
     this.http.get('/api/questions/all').subscribe(res => {
       if (res){
         //console.log(res);
@@ -51,6 +57,19 @@ export class RegisterComponent implements OnInit {
         console.log("Error: Could not find Questions");
       }
       });
+
+
+      //Gets all Users
+      this.http.get('/api/users/all').subscribe(res => {
+        if (res) {
+          return this.registeredUsers = res;
+        } else {
+          return this.getUsersErrorMessage = "OH NO, I couldn't find any users!!!";
+        }
+
+      })
+
+
   }
 
 
@@ -72,7 +91,37 @@ export class RegisterComponent implements OnInit {
     });
 
 
+
   }
+
+  checkEmail(event){
+      this.emailInputValue = event.target.value;
+
+      //this.emailResult = this.verifyLoop(this.emailInputValue);
+      //console.log(this.emailResult);
+
+      this.registeredUsers.forEach((element, index, array) => {
+        if(element.email === this.emailInputValue){
+
+          //console.log("Email is in use.");
+          this.emailResult = element.email;
+
+        }
+      });
+
+      if(this.emailResult != this.emailInputValue){
+        this.emailInUse = ""
+      }
+      else{
+        this.emailInUse = "This email is associated with another account!"
+      }
+
+
+
+
+      console.log(this.emailInputValue);
+  }
+
   onSubmit() {
 
 
