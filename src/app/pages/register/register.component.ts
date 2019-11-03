@@ -45,6 +45,11 @@ export class RegisterComponent implements OnInit {
   registeredUsers: any;
   emailInUse: String;
   emailResult: String;
+  userNameInputValue:String;
+  userNameResult:String;
+  userNameInUse:String;
+  userNameNotInUse:String;
+
 
   constructor(private http:HttpClient, private cookieService: CookieService, private fb: FormBuilder, private router:Router) {
 
@@ -97,7 +102,7 @@ export class RegisterComponent implements OnInit {
   checkEmail(event){
       this.emailInputValue = event.target.value;
 
-      //this.emailResult = this.verifyLoop(this.emailInputValue);
+
       //console.log(this.emailResult);
 
       this.registeredUsers.forEach((element, index, array) => {
@@ -116,11 +121,42 @@ export class RegisterComponent implements OnInit {
         this.emailInUse = "This email is associated with another account!"
       }
 
-
-
-
-      console.log(this.emailInputValue);
+     // console.log(this.emailInputValue);
   }
+
+  checkUserName(event){
+    this.userNameInputValue = event.target.value;
+
+    //console.log(this.userNameResult);
+
+    this.registeredUsers.forEach((element, index, array) => {
+      if(element.userName === this.userNameInputValue){
+
+        //console.log("UserName is in use.");
+        this.userNameResult = element.userName;
+
+      }
+    });
+
+    if(this.userNameInputValue != ""){
+
+      if(this.userNameResult != this.userNameInputValue){
+        this.userNameInUse = "";
+        this.userNameNotInUse = "This User Name is Available!";
+      }
+      else{
+        this.userNameInUse = "This User Name is Unavailable!";
+        this.userNameNotInUse = "";
+      }
+
+    }
+    else{
+      this.userNameInUse = "";
+      this.userNameNotInUse = "";
+    }
+
+    //console.log(this.userNameInputValue);
+  }//end of checkUserName()
 
   onSubmit() {
 

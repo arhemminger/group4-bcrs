@@ -46,8 +46,10 @@
                 <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
                         <mat-label>User Name</mat-label>
-                        <input type="text" [formControl]="registrationForm.controls['userName']" required matInput placeholder="Groovy nickname">
+                        <input type="text" [formControl]="registrationForm.controls['userName']" (keyup)="checkUserName($event)" (blur)="checkUserName($event)" required matInput placeholder="Groovy nickname">
                       </mat-form-field>
+                      <span *ngIf="userNameInUse" style="color:red;">{{userNameInUse}}</span>
+                      <span *ngIf="userNameNotInUse" style="color:green;">{{userNameNotInUse}}</span>
                   </div>
                   <br/>
 
