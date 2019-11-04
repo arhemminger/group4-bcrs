@@ -58,8 +58,19 @@
                   <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
                         <mat-label>Password</mat-label>
-                        <input type="password" [formControl]="registrationForm.controls['password']" required matInput placeholder="Create Password">
+                        <input type="password" [formControl]="registrationForm.controls['password']"
+                         minlength="8"
+                        maxlength="30"
+                        required matInput
+                         placeholder="Create Password"
+                         autocomplete="off">
                       </mat-form-field>
+
+                      <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
+                        <mat-error fxLayoutAlign="end" *ngIf="registrationForm.controls['password'].errors.required">Password is required</mat-error>
+                        <mat-error fxLayoutAlign="end" *ngIf="registrationForm.controls['password'].errors.pattern || registrationForm.controls['password'].errors.minlength">Password does not meet requirements</mat-error>
+                      </div>
+
                   </div>
                   <br/>
 

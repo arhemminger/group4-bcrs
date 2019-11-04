@@ -83,7 +83,11 @@ export class RegisterComponent implements OnInit {
 
     this.registrationForm = this.fb.group({
       userName: new FormControl(null, Validators.required),
-      password:  new FormControl(null, [Validators.required, Validators.pattern(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{7,})\S$/)]),
+      password:  new FormControl(null,
+        [
+        Validators.required,
+        Validators.pattern(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{7,})\S$/) //regEx for password requirements (min 8 char, min 1 uppercase letter, min 1 number)
+        ]),
       firstName:  new FormControl(null, Validators.required),
       lastName:  new FormControl(null, Validators.required),
       phone:  new FormControl(null, Validators.required),
