@@ -34,18 +34,11 @@ userPassword:FormControl;
     this.userPassword=new FormControl('',
     [
     Validators.required,
-    Validators.pattern('/^(?=.*[A-Z])(?=.*\d)')
+    Validators.pattern(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{7,})\S$/) //regEx for password requirements (min 8 char, min 1 uppercase letter, min 1 number)
     ])
     this.resetPwForm = new FormGroup({
       password:this.userPassword
       });
-    // this.resetPwForm = this.fb.group({
-    //   password: [null, Validators.compose([
-    //       Validators.required, 
-    //       Validators.minLength(8)
-    //       //Validators.pattern^((?=\S*?[A-Z])(?=\S*?[0-9]).{7,})
-    //     ])] //regEx for password requirements (min 8 char, min 1 uppercase letter, min 1 number)
-    // });
   }
 
   // function to reset users password on forgot password submission/validation
@@ -55,10 +48,11 @@ userPassword:FormControl;
     }).subscribe(res => {
       //user is authenticated and allow access
       console.log('Password changed successfully');
-      this.router.navigate(['']); 
+      this.cookieService.set('isAuthenticated', 'true');
+      this.router.navigate(['']);
     }), err => {
       console.log(err);
       this.errorMessage = 'The password you entered does not meet requirements';
-    } 
+    }
   }
 }
