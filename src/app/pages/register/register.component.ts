@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
 
     this.registrationForm = this.fb.group({
       userName: new FormControl(null, Validators.required),
-      password:  new FormControl(null, Validators.required),
+      password:  new FormControl(null, [Validators.required, Validators.pattern(/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{7,})\S$/)]),
       firstName:  new FormControl(null, Validators.required),
       lastName:  new FormControl(null, Validators.required),
       phone:  new FormControl(null, Validators.required),
@@ -170,11 +170,7 @@ export class RegisterComponent implements OnInit {
           answerText:this.registrationForm.value.securityAnswer3},
       ]
 
-      /**
-       *
-       * Then we need to take the registeringUser array and insert it into the database.
-       *
-       */
+
 
       //creates desired object to be sent to DB
       this.registeringUser = [{
