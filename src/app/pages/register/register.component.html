@@ -68,7 +68,8 @@
 
                       <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
                         <mat-error fxLayoutAlign="end" *ngIf="registrationForm.controls['password'].errors.required">Password is required</mat-error>
-                        <mat-error fxLayoutAlign="end" *ngIf="registrationForm.controls['password'].errors.pattern || registrationForm.controls['password'].errors.minlength">Password does not meet requirements</mat-error>
+                        <mat-error fxLayoutAlign="end" *ngIf="registrationForm.controls['password'].errors.minlength">Password must be at least 8 characters</mat-error>
+                        <mat-error fxLayoutAlign="end" *ngIf="registrationForm.controls['password'].errors.pattern">Password does not meet requirements</mat-error>
                       </div>
 
                   </div>
@@ -135,7 +136,7 @@
 
 
              </form>
-             <button mat-raised-button type="submit" (click)="onSubmit(registrationForm.value)">Login</button>
+             <button mat-raised-button type="submit" [disabled]="registrationForm.invalid" (click)="onSubmit(registrationForm.value)">Login</button>
              <!--(click)="onSubmit(registrationForm)"-->
           </div>
       </div>
