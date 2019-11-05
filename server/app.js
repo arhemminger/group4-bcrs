@@ -354,7 +354,7 @@ app.post('/api/users/verify/securityQuestions/:email', function(req, res, next) 
       console.log(err);
       return next(err);
     } else {
-      console.log(users); //need to comment this log out for production deploy 
+      console.log(users); //need to comment this log out for production deploy
 
       let answer1IsValid = answerToSecurityQuestion1 === users.selectedSecurityQuestions[0].answerText;
       console.log(answer1IsValid);

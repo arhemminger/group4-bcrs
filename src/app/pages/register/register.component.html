@@ -1,7 +1,7 @@
 <div class="flex-container" fxLayout="row"  fxLayoutAlign="none" style="height: 100vh;">
   <div fxFlex="50%">
     <div class="loginContainer" layout-align="center center">
-          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value); ">
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(); ">
 
                 <h1>User Information</h1>
                 <div class="form-group">
@@ -41,8 +41,6 @@
                       <span *ngIf="emailInUse" style="color:red;">{{emailInUse}}</span>
                 </div>
 
-
-
                 <h1>Choose Username and Create Password</h1>
                 <div class="form-group">
                     <mat-form-field appearance="fill" style="width:50%">
@@ -75,9 +73,6 @@
                   </div>
                   <br/>
 
-
-
-
                 <h1>Choose security questions and answers</h1>
                 <mat-form-field appearance="fill" style="width:50%">
                     <mat-label>Select your Security Questions</mat-label>
@@ -92,7 +87,7 @@
                     <div class="form-group">
                       <mat-form-field appearance="fill" style="width:50%">
                           <mat-label>Answer</mat-label>
-                          <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer1']"/>
+                          <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer1']" autocomplete="off"/>
                         </mat-form-field>
                     </div>
                     <br/>
@@ -111,7 +106,7 @@
                   <div class="form-group">
                       <mat-form-field appearance="fill" style="width:50%">
                           <mat-label>Answer</mat-label>
-                          <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer2']"/>
+                          <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer2']" autocomplete="off"/>
                         </mat-form-field>
                     </div>
 
@@ -130,23 +125,16 @@
                   <div class="form-group">
                       <mat-form-field appearance="fill" style="width:50%">
                           <mat-label>Answer</mat-label>
-                          <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer3']"/>
+                          <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer3']" autocomplete="off"/>
                         </mat-form-field>
                     </div>
 
-
-             </form>
-             <button mat-raised-button type="submit" [disabled]="registrationForm.invalid" (click)="onSubmit(registrationForm.value)">Login</button>
-             <!--(click)="onSubmit(registrationForm)"-->
+             <button mat-raised-button type="submit" [disabled]="!registrationForm.valid">Login</button>
+            </form>
           </div>
       </div>
-
-
 
       <div fxFlex="50%">
         <div class="loginImage"></div>
       </div>
-
-
-
 </div>
