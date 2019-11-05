@@ -94,12 +94,15 @@
                 <h1>Choose security questions and answers</h1>
                 <mat-form-field appearance="fill" style="width:50%">
                     <mat-label>Select your Security Questions</mat-label>
-                    <mat-select  required [(value)]="selectedValue1" name=question>
+                    <mat-select  required [formControl]="registrationForm.controls['question1']" [(value)]="selectedValue1" name=question>
                       <mat-option [value]="option.questionText" *ngFor="let option of securityQuestions">
                         {{option.questionText}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                  <div *ngIf="registrationForm.controls['question1'].invalid && (registrationForm.controls['question1'].dirty || registrationForm.controls['question1'].touched)">
+                    <mat-error *ngIf="registrationForm.controls['question1'].errors.required">Please Select a question!</mat-error>
+                  </div>
                   <br/>
 
                     <div class="form-group">
@@ -116,12 +119,15 @@
 
                   <mat-form-field appearance="fill" style="width:50%">
                     <mat-label>Select your Security Questions</mat-label>
-                    <mat-select name=question  required [(value)]="selectedValue2">
+                    <mat-select name=question  required [formControl]="registrationForm.controls['question2']" [(value)]="selectedValue2">
                       <mat-option [value]="option.questionText" *ngFor="let option of securityQuestions">
                           {{option.questionText}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                  <div *ngIf="registrationForm.controls['question2'].invalid && (registrationForm.controls['question2'].dirty || registrationForm.controls['question2'].touched)">
+                    <mat-error *ngIf="registrationForm.controls['question2'].errors.required">Please Select a question!</mat-error>
+                  </div>
                   <br/>
 
                   <div class="form-group">
@@ -138,12 +144,15 @@
                   <br/>
                   <mat-form-field appearance="fill" style="width:50%">
                     <mat-label>Select your Security Questions</mat-label>
-                    <mat-select name=question required [(value)]="selectedValue3">
+                    <mat-select name=question required [formControl]="registrationForm.controls['question3']" [(value)]="selectedValue3">
                       <mat-option [value]="option.questionText"  *ngFor="let option of securityQuestions">
                           {{option.questionText}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
+                  <div *ngIf="registrationForm.controls['question3'].invalid && (registrationForm.controls['question3'].dirty || registrationForm.controls['question3'].touched)">
+                    <mat-error *ngIf="registrationForm.controls['question3'].errors.required">Please Select a question!</mat-error>
+                  </div>
                   <br/>
 
                   <div class="form-group">

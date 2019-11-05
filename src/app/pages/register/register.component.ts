@@ -27,6 +27,9 @@ export class RegisterComponent implements OnInit {
   securityAnswer1 :  String;
   securityAnswer2 :  String;
   securityAnswer3 :  String;
+  question1:  String;
+  question2:  String;
+  question3:  String;
   securityQuestions : any;
   registeringUser: any;
   registrationForm:FormGroup;
@@ -85,6 +88,9 @@ export class RegisterComponent implements OnInit {
       phone:  new FormControl(null, Validators.required),
       address:  new FormControl(null, Validators.required),
       email:  new FormControl(null, Validators.required),
+      question1 :  new FormControl(null, Validators.required),
+      question2 :  new FormControl(null, Validators.required),
+      question3 :  new FormControl(null, Validators.required),
       securityAnswer1 :  new FormControl(null, Validators.required),
       securityAnswer2 :  new FormControl(null, Validators.required),
       securityAnswer3 :  new FormControl(null, Validators.required)
