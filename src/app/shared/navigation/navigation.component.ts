@@ -27,6 +27,7 @@ export class NavigationComponent implements OnInit {
   // Function to logout the user. Remove isAuthenticated cookie
   logout () {
     this.cookieService.delete('isAuthenticated');
+    this.cookieService.delete('verifyEmail');
     location.reload();
     console.log("User logged out.");
   }

@@ -1,0 +1,23 @@
+body{
+  color:#b71c1c;
+}
+.loginImage{
+  background-size: cover;
+  height:100%;
+  background-image: url('../../../assets/images/Male-hands-repairing-computer.jpg');
+}
+.loginContainer{
+  margin-top: 20%;
+  padding:10px;
+}
+.registerSection{
+  position: absolute;
+  bottom: 0;
+  margin-left: 25%;
+}
+.center{
+  text-align: center;
+}
+.addressSection{
+  list-style-type:none;
+}

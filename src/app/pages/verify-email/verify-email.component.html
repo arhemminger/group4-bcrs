@@ -1,0 +1,30 @@
+<!--Forgot password card - verify email-->
+<div>
+  <div fxLayout="column">
+    <mat-card fx-Flex style="margin-top: 10%; width: 50%; margin-left: 25%;" class="mat-elevation-z8">
+      <mat-card-title class="mat-headline">Forgot Password</mat-card-title>
+      <mat-card-subtitle>Verify email address</mat-card-subtitle>
+      <br>
+       <!-- if there is an error message -->
+       <small style="color: red; text-align: center;" *ngIf="errorMessage">{{ errorMessage }}</small>
+        <!--Email form-->
+        <form [formGroup]="verifyEmailForm" (ngSubmit)="validateEmail(); verifyEmailForm.reset()" #useremailForm autocomplete="off">
+          <mat-card-content fxLayout="column">
+            <mat-form-field fxFlex>
+              <input matInput type="email" maxlength="60" [formControl]="verifyEmailForm.controls['email']" placeholder="Email" autocomplete="off"/>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions fxLayoutAlign="end">
+            <button mat-button color="warn" type="button" [routerLink]="['/session/login']">Cancel</button>
+            <button mat-button color="primary" type="submit">Submit</button>
+          </mat-card-actions>
+        </form>
+    </mat-card>
+  </div>
+</div>

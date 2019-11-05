@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routing';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { BaseLayoutComponent } from './shared';
@@ -32,6 +32,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './shared/guard/authGuard';
+import {ErrorInterceptor} from './shared/route-interceptors/error.interceptor';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -46,14 +47,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
-import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserDeleteConfirmationDialogComponent } from './shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
 import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { VerifySecurityQuestionsComponent } from './pages/verify-security-questions/verify-security-questions.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -73,12 +77,14 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
     UsersComponent,
     SecurityQuestionsComponent,
     UserEditComponent,
-    ForgotPasswordComponent,
     InvoiceSummaryComponent,
     NavigationComponent,
     UserDeleteConfirmationDialogComponent,
     EditDialogComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    VerifyEmailComponent,
+    VerifySecurityQuestionsComponent,
+    ResetPasswordComponent
   ],
   exports:[
     ReactiveFormsModule,
@@ -107,11 +113,13 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false}),
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ],
   providers: [
     CookieService,
-    AuthGuard
+    AuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

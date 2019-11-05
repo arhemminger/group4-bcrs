@@ -44,6 +44,19 @@ export class SecurityQuestionsComponent implements OnInit {
     })
   }
 
+  getTableData(){
+
+    this.http.get('/api/questions/all').subscribe(res => {
+      if (res){
+        console.log(res);
+        this.dataSource=res;
+      } else {
+        console.log("Error: Could not find Questions");
+      }
+      });
+
+  }
+
   // Function to edit question record in table
   editTable(typeEdit,obj){
     console.log(typeEdit);
@@ -62,14 +75,7 @@ export class SecurityQuestionsComponent implements OnInit {
           }else if(result.event === 'Cancel'){
             console.log(result.event);
             //Do something
-            this.http.get('/api/questions/all').subscribe(res => {
-              if (res){
-                console.log(res);
-                this.dataSource=res;
-              } else {
-                console.log("Error: Could not find Questions");
-              }
-            })
+            this.getTableData();
 
           }
     });
@@ -82,15 +88,7 @@ export class SecurityQuestionsComponent implements OnInit {
       questionText: this.form.controls['text'].value,
     }).subscribe(res => {
       //this will pull all questions from database and reload the table.
-      this.http.get('/api/questions/all').subscribe(res => {
-        if (res){
-          console.log(res);
-          this.dataSource=res;
-        } else {
-          console.log("Error: Could not find Questions");
-        }
-      })
-
+      this.getTableData();
 
       console.log("New security question added to DB: " + this.question);
     }), err => {
@@ -103,15 +101,10 @@ export class SecurityQuestionsComponent implements OnInit {
     this.http.put('/api/questions/update/'+ question_obj._id,{
       questionText:question_obj.questionText
     }).subscribe(res=>{
-      this.http.get('/api/questions/all').subscribe(res => {
-        if (res){
-          console.log(res);
-          this.dataSource=res;
-        } else {
-          console.log("Error: Could not find Questions");
-        }
-      })
+
+      this.getTableData();
       console.log(res);
+
     }), err => {
       console.log("Error updating question record: " + question_obj._id);
     }
@@ -120,15 +113,10 @@ export class SecurityQuestionsComponent implements OnInit {
     // Function to remove an existing question record in db
     deleteData(question_obj){
       this.http.delete('/api/questions/delete/' + question_obj._id).subscribe(res=>{
-        this.http.get('/api/questions/all').subscribe(res => {
-          if (res){
-            console.log(res);
-            this.dataSource=res;
-          } else {
-            console.log("Error: Could not find Questions");
-          }
-        })
+
+        this.getTableData();
         console.log(res);
+
       }), err => {
         console.log("Error deleting question record: " + question_obj._id);
       }
