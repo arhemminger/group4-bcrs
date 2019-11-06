@@ -58,6 +58,7 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './pages/verify-security-questions/verify-security-questions.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { RoleManagementComponent } from './pages/role-management/role-management.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     UnauthorizedComponent,
     VerifyEmailComponent,
     VerifySecurityQuestionsComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    RoleManagementComponent
   ],
   exports:[
     ReactiveFormsModule,
