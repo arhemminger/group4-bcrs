@@ -58,6 +58,7 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './pages/verify-security-questions/verify-security-questions.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { SummaryDialogComponent } from './summary-dialog/summary-dialog.component';
 
 @NgModule({
   declarations: [
@@ -84,15 +85,17 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     UnauthorizedComponent,
     VerifyEmailComponent,
     VerifySecurityQuestionsComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    SummaryDialogComponent
   ],
   exports:[
     ReactiveFormsModule,
     EditDialogComponent,
     UserDeleteConfirmationDialogComponent,
-    UserEditComponent
+    UserEditComponent,
+
   ],
-  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent, UserEditComponent],
+  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent, UserEditComponent, SummaryDialogComponent],
     imports: [
     BrowserModule,
     MatButtonModule,
