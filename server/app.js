@@ -19,6 +19,7 @@ const bcrypt = require('bcryptjs');
 const User = require('./db-models/users');
 const SecurityQuestion = require('./db-models/securityQuestions');
 const Roles = require('./db-models/roles');
+const Orders = require('./db-models/orders');
 
 let app = express();
 
@@ -484,6 +485,69 @@ app.put('/api/role/update/:id', function(req, res, next){
           res.json(savedRole);
         }
       })
+    }
+  })
+});
+
+
+
+
+/************************* ORDERS API ROUTES *************************************/
+
+//CREATE ORDER
+app.post('/api/orders', function(req, res, next) {
+  const addedOrder = {
+    userId: req.body.userId,
+    total: req.body.total,
+    productsOrdered: req.body.productsOrdered
+
+    /*
+      * the req.body.productsOrdered is an array sent from the Angular UI
+      * the userId needs to be the _id that mongoDB generates
+      * the bellow example needs to be done on client
+      * Example:
+      * let products = [
+      * {productName: 'Keyboard', productRepairTime: 3, quantity: 3, productPrice: '1234'},
+      * {productName: 'Mouse', productRepairTime: 3, quantity: 3, productPrice: '1234'},
+      * {productName: 'Repair', productRepairTime: 3, quantity: 3, productPrice: '1234'}
+       * ]
+    */
+  };
+  Orders.create(addedOrder, function(err, newOrder) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(newOrder);
+      res.json(newOrder);
+    }
+  });
+});
+
+
+//GET ALL ORDERS
+app.get('/api/orders/all', function(req, res, next) {
+  Orders.find(function(err, orders) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(orders);
+      res.json(orders);
+    }
+  })
+});
+
+
+//GET ORDER BY ID
+app.get('/api/orders/:id', function(req, res, next) {
+  Quiz.findOne({'_id': req.params.id}, function(err, order) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(order);
+      res.json(order);
     }
   })
 });
