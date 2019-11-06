@@ -60,6 +60,7 @@ import { VerifySecurityQuestionsComponent } from './pages/verify-security-questi
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { SummaryDialogComponent } from './summary-dialog/summary-dialog.component';
 import { RoleManagementComponent } from './pages/role-management/role-management.component';
+import { RoleEditDialogComponent } from './pages/role-management/role-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -88,16 +89,18 @@ import { RoleManagementComponent } from './pages/role-management/role-management
     VerifySecurityQuestionsComponent,
     ResetPasswordComponent,
     SummaryDialogComponent,
-    RoleManagementComponent
+    RoleManagementComponent,
+    RoleEditDialogComponent
   ],
   exports:[
     ReactiveFormsModule,
     EditDialogComponent,
+    RoleEditDialogComponent,
     UserDeleteConfirmationDialogComponent,
     UserEditComponent,
 
   ],
-  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent, UserEditComponent, SummaryDialogComponent],
+  entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent, UserEditComponent, SummaryDialogComponent, RoleEditDialogComponent],
     imports: [
     BrowserModule,
     MatButtonModule,

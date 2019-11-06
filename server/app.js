@@ -460,7 +460,7 @@ app.delete('/api/delete/role/:id', function(req, res, next){
 app.put('/api/role/update/:id', function(req, res, next){
 
   Roles.findOne({'_id': req.params.id}, function(err, role){
-    console.log(role)
+    console.log(role);
     if(err){
       console.log("ERROR inside the role update by _id");
       console.log(err);
