@@ -8,7 +8,6 @@
   ; Description: app.routing.ts
 ======================================
 */
-
 import {Routes} from '@angular/router';
 import {BaseLayoutComponent, SessionLayoutComponent} from './shared';
 import {LoginComponent} from './pages/login/login.component';
@@ -29,6 +28,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './pages/verify-security-questions/verify-security-questions.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { RoleManagementComponent } from './pages/role-management/role-management.component';
 
 export const AppRoutes: Routes = [
   {
@@ -38,7 +38,6 @@ export const AppRoutes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        //canActivate: [AuthGuard]
       },
       {
         path: 'admin/user-edit',
@@ -58,6 +57,11 @@ export const AppRoutes: Routes = [
       {
         path: 'admin/users',
         component: UsersComponent
+        //canActivate: [AuthGuard]
+      },
+      {
+        path: 'admin/role-management',
+        component: RoleManagementComponent
         //canActivate: [AuthGuard]
       },
       {

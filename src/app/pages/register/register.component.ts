@@ -8,14 +8,12 @@
   ; Description: register.component.ts This component will have a registration form.
 ======================================
 */
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, Form } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-register',
@@ -29,6 +27,9 @@ export class RegisterComponent implements OnInit {
   securityAnswer1 :  String;
   securityAnswer2 :  String;
   securityAnswer3 :  String;
+  question1:  String;
+  question2:  String;
+  question3:  String;
   securityQuestions : any;
   registeringUser: any;
   registrationForm:FormGroup;
@@ -50,7 +51,6 @@ export class RegisterComponent implements OnInit {
   userNameInUse:String;
   userNameNotInUse:String;
 
-
   constructor(private http:HttpClient, private cookieService: CookieService, private fb: FormBuilder, private router:Router) {
 
     //Gets all security questions for user to choose from
@@ -63,7 +63,6 @@ export class RegisterComponent implements OnInit {
       }
       });
 
-
       //Gets all Users
       this.http.get('/api/users/all').subscribe(res => {
         if (res) {
@@ -73,11 +72,7 @@ export class RegisterComponent implements OnInit {
         }
 
       })
-
-
   }
-
-
 
   ngOnInit() {
 
@@ -93,19 +88,17 @@ export class RegisterComponent implements OnInit {
       phone:  new FormControl(null, Validators.required),
       address:  new FormControl(null, Validators.required),
       email:  new FormControl(null, Validators.required),
+      question1 :  new FormControl(null, Validators.required),
+      question2 :  new FormControl(null, Validators.required),
+      question3 :  new FormControl(null, Validators.required),
       securityAnswer1 :  new FormControl(null, Validators.required),
       securityAnswer2 :  new FormControl(null, Validators.required),
       securityAnswer3 :  new FormControl(null, Validators.required)
-
     });
-
-
-
   }
 
   checkEmail(event){
       this.emailInputValue = event.target.value;
-
 
       //console.log(this.emailResult);
 
@@ -164,7 +157,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
 
-
     this.userSelectedSecurityQuestion=[
       {question: this.selectedValue1,
         answerText: this.registrationForm.value.securityAnswer1},
@@ -173,8 +165,6 @@ export class RegisterComponent implements OnInit {
         {question:this.selectedValue3,
           answerText:this.registrationForm.value.securityAnswer3},
       ]
-
-
 
       //creates desired object to be sent to DB
       this.registeringUser = [{
@@ -201,23 +191,16 @@ export class RegisterComponent implements OnInit {
 
       }).subscribe(
         res =>{
-
           this.cookieService.set('isAuthenticated','true',1);
           this.router.navigate(['my-profile']);
           console.log(res);
-
         },
         err => {
-
           console.log("POST Registration failed see error: ", err);
-
         },
         () => {
-
           console.log("The POST Registration works, You are now Registered and logged in.");
         });
-
-
 
     console.log("registrationForm");
     console.log(this.registrationForm);
@@ -229,8 +212,5 @@ export class RegisterComponent implements OnInit {
     console.log("Security questions array.......");
     console.log(this.userSelectedSecurityQuestion);
 
-
   }
-
-
 }

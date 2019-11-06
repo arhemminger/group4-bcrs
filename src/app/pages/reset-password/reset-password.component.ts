@@ -24,7 +24,7 @@ export class ResetPasswordComponent implements OnInit {
   email: string;
   resetPwForm: FormGroup;
   errorMessage: string;
-userPassword:FormControl;
+  userPassword:FormControl;
   constructor(private route: ActivatedRoute, private http: HttpClient, private fb: FormBuilder, private router: Router, private cookieService: CookieService) {
     this.isAuthenticated = this.cookieService.get('isAuthenticated');
     this.email = this.cookieService.get('verifyEmail');

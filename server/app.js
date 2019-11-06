@@ -18,6 +18,7 @@ const bcrypt = require('bcryptjs');
 
 const User = require('./db-models/users');
 const SecurityQuestion = require('./db-models/securityQuestions');
+const Roles = require('./db-models/roles');
 
 let app = express();
 
@@ -354,7 +355,7 @@ app.post('/api/users/verify/securityQuestions/:email', function(req, res, next) 
       console.log(err);
       return next(err);
     } else {
-      console.log(users); //need to comment this log out for production deploy 
+      console.log(users); //need to comment this log out for production deploy
 
       let answer1IsValid = answerToSecurityQuestion1 === users.selectedSecurityQuestions[0].answerText;
       console.log(answer1IsValid);
@@ -410,6 +411,84 @@ app.post('/api/users/reset-password/:email', function(req, res, next) {
   })
 });
 
+/***************************ROLE MANAGEMENT APIs*******************/
+//Create Role
+app.post('/api/create/role', function(req, res, next) {
+  const addedRole = {
+    role: req.body.role,
+    isAdmin: req.body.isAdmin
+  };
+  Roles.create(addedRole, function(err, newRole) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(newRole);
+      res.json(newRole);
+    }
+  });
+});
+
+//Get all Roles
+app.get('/api/roles/all', function(req, res, next) {
+  Roles.find(function(err, roles) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(roles);
+      res.json(roles);
+    }
+  })
+});
+
+//Delete Role by _id
+app.delete('/api/delete/role/:id', function(req, res, next){
+  Roles.findByIdAndDelete({'_id': req.params.id}, function(err, role){
+    if(err){
+      console.log(err);
+      return next(err);
+    }
+    else{
+      console.log(role + ' deleted');
+      res.json(role);
+    }
+  })
+});
+
+//Update Role by _id
+app.put('/api/role/update/:id', function(req, res, next){
+
+  Roles.findOne({'_id': req.params.id}, function(err, role){
+    console.log(role)
+    if(err){
+      console.log("ERROR inside the role update by _id");
+      console.log(err);
+      return next(err);
+    }
+    else{
+      role.set({
+        role: req.body.role,
+        isAdmin: req.body.isAdmin
+      })
+
+      role.save(function(err, savedRole){
+        if(err){
+         console.log("ERROR inside the Role.save of the update Role API");
+         console.log(err);
+         return next(err);
+        }
+        else{
+          console.log("Role was updated");
+          console.log(savedRole);
+          res.json(savedRole);
+        }
+      })
+    }
+  })
+});
+
+/***************************SERVER*******************/
 /**
  * Creates an express server and listens on port 3000
  */
