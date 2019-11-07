@@ -8,10 +8,10 @@ import { Inject } from '@angular/core';
   styleUrls: ['./summary-dialog.component.css']
 })
 export class SummaryDialogComponent implements OnInit {
-
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data:any
-  ) { }
+services:any
+  constructor(@Inject(MAT_DIALOG_DATA) public data:any) {
+    this.services=data.services
+   }
 
   ngOnInit() {
   }

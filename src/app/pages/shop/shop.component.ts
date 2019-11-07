@@ -11,6 +11,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 import {SummaryDialogComponent} from '../../summary-dialog/summary-dialog.component'
 @Component({
   selector: 'app-shop',
@@ -21,15 +23,8 @@ export class ShopComponent implements OnInit {
   totalCost=0;
   totalLabor:number;
   partCost:number;
+  userId:string;
   servicesArray=[];
-  // passwordReset:string
-  // spywareRemoval:string
-  // ramUpgrade:string
-  // softwareInstall:string
-  // tuneUp:string
-  // keyCleaning:string
-  // diskClean: string
-
 
   services = {
     passwordReset: {
@@ -64,7 +59,7 @@ export class ShopComponent implements OnInit {
     totalParts:0
   }
 
-  constructor(private dialog:MatDialog) { }
+  constructor(private dialog:MatDialog,private http: HttpClient,private cookieService: CookieService) { }
 
   ngOnInit() {
   }
@@ -110,18 +105,27 @@ export class ShopComponent implements OnInit {
       this.totalCost+=this.services.diskClean.cost
       this.servicesArray.push(this.services.diskClean)
     }
- console.log(parseInt(formData.checkGroup.labor)*50)
 
- console.log(this.servicesArray);
-//  console.log(this.totalLabor)
-//    this.partCost=formData.checkGroup.parts
-//    this.totalCost+=this.services.totalLabor
-// console.log(this.totalCost=+(this.totalLabor+this.partCost))
-  this.dialog.open(SummaryDialogComponent,{
-data:{
-  totalCost:this.totalCost.toFixed(2)
-}
+
+    this.partCost=formData.checkGroup.parts
+    this.totalCost+=this.services.totalLabor
+    this.dialog.open(SummaryDialogComponent,{
+    data:{
+      services:this.servicesArray,
+      totalCost:this.totalCost.toFixed(2)
+    }
+
     })
+
+      this.http.post('/api/orders', {
+        total: this.totalCost,
+        productsOrdered: this.servicesArray
+      }).subscribe(res => {
+
+      }), err => {
+
+      }
+
 
   }
 
