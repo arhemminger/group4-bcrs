@@ -198,16 +198,14 @@ app.get('/api/users/all', function(req, res, next) {
 *  Pass the password so we can hash it and check against password returned from the DB
 */
 app.post('/api/users/login', function(req, res, next) {
-  console.log(req.body.email);
-  console.log(req.body.password);
-  //takes password and hashes it
-  const password = hashPassword(req.body.password);
-  console.log(password);
+  //console.log(req.body.email);
+  //console.log(req.body.password);
 
   User.findOne({'email': req.body.email}, function(err, foundUser) {
-    console.log("Password found: " + foundUser.password);
-    if( bcrypt.compare(req.body.password, foundUser.password)) { //checks hashed password in DB to the hashed password variable that we just hashed
-      console.log(foundUser);
+    //console.log("inside findOne!!!!!")
+    //console.log("Password found: " + foundUser.password);
+    if( bcrypt.compare(req.body.password, foundUser.password)) {
+      //console.log(foundUser);
       res.json(foundUser);
     }
     else{
