@@ -1,6 +1,6 @@
 <h1>Service Form</h1>
 <div mat-dialog-content>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f.value); f.reset()">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value); f.reset();">
         <div ngModelGroup="checkGroup">
             <h2>Services</h2>
               <mat-checkbox name="passwordReset" ngModel >Password Reset ($39.99)</mat-checkbox>
