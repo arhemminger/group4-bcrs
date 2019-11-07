@@ -21,6 +21,16 @@ export class ShopComponent implements OnInit {
   totalCost=0;
   totalLabor:number;
   partCost:number;
+  servicesArray=[];
+  // passwordReset:string
+  // spywareRemoval:string
+  // ramUpgrade:string
+  // softwareInstall:string
+  // tuneUp:string
+  // keyCleaning:string
+  // diskClean: string
+
+
   services = {
     passwordReset: {
       name: "Password Reset",
@@ -61,39 +71,44 @@ export class ShopComponent implements OnInit {
   onSubmit(formData) {
     if (formData.checkGroup.passwordReset) {
       console.log(this.services.passwordReset.name + ' cost: $' + this.services.passwordReset.cost);
-      this.totalCost+=this.services.passwordReset.cost
+
     }
 
     if (formData.checkGroup.spywareRemoval) {
       console.log(this.services.spywareRemoval.name + ' cost: $' + this.services.spywareRemoval.cost);
       this.totalCost+=this.services.spywareRemoval.cost
-
+      this.servicesArray.push(this.services.passwordReset)
     }
 
     if (formData.checkGroup.ramUpgrade) {
       console.log(this.services.ramUpgrade.name + ' cost: $' + this.services.ramUpgrade.cost);
       this.totalCost+=this.services.ramUpgrade.cost
+      this.servicesArray.push(this.services.ramUpgrade)
 
     }
 
     if (formData.checkGroup.softwareInstall) {
       console.log(this.services.softwareInstall.name + ' cost: $' + this.services.softwareInstall.cost);
-    this.totalCost+=this.services.softwareInstall.cost
+      this.totalCost+=this.services.softwareInstall.cost
+      this.servicesArray.push(this.services.softwareInstall)
     }
 
     if (formData.checkGroup.tuneUp) {
       console.log(this.services.tuneUp.name + ' cost: $' + this.services.tuneUp.cost);
-      this.totalCost+=this.services.tuneUp.cost;
+      this.totalCost+=this.services.tuneUp.cost
+      this.servicesArray.push(this.services.tuneUp)
     }
 
     if (formData.checkGroup.keyCleaning) {
       console.log(this.services.keyCleaning.name + ' cost: $' + this.services.keyCleaning.cost);
-    this.totalCost+=this.services.keyCleaning.cost;
+    this.totalCost+=this.services.keyCleaning.cost
+    this.servicesArray.push(this.services.keyCleaning)
     }
 
     if (formData.checkGroup.diskClean) {
       console.log(this.services.diskClean.name + ' cost: $' + this.services.diskClean.cost);
       this.totalCost+=this.services.diskClean.cost
+      this.servicesArray.push(this.services.diskClean)
     }
  console.log(parseInt(formData.checkGroup.labor)*50)
 //  console.log(this.totalLabor)
