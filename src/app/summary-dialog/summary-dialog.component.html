@@ -1,2 +1,6 @@
-<p>Your order was recieved! Your total is {{data.totalCost}} </p>
-
+<p>Summary</p>
+<p>You selected the following</p>
+<div *ngFor="let service of services">
+  <p>{{service.name}}{{service.cost}}</p>
+</div>
+<p>Your total is {{data.totalCost}}</p>
