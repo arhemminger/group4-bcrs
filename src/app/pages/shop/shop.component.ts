@@ -111,6 +111,8 @@ export class ShopComponent implements OnInit {
       this.servicesArray.push(this.services.diskClean)
     }
  console.log(parseInt(formData.checkGroup.labor)*50)
+
+ console.log(this.servicesArray);
 //  console.log(this.totalLabor)
 //    this.partCost=formData.checkGroup.parts
 //    this.totalCost+=this.services.totalLabor
@@ -120,6 +122,14 @@ data:{
   totalCost:this.totalCost.toFixed(2)
 }
     })
+
+  }
+
+
+  cancelForm(){
+
+    this.servicesArray = [];
+    this.totalCost = 0;
 
   }
 
