@@ -61,6 +61,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { SummaryDialogComponent } from './summary-dialog/summary-dialog.component';
 import { RoleManagementComponent } from './pages/role-management/role-management.component';
 import { RoleEditDialogComponent } from './pages/role-management/role-edit-dialog.component';
+import { RoleDeleteDialogComponent } from './pages/role-management/role-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { RoleEditDialogComponent } from './pages/role-management/role-edit-dialo
     ResetPasswordComponent,
     SummaryDialogComponent,
     RoleManagementComponent,
-    RoleEditDialogComponent
+    RoleEditDialogComponent,
+    RoleDeleteDialogComponent
   ],
   exports:[
     ReactiveFormsModule,

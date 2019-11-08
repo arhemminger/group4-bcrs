@@ -20,11 +20,6 @@
             <th mat-header-cell *matHeaderCellDef> Role </th>
             <td mat-cell *matCellDef="let element"> {{element.role}} </td>
           </ng-container>
-          <!-- isAdmin Column -->
-          <ng-container matColumnDef="isAdmin">
-            <th mat-header-cell *matHeaderCellDef> Is Admin </th>
-            <td mat-cell *matCellDef="let element"> {{element.isAdmin}} </td>
-          </ng-container>
           <!-- Edit Column -->
           <ng-container matColumnDef="Actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
@@ -54,17 +49,15 @@
     <!--Add a new role form-->
     <form [formGroup]='form' (ngSubmit)="create(); form.reset()" #newRoleForm>
       <mat-card-content>
-        <div fxLayout="column" class="input-container">
+        <div fxLayout="column" >
           <mat-form-field hintLabel="Max 20 characters">
             <input type="text" maxlength="20" matInput required formControlName="newRole" placeholder="Enter a new role here:" autocomplete="off" />
             <mat-hint align="end">{{form.controls['newRole'].value?.length || 0}}/20</mat-hint>
           </mat-form-field>
-          <br>
-          <mat-checkbox [(ngModel)]="checked" formControlName="newIsAdmin">Is Admin</mat-checkbox>
+          <mat-card-actions fxLayoutAlign="end">
+            <button mat-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
+          </mat-card-actions>
         </div>
-        <mat-card-actions fxLayoutAlign="end">
-          <button mat-raised-button color="accent" type="submit" [disabled]="!form.valid">Submit</button>
-        </mat-card-actions>
       </mat-card-content>
     </form>
   </mat-card>

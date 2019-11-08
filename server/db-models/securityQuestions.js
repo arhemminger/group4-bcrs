@@ -10,7 +10,7 @@
 const mongoose = require('mongoose');
 
 let securityQuestionSchema = mongoose.Schema({
-  questionText: String,
+  questionText: {type: String, unique: true, dropDups: true}
 
 });
 

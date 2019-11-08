@@ -1,31 +1,38 @@
 <h1 mat-dialog-title>{{edit.action}}</h1>
-<div mat-dialog-actions>
-  <p>Edit user associated with {{edit.email}}</p>
+<p>Edit user associated with: <strong>{{edit.email}}</strong></p>
+<mat-divider></mat-divider>
+<br>
+<div mat-dialog-content>
+  <mat-form-field>
+      <mat-label>First Name:</mat-label>
+      <input type="text" matInput placeholder="{{edit.firstName}}" autocomplete="off" size="50" [(ngModel)]="edit.firstName" />
+  </mat-form-field>
 
-  <div style="width: 90%;">
-    First Name:
-    <input type="text" matInput placeholder="{{edit.firstName}}" autocomplete="off" size="50" [(ngModel)]="edit.firstName" />
-  </div>
-  <br><br><br>
+  <mat-form-field>
+      <mat-label>Last Name:</mat-label>
+      <input type="text" matInput placeholder="{{edit.lastName}}" autocomplete="off" size="50" [(ngModel)]="edit.lastName" />
+  </mat-form-field>
 
-  <div style="width: 90%;">
-    Last Name:
-    <input type="text" matInput placeholder="{{edit.lastName}}" autocomplete="off" size="50" [(ngModel)]="edit.lastName" />
-  </div>
-  <br><br><br>
+  <mat-form-field>
+      <mat-label>Phone:</mat-label>
+      <input type="text" matInput placeholder="{{edit.phone}}" autocomplete="off" size="50" [(ngModel)]="edit.phone"/>
+  </mat-form-field>
 
-  <div style="width: 90%;">
-    Phone:
-    <input type="text" matInput placeholder="{{edit.phone}}" autocomplete="off" size="50" [(ngModel)]="edit.phone"/>
-  </div>
-  <br><br><br>
+  <mat-form-field>
+      <mat-label>Address:</mat-label>
+      <input type="text" matInput  placeholder="{{edit.address}}" autocomplete="off" size="50" [(ngModel)]="edit.address"/>
+  </mat-form-field>
 
-  <div style="width: 90%;">
-    Address:
-    <input type="text" matInput  placeholder="{{edit.address}}" autocomplete="off" size="50" [(ngModel)]="edit.address"/>
-  </div>
-  <br><br><br><br><br>
-
-  <button mat-button (click)="updateUser(edit._id)">{{edit.action}}</button>
-  <button mat-button (click)="closeDialog()">Cancel</button>
+  <mat-form-field>
+    <mat-label>Role:</mat-label>
+    <mat-select size="50" [(ngModel)]="edit.role">
+      <mat-option *ngFor="let role of roles" value="{{role.role}}">{{role.role}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
+
+<div mat-dialog-actions fxLayoutAlign="end">
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button (click)="updateUser(edit._id)">{{edit.action}}</button>
+</div>
+

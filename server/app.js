@@ -101,6 +101,7 @@ app.post('/api/users/register', function(req, res, next){
                 email: req.body.email,
                 phone: req.body.phone,
                 address: req.body.address,
+                role: req.body.role,
                 dateCreated: new Date(),
                 dateModified: new Date(),
                 selectedSecurityQuestions: req.body.questions
@@ -158,6 +159,7 @@ app.put('/api/users/update/:id', function(req, res, next){
          lastName: req.body.lastName,
          phone: req.body.phone,
          address: req.body.address,
+         role: req.body.role,
          dateModified: new Date()
        })
 
@@ -456,7 +458,7 @@ app.delete('/api/delete/role/:id', function(req, res, next){
 });
 
 //Update Role by _id
-app.put('/api/role/update/:id', function(req, res, next){
+app.put('/api/update/role/:id', function(req, res, next){
 
   Roles.findOne({'_id': req.params.id}, function(err, role){
     console.log(role);

@@ -12,8 +12,7 @@
 const mongoose = require('mongoose');
 
 let rolesSchema = mongoose.Schema({
-  role: String,
-  isAdmin: Boolean
+  role: {type: String, unique: true, dropDups: true}
 });
 
 module.exports = mongoose.model('roles', rolesSchema);

@@ -28,9 +28,8 @@ import { RoleEditDialogComponent } from './role-edit-dialog.component';
 })
 export class RoleManagementComponent implements OnInit {
   role = new FormControl('', [Validators.required]);
-  isAdmin = new FormControl('');
   form: FormGroup;
-  displayedColumns: string[] = ['ID', 'Role', 'isAdmin', 'Actions'];
+  displayedColumns: string[] = ['ID', 'Role', 'Actions'];
   dataSource : any;
 
   constructor(private http: HttpClient, private fb: FormBuilder,public dialog: MatDialog) {
@@ -48,8 +47,7 @@ export class RoleManagementComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      newRole: [null, Validators.compose([Validators.required])],
-      newIsAdmin: [null]
+      newRole: [null, Validators.compose([Validators.required])]
     });
   }
 
@@ -94,8 +92,7 @@ export class RoleManagementComponent implements OnInit {
   // Function to add new role record to db
   create() {
     this.http.post('/api/create/role', {
-      role: this.form.controls['newRole'].value,
-      isAdmin: this.form.controls['newIsAdmin'].value
+      role: this.form.controls['newRole'].value
     }).subscribe(res => {
       this.getTableData(); //this will get all records from the database and reload the table.
       console.log("New role added to DB: " + res);
