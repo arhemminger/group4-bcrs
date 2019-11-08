@@ -237,6 +237,22 @@ app.delete('/api/users/delete/:id', function(req, res, next){
   })
 });
 
+/***************************ROLEGUARD API*******************/
+
+// get user by _Id
+app.get('/api/user/:id', function(req, res, next) {
+  User.findOne({'id': req.body._id},function(err, user) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(user.role);
+      res.json(user.role);
+    }
+  })
+});
+
+
 /***************************SECURITY QUESTION API*******************/
 //Create Security Question
 app.post('/api/questions', function(req, res, next) {
