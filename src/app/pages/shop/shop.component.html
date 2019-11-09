@@ -22,7 +22,7 @@
 
             <div *ngIf="services">
               <div *ngFor="let service of services; index as i;">
-                <mat-checkbox name="{{service.name}}" ngModel >{{service.name}} (${{service.cost | currency}})</mat-checkbox>
+                <mat-checkbox name="{{service.name}}" ngModel >{{service.name}} ({{service.cost | currency}})</mat-checkbox>
                 <br />
               </div>
             </div>

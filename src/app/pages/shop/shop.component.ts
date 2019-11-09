@@ -14,53 +14,21 @@ import { MatDialog } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import {SummaryDialogComponent} from '../../summary-dialog/summary-dialog.component'
+import { throwError } from 'rxjs';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  totalCost=0;
-  totalPart:number = 0;
-  totalLabor:number = 0;
+  totalCost: number = 0;
+  totalPart:number;
+  totalLabor:number;
+  totalServiceCost:number;
   partCost:number;
   userId:string;
   servicesArray=[];
-
-  /*
-  services = [{
-    passwordReset: {
-      name: "Password Reset",
-      cost: 39.99
-    },
-    spywareRemoval: {
-      name: "Spyware Removal",
-      cost: 99.99
-    },
-    ramUpgrade: {
-      name: "RAM Upgrade",
-      cost: 129.99
-    },
-    softwareInstall: {
-      name: "Software Installation",
-      cost: 49.99
-    },
-    tuneUp: {
-      name: "Tune-up",
-      cost: 89.99
-    },
-    keyCleaning: {
-      name: "Keyboard Cleaning",
-      cost: 45.00
-    },
-    diskClean: {
-      name: "Disk Clean-up",
-      cost: 149.99
-    },
-    totalLabor:0,
-    totalParts:0
-  }]
-*/
+  userLoggedIn:any;
 
 
   services = [{
@@ -94,60 +62,35 @@ export class ShopComponent implements OnInit {
       name: "Disk Clean-up",
       cost: 149.99
     }
-    //totalLabor:0,
-    //totalParts:0
   ]
 
-  constructor(private dialog:MatDialog,private http: HttpClient,private cookieService: CookieService) { }
+  constructor(private dialog:MatDialog,private http: HttpClient,private cookieService: CookieService) {
+
+
+    //Gets user Id from cookie
+    this.userId = this.cookieService.get('userId');
+
+    this.http.get('/api/users/' + this.userId).subscribe(res => {
+      if (res) {
+        //console.log(res);
+        return this.userLoggedIn = res;
+      } else {
+        //do something return this.errorMessage = "OH NO, I couldn't find the quiz!!!";
+      }
+
+    })
+
+    console.log(this.userId);
+    console.log(this.userLoggedIn);
+
+
+
+  }
 
   ngOnInit() {
   }
   onSubmit(formData) {
 
-    /*
-
-    if (formData.checkGroup.passwordReset) {
-      //console.log(this.services.passwordReset.name + ' cost: $' + this.services.passwordReset.cost);
-
-    }
-
-    if (formData.checkGroup.spywareRemoval) {
-     // console.log(this.services.spywareRemoval.name + ' cost: $' + this.services.spywareRemoval.cost);
-     // this.totalCost+=this.services.spywareRemoval.cost
-     // this.servicesArray.push(this.services.passwordReset)
-    }
-
-    if (formData.checkGroup.ramUpgrade) {
-      //console.log(this.services.ramUpgrade.name + ' cost: $' + this.services.ramUpgrade.cost);
-     // this.totalCost+=this.services.ramUpgrade.cost
-      //this.servicesArray.push(this.services.ramUpgrade)
-
-    }
-
-    if (formData.checkGroup.softwareInstall) {
-     // console.log(this.services.softwareInstall.name + ' cost: $' + this.services.softwareInstall.cost);
-     // this.totalCost+=this.services.softwareInstall.cost
-    //  this.servicesArray.push(this.services.softwareInstall)
-    }
-
-    if (formData.checkGroup.tuneUp) {
-    //  console.log(this.services.tuneUp.name + ' cost: $' + this.services.tuneUp.cost);
-    //  this.totalCost+=this.services.tuneUp.cost
-    //  this.servicesArray.push(this.services.tuneUp)
-    }
-
-    if (formData.checkGroup.keyCleaning) {
-   //   console.log(this.services.keyCleaning.name + ' cost: $' + this.services.keyCleaning.cost);
-  //  this.totalCost+=this.services.keyCleaning.cost
-  //  this.servicesArray.push(this.services.keyCleaning)
-    }
-
-    if (formData.checkGroup.diskClean) {
-  //    console.log(this.services.diskClean.name + ' cost: $' + this.services.diskClean.cost);
-  //    this.totalCost+=this.services.diskClean.cost
-   //   this.servicesArray.push(this.services.diskClean)
-    }
-*/
 
     for (const [key, value] of Object.entries(formData.checkGroup)){
       if(value){
@@ -160,14 +103,48 @@ export class ShopComponent implements OnInit {
     console.log(this.servicesArray);
 
 
+    const lineItem = [];
+
+    for (const savedService of this.services){
+      for(const selectedService of this.servicesArray){
+        if(savedService.name === selectedService.name ){
+          lineItem.push({
+            name: savedService.name,
+            cost: savedService.cost
+          })
+        }
+      }
+    }
+
+    console.log(lineItem);
+    this.totalPart = formData.parts;
+    this.totalLabor = formData.labor * 50;
+    this.totalServiceCost = lineItem.reduce((prev, cur) => prev + cur.cost, 0);
+    this.totalCost = this.totalPart + this.totalLabor + this.totalServiceCost;
+
+    const invoice = {
+      lineItem: lineItem,
+      partsAmount: this.totalPart,
+      laborAmount: this.totalLabor,
+      lineItemTotal: this.totalServiceCost,
+      total: this.totalCost,
+      orderDate: new Date(),
+      userId: this.userLoggedIn._id,
+      userName: this.userLoggedIn.userName
+    }
+
+    console.log(invoice);
+
+
+
 
 
     this.partCost=formData.checkGroup.parts
   //  this.totalCost+=this.services.totalLabor
     this.dialog.open(SummaryDialogComponent,{
     data:{
-      services:this.servicesArray,
-      totalCost:this.totalCost.toFixed(2)
+      //services:this.servicesArray,
+      //totalCost:this.totalCost.toFixed(2)
     }
 
     })

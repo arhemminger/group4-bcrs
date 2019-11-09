@@ -195,6 +195,22 @@ app.get('/api/users/all', function(req, res, next) {
   })
 });
 
+/**
+ *  Get user by Id
+ */
+
+app.get('/api/users/:id', function(req, res, next) {
+  User.findOne({'_id': req.params.id}, function(err, user) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(user);
+      res.json(user);
+    }
+  })
+});
+
 /*
 *  Get User by email
 *  Pass the password so we can hash it and check against password returned from the DB
