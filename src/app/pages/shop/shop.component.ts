@@ -22,10 +22,10 @@ import { throwError } from 'rxjs';
 })
 export class ShopComponent implements OnInit {
   totalCost: number = 0;
-  totalPart:number;
-  totalLabor:number;
+  totalPart:number = 0;
+  totalLabor:number = 0;
   totalServiceCost:number;
-  partCost:number;
+  partCost:number = 0;
   userId:string;
   servicesArray=[];
   userLoggedIn:any;
@@ -116,7 +116,6 @@ export class ShopComponent implements OnInit {
       }
     }
 
-    console.log(lineItem);
     this.totalPart = parseFloat(formData.parts);
     this.totalLabor = formData.labor * 50;
     this.totalServiceCost = lineItem.reduce((prev, cur) => prev + cur.cost, 0);
@@ -140,53 +139,27 @@ export class ShopComponent implements OnInit {
 
 
     const dialogRef = this.dialog.open(SummaryDialogComponent,{
-    data:{
-      invoice: invoice
-    },
-      disableClose: true,
+      data:invoice,
+      disableClose: false,
       width: '800px'
     });
 
 
     dialogRef.afterClosed().subscribe(result =>{
-
-      if(result === 'confirm'){
-        console.log('Invoice Saving');
-
-        /**
-         *
-         *
-         * Add post request here
-         *
-         *
-         *
-         *
-         */
-      }
-    });
-
-    /*
-
-      this.http.post('/api/orders', {
-        total: this.totalCost,
-        productsOrdered: this.servicesArray
-      }).subscribe(res => {
-
-      }), err => {
-
-      }
-
-      */
+        if(result){
+          console.log('do post')
+        //   this.http.post('/api/users/login', {
 
 
-  }
+        //   }).subscribe(
+        //     res =>{
+        //  })
+        }else{
+          this.servicesArray=[]
+        }
+      });
 
 
-  cancelForm(){
 
-    this.servicesArray = [];
-    this.totalCost = 0;
-
-  }
-
+}
 }

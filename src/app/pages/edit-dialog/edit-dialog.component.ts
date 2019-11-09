@@ -27,9 +27,9 @@ export class EditDialogComponent implements OnInit {
     this.edit = data;
     console.log(this.edit)
      }
-doEdit(){
+  doEdit(){
   this.dialogRef.close({event:this.edit.action, data:this.edit})
-}
+  }
 closeDialog(){
   this.edit.action = "Cancel";
   this.dialogRef.close({event:this.edit.action})
