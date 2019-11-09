@@ -29,6 +29,7 @@ export class ShopComponent implements OnInit {
   userId:string;
   servicesArray=[];
   userLoggedIn:any;
+  errorMessage:string;
 
 
   services = [{
@@ -72,20 +73,19 @@ export class ShopComponent implements OnInit {
 
     this.http.get('/api/users/' + this.userId).subscribe(res => {
       if (res) {
-        //console.log(res);
+
         return this.userLoggedIn = res;
+
       } else {
-        //do something return this.errorMessage = "OH NO, I couldn't find the quiz!!!";
+
+        return this.errorMessage = "OH NO, I couldn't find the Uer!!!";
+
       }
 
     })
 
-    console.log(this.userId);
-    console.log(this.userLoggedIn);
 
-
-
-  }
+  }//END OF CONSTRUCTOR
 
   ngOnInit() {
   }
@@ -117,7 +117,7 @@ export class ShopComponent implements OnInit {
     }
 
     console.log(lineItem);
-    this.totalPart = formData.parts;
+    this.totalPart = parseFloat(formData.parts);
     this.totalLabor = formData.labor * 50;
     this.totalServiceCost = lineItem.reduce((prev, cur) => prev + cur.cost, 0);
     this.totalCost = this.totalPart + this.totalLabor + this.totalServiceCost;
@@ -139,15 +139,33 @@ export class ShopComponent implements OnInit {
 
 
 
-    this.partCost=formData.checkGroup.parts
-  //  this.totalCost+=this.services.totalLabor
-    this.dialog.open(SummaryDialogComponent,{
+    const dialogRef = this.dialog.open(SummaryDialogComponent,{
     data:{
-      //services:this.servicesArray,
-      //totalCost:this.totalCost.toFixed(2)
-    }
+      invoice: invoice
+    },
+      disableClose: true,
+      width: '800px'
+    });
 
-    })
+
+    dialogRef.afterClosed().subscribe(result =>{
+
+      if(result === 'confirm'){
+        console.log('Invoice Saving');
+
+        /**
+         *
+         *
+         * Add post request here
+         *
+         *
+         *
+         *
+         */
+      }
+    });
+
+    /*
 
       this.http.post('/api/orders', {
         total: this.totalCost,
@@ -157,6 +175,8 @@ export class ShopComponent implements OnInit {
       }), err => {
 
       }
+
+      */
 
 
   }

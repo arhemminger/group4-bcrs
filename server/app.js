@@ -257,7 +257,7 @@ app.delete('/api/users/delete/:id', function(req, res, next){
 
 // get user by _Id
 app.get('/api/user/:id', function(req, res, next) {
-  User.findOne({'id': req.body._id},function(err, user) {
+  User.findOne({'id': req.params._id},function(err, user) {
     if (err) {
       console.log(err);
       return next(err);
