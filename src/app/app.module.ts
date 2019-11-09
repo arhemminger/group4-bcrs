@@ -37,7 +37,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { SummaryDialogComponent } from './summary-dialog/summary-dialog.component';
 import { RoleManagementComponent } from './pages/role-management/role-management.component';
 import { RoleEditDialogComponent } from './pages/role-management/role-edit-dialog.component';
-import { RoleDeleteDialogComponent } from './pages/role-management/role-delete-dialog.component';
+//import { RoleDeleteDialogComponent } from './pages/role-management/role-delete-dialog.component';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
@@ -101,7 +101,7 @@ import { MatTableModule } from '@angular/material/table';
     SummaryDialogComponent,
     RoleManagementComponent,
     RoleEditDialogComponent,
-    RoleDeleteDialogComponent
+    //RoleDeleteDialogComponent
   ],
   exports:[
     ReactiveFormsModule,

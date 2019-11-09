@@ -21,12 +21,14 @@ import {SummaryDialogComponent} from '../../summary-dialog/summary-dialog.compon
 })
 export class ShopComponent implements OnInit {
   totalCost=0;
-  totalLabor:number;
+  totalPart:number = 0;
+  totalLabor:number = 0;
   partCost:number;
   userId:string;
   servicesArray=[];
 
-  services = {
+  /*
+  services = [{
     passwordReset: {
       name: "Password Reset",
       cost: 39.99
@@ -57,58 +59,111 @@ export class ShopComponent implements OnInit {
     },
     totalLabor:0,
     totalParts:0
+  }]
+*/
+
+
+  services = [{
+      name: "Password Reset",
+      cost: 39.99
   }
+   ,
+    {
+      name: "Spyware Removal",
+      cost: 99.99
+    }
+    ,
+    {
+      name: "RAM Upgrade",
+      cost: 129.99
+    }
+    ,
+    {
+      name: "Software Installation",
+      cost: 49.99
+    },
+     {
+      name: "Tune-up",
+      cost: 89.99
+    },
+    {
+      name: "Keyboard Cleaning",
+      cost: 45.00
+    },
+    {
+      name: "Disk Clean-up",
+      cost: 149.99
+    }
+    //totalLabor:0,
+    //totalParts:0
+  ]
 
   constructor(private dialog:MatDialog,private http: HttpClient,private cookieService: CookieService) { }
 
   ngOnInit() {
   }
   onSubmit(formData) {
+
+    /*
+
     if (formData.checkGroup.passwordReset) {
-      console.log(this.services.passwordReset.name + ' cost: $' + this.services.passwordReset.cost);
+      //console.log(this.services.passwordReset.name + ' cost: $' + this.services.passwordReset.cost);
 
     }
 
     if (formData.checkGroup.spywareRemoval) {
-      console.log(this.services.spywareRemoval.name + ' cost: $' + this.services.spywareRemoval.cost);
-      this.totalCost+=this.services.spywareRemoval.cost
-      this.servicesArray.push(this.services.passwordReset)
+     // console.log(this.services.spywareRemoval.name + ' cost: $' + this.services.spywareRemoval.cost);
+     // this.totalCost+=this.services.spywareRemoval.cost
+     // this.servicesArray.push(this.services.passwordReset)
     }
 
     if (formData.checkGroup.ramUpgrade) {
-      console.log(this.services.ramUpgrade.name + ' cost: $' + this.services.ramUpgrade.cost);
-      this.totalCost+=this.services.ramUpgrade.cost
-      this.servicesArray.push(this.services.ramUpgrade)
+      //console.log(this.services.ramUpgrade.name + ' cost: $' + this.services.ramUpgrade.cost);
+     // this.totalCost+=this.services.ramUpgrade.cost
+      //this.servicesArray.push(this.services.ramUpgrade)
 
     }
 
     if (formData.checkGroup.softwareInstall) {
-      console.log(this.services.softwareInstall.name + ' cost: $' + this.services.softwareInstall.cost);
-      this.totalCost+=this.services.softwareInstall.cost
-      this.servicesArray.push(this.services.softwareInstall)
+     // console.log(this.services.softwareInstall.name + ' cost: $' + this.services.softwareInstall.cost);
+     // this.totalCost+=this.services.softwareInstall.cost
+    //  this.servicesArray.push(this.services.softwareInstall)
     }
 
     if (formData.checkGroup.tuneUp) {
-      console.log(this.services.tuneUp.name + ' cost: $' + this.services.tuneUp.cost);
-      this.totalCost+=this.services.tuneUp.cost
-      this.servicesArray.push(this.services.tuneUp)
+    //  console.log(this.services.tuneUp.name + ' cost: $' + this.services.tuneUp.cost);
+    //  this.totalCost+=this.services.tuneUp.cost
+    //  this.servicesArray.push(this.services.tuneUp)
     }
 
     if (formData.checkGroup.keyCleaning) {
-      console.log(this.services.keyCleaning.name + ' cost: $' + this.services.keyCleaning.cost);
-    this.totalCost+=this.services.keyCleaning.cost
-    this.servicesArray.push(this.services.keyCleaning)
+   //   console.log(this.services.keyCleaning.name + ' cost: $' + this.services.keyCleaning.cost);
+  //  this.totalCost+=this.services.keyCleaning.cost
+  //  this.servicesArray.push(this.services.keyCleaning)
     }
 
     if (formData.checkGroup.diskClean) {
-      console.log(this.services.diskClean.name + ' cost: $' + this.services.diskClean.cost);
-      this.totalCost+=this.services.diskClean.cost
-      this.servicesArray.push(this.services.diskClean)
+  //    console.log(this.services.diskClean.name + ' cost: $' + this.services.diskClean.cost);
+  //    this.totalCost+=this.services.diskClean.cost
+   //   this.servicesArray.push(this.services.diskClean)
     }
+*/
+
+    for (const [key, value] of Object.entries(formData.checkGroup)){
+      if(value){
+        this.servicesArray.push({
+          name: key
+        });
+      }
+    }
+
+    console.log(this.servicesArray);
+
+
 
 
     this.partCost=formData.checkGroup.parts
-    this.totalCost+=this.services.totalLabor
+  //  this.totalCost+=this.services.totalLabor
     this.dialog.open(SummaryDialogComponent,{
     data:{
       services:this.servicesArray,
