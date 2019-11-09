@@ -16,9 +16,9 @@ import { Component, OnInit } from '@angular/core';
   <div class="home">
     <div fxLayout="column">
       <mat-card fx-Flex style="margin-top: 15%; width: 50%; margin-left: 25%;" class="mat-elevation-z8">
-        <mat-card-title style="text-align: center; font-size: 48px" class="mat-headline">500 - Internal Server Error</mat-card-title>
-        <mat-divider style="margin-top: 3%;" [inset]="true"></mat-divider>
-          <p style="text-align: center;">The requested page cannot be displayed due to an internal server error.</p>
+        <mat-card-title fxLayoutAlign="center">500 - Internal Server Error</mat-card-title>
+        <mat-card-subtitle fxLayoutAlign="center">The requested page cannot be displayed due to an internal server error</mat-card-subtitle>
+        <mat-divider [inset]="true"></mat-divider>
           <p style="text-align: center;">If the error persists please <span><a routerLink="/contact-us" routerLinkActive="active">contact us</a></span>.</p>
           <p style="text-align: center;">Return to the Bob's Computer Repair Shop home page by clicking the link below.</p>
           <mat-card-actions>

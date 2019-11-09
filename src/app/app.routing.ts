@@ -43,12 +43,12 @@ export const AppRoutes: Routes = [
       {
         path: 'admin/user-edit',
         component: UserEditComponent,
-        canActivate: [AuthGuard] //, RoleGuard
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'admin/security-questions',
         component: SecurityQuestionsComponent,
-        canActivate: [AuthGuard] //, RoleGuard
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'admin/sales-chart',
@@ -58,12 +58,12 @@ export const AppRoutes: Routes = [
       {
         path: 'admin/users',
         component: UsersComponent,
-        canActivate: [AuthGuard] //, RoleGuard
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'admin/role-management',
         component: RoleManagementComponent,
-        canActivate: [AuthGuard] //, RoleGuard
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'my-profile',

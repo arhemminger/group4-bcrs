@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class RoleGuard implements CanActivate {
 
-  constructor(private router: Router, private HttpClient, private cookieService: CookieService) { }
+  constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.getRole().pipe(map(res=> {
@@ -26,13 +26,14 @@ export class RoleGuard implements CanActivate {
       if (res === 'admin') {
         return true;
       } else {
-        this.router.navigate(['/']); //session/unauthorized
+        this.router.navigate(['/session/unauthorized']);
         return false;
       }
     }));
   }
 
     getRole() {
-      return this.HttpClient.get('api/user/' + this.cookieService.get('userId')); //returns user role
+      console.log(this.cookieService.get('userId'));
+      return this.http.get('api/user/role/' + this.cookieService.get('userId')); //returns user role
     }
   }
