@@ -22,6 +22,8 @@ let ordersSchema = mongoose.Schema({
   //isAdmin: Boolean
   userId: {type: String},
   dateOrdered: {type: Date, default: new Date()},
+  parts: {type: String},
+  labor: {type: String},
   total: {type: String},
   productsOrdered: [products]
 

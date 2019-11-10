@@ -530,6 +530,8 @@ app.post('/api/orders', function(req, res, next) {
   const addedOrder = {
     userId: req.body.userId,
     total: req.body.total,
+    parts: req.body.parts,
+  labor: req.body.labor,
     productsOrdered: req.body.lineItem
 
     /*

@@ -136,6 +136,9 @@ export class ShopComponent implements OnInit {
       lineItem: lineItem,
       userId: this.userLoggedIn._id,
       userName: this.userLoggedIn.userName,
+      parts: this.totalPart,
+      labor: this.totalLabor,
+      dateOrdered: new Date(),
       total: this.totalCost
     }
     console.log(invoice)
