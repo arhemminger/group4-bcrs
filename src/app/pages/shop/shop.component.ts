@@ -33,33 +33,40 @@ export class ShopComponent implements OnInit {
 
 
   services = [{
+      id:11,
       name: "Password Reset",
       cost: 39.99
   }
    ,
     {
+      id:12,
       name: "Spyware Removal",
       cost: 99.99
     }
     ,
     {
+      id:13,
       name: "RAM Upgrade",
       cost: 129.99
     }
     ,
     {
+      id:14,
       name: "Software Installation",
       cost: 49.99
     },
      {
+      id:15,
       name: "Tune-up",
       cost: 89.99
     },
     {
+      id:16,
       name: "Keyboard Cleaning",
       cost: 45.00
     },
     {
+      id:17,
       name: "Disk Clean-up",
       cost: 149.99
     }
@@ -109,6 +116,7 @@ export class ShopComponent implements OnInit {
       for(const selectedService of this.servicesArray){
         if(savedService.name === selectedService.name ){
           lineItem.push({
+            id : savedService.id,
             name: savedService.name,
             cost: savedService.cost
           })
@@ -123,20 +131,12 @@ export class ShopComponent implements OnInit {
 
     const invoice = {
       lineItem: lineItem,
-      partsAmount: this.totalPart,
-      laborAmount: this.totalLabor,
-      lineItemTotal: this.totalServiceCost,
-      total: this.totalCost,
-      orderDate: new Date(),
       userId: this.userLoggedIn._id,
-      userName: this.userLoggedIn.userName
+      userName: this.userLoggedIn.userName,
+      total: this.totalCost
     }
-
-    console.log(invoice);
-
-
-
-
+    console.log(invoice)
+console.log(lineItem)
 
     const dialogRef = this.dialog.open(SummaryDialogComponent,{
       data:invoice,
@@ -148,15 +148,19 @@ export class ShopComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result =>{
         if(result){
           console.log('do post')
-        //   this.http.post('/api/users/login', {
-
-
-        //   }).subscribe(
-        //     res =>{
-        //  })
+          this.http.post('/api/orders',invoice).subscribe(
+            res =>{
+              console.log(res)
+              this.servicesArray=[];
+         })
         }else{
+          console.log('order was canceled')
           this.servicesArray=[]
         }
+      },
+      err=>{
+        console.log('there is an err' + err)
+
       });
 
 
