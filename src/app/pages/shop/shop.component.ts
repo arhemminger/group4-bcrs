@@ -78,7 +78,7 @@ export class ShopComponent implements OnInit {
 
       } else {
 
-        return this.errorMessage = "OH NO, I couldn't find the Uer!!!";
+        return this.errorMessage = "OH NO, I couldn't find the User!!!";
 
       }
 
@@ -89,6 +89,8 @@ export class ShopComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
   onSubmit(formData) {
 
 
@@ -117,7 +119,8 @@ export class ShopComponent implements OnInit {
     }
 
     this.totalPart = parseFloat(formData.parts);
-    this.totalLabor = formData.labor * 50;
+    console.log(this.totalPart);
+    this.totalLabor = parseFloat(formData.labor) * 50;
     this.totalServiceCost = lineItem.reduce((prev, cur) => prev + cur.cost, 0);
     this.totalCost = this.totalPart + this.totalLabor + this.totalServiceCost;
 
