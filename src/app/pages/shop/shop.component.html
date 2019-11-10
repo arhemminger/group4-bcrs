@@ -3,23 +3,6 @@
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value); f.reset();">
         <div ngModelGroup="checkGroup">
             <h2>Services</h2>
-            <!--
-              <mat-checkbox name="passwordReset" ngModel >Password Reset ($39.99)</mat-checkbox>
-              <br />
-              <mat-checkbox name="spywareRemoval" ngModel >Spyware Removal ($99.99)</mat-checkbox>
-              <br />
-              <mat-checkbox name="ramUpgrade" ngModel >RAM Upgrade ($129.99)</mat-checkbox>
-              <br />
-              <mat-checkbox name="softwareInstall" ngModel >Software Installation ($49.99)</mat-checkbox>
-              <br />
-              <mat-checkbox name="tuneUp" ngModel >Tune-up ($89.99)</mat-checkbox>
-              <br />
-              <mat-checkbox name="keyCleaning" ngModel >Keyboard Cleaning ($45.00)</mat-checkbox>
-              <br />
-              <mat-checkbox name="diskClean" ngModel >Disk Clean-up ($149.99)</mat-checkbox>
-              <br />
-            -->
-
             <div *ngIf="services">
               <div *ngIf="errorMessage">
                 {{errorMessage}}

@@ -530,7 +530,7 @@ app.post('/api/orders', function(req, res, next) {
   const addedOrder = {
     userId: req.body.userId,
     total: req.body.total,
-    productsOrdered: req.body.productsOrdered
+    productsOrdered: req.body.lineItem
 
     /*
       * the req.body.productsOrdered is an array sent from the Angular UI
