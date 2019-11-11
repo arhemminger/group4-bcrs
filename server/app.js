@@ -216,14 +216,36 @@ app.get('/api/users/:id', function(req, res, next) {
 *  Pass the password so we can hash it and check against password returned from the DB
 */
 app.post('/api/users/login', function(req, res, next) {
-  //console.log(req.body.email);
-  //console.log(req.body.password);
+  console.log(req.body.email);
+  console.log(req.body.password);
 
   User.findOne({'email': req.body.email}, function(err, foundUser) {
-    //console.log("inside findOne!!!!!")
-    //console.log("Password found: " + foundUser.password);
+    console.log("inside findOne!!!!!")
+    console.log("Password found: " + foundUser.password);
+
+
+    bcrypt.compare(req.body.password, foundUser.password, (err, foundUser) => {
+      //if error than throw error
+      if (err) throw err
+
+      //if both match than you can do anything
+      if (foundUser) {
+        console.log(foundUser);
+        res.json(foundUser);
+      } else {
+        console.log("Password didn't match!");
+        res.status(500).send({
+          text: 'You have entered an incorrect password. Please try again!',
+          time_stamp: new Date()
+        });
+      }
+
+  })
+
+
+    /*
     if( bcrypt.compare(req.body.password, foundUser.password)) {
-      //console.log(foundUser);
+      console.log(foundUser);
       res.json(foundUser);
     }
     else{
@@ -233,6 +255,7 @@ app.post('/api/users/login', function(req, res, next) {
         time_stamp: new Date()
       });
     }
+    */
 })
 })
 
