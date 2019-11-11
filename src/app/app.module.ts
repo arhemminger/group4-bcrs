@@ -41,6 +41,7 @@ import { RoleEditDialogComponent } from './pages/role-management/role-edit-dialo
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { InvoiceSummaryComponent } from './shared/invoice-summary/invoice-summary.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
+import {ChartModule} from 'primeng/chart';
 
 //Guards
 import { AuthGuard } from './shared/guard/authGuard';
@@ -114,6 +115,7 @@ import { MatTableModule } from '@angular/material/table';
   entryComponents:[EditDialogComponent, UserDeleteConfirmationDialogComponent, UserEditComponent, SummaryDialogComponent, RoleEditDialogComponent],
     imports: [
     BrowserModule,
+    ChartModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
