@@ -19,19 +19,24 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit {
-
+orders:any
+serviceArray:any
+priceArray:any
   constructor(private http:HttpClient) {
-    this.http.get('/api/orders/all', {
+    this.http.get('/api/orders/all').subscribe(res => {
+      if (res) {
+       this.orders = res;
+      } else {
+        console.log("OH NO, I couldn't find any users!!!");
+      }
 
-    }).subscribe(
-      res =>{
+    })
+// for(var i = 0; i < this.orders.length;i++){
+//   this.serviceArray=this.orders[i].service
+   console.log(this.orders)
 
-        console.log(res);
-      },
-      err => {
-      },
-      () => {
-      });
+// }
+// console.log(this.serviceArray)
   }
 
   ngOnInit() {

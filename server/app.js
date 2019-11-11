@@ -561,14 +561,22 @@ app.post('/api/orders', function(req, res, next) {
 //GET ALL ORDERS
 app.get('/api/orders/all', function(req, res, next) {
 Orders.aggregate([
- {     $group: '$productsOrdered' },
- {     $group:{_id:{service:"$productsOrdered.name"}}  },
+ {     "$unwind": '$productsOrdered' },
+ {     "$group":{
+   "_id":{
+        "service":"$productsOrdered.name",
+        "price":"$productsOrdered.cost"
+       },
+       "count":{"$sum":1},
+  } },
+  {"$sort":{"_id.service":1}}
 
   ],
 
   function(err,results){
     if(results){
       console.log(results)
+      res.json(results);
     }else{
       console.log(err)
     }
