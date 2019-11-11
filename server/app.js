@@ -224,13 +224,14 @@ app.post('/api/users/login', function(req, res, next) {
     console.log("Password found: " + foundUser.password);
 
 
-    bcrypt.compare(req.body.password, foundUser.password, (err, foundUser) => {
+    bcrypt.compare(req.body.password, foundUser.password, (err, valid) => {
       //if error than throw error
       if (err) throw err
 
       //if both match than you can do anything
-      if (foundUser) {
-        console.log(foundUser);
+      if (valid) {
+        console.log("Inside if found User!!!!!!!!")
+        console.log("RES:  " + foundUser);
         res.json(foundUser);
       } else {
         console.log("Password didn't match!");
