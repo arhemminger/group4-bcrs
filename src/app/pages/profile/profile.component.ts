@@ -11,6 +11,8 @@
 */
 
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -19,9 +21,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  user: any;
+  id: any;
+  errorMessage: string;
+
+  constructor(private cookieService: CookieService, private http: HttpClient) { }
 
   ngOnInit() {
+    this.id = '5dc7360b052aec4b34372ab9';  //used for testing
+    //this.id = this.cookieService.get('userId');
+    console.log(this.id);
+    this.http.get('/api/users/' + this.id).subscribe(res => {
+      if (res) {
+        return this.user = res;
+      } else {
+        console.log('Error no user found with id: ' + this.id);
+        return this.errorMessage = "No user found";
+      }
+    })
   }
 
 }

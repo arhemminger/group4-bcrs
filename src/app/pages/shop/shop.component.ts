@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import {SummaryDialogComponent} from '../../summary-dialog/summary-dialog.component'
+import {SummaryDialogComponent} from '../summary-dialog/summary-dialog.component'
 import { throwError } from 'rxjs';
 @Component({
   selector: 'app-shop',
