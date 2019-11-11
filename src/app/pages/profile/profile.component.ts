@@ -20,7 +20,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   user: any;
   id: any;
   errorMessage: string;
@@ -28,8 +27,8 @@ export class ProfileComponent implements OnInit {
   constructor(private cookieService: CookieService, private http: HttpClient) { }
 
   ngOnInit() {
-    this.id = '5dc7360b052aec4b34372ab9';  //used for testing
-    //this.id = this.cookieService.get('userId');
+    // get userId from cookie and pull information from DB
+    this.id = this.cookieService.get('userId');
     console.log(this.id);
     this.http.get('/api/users/' + this.id).subscribe(res => {
       if (res) {

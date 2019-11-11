@@ -53,7 +53,7 @@ export const AppRoutes: Routes = [
       {
         path: 'sales-chart',
         component: GraphComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard] //, RoleGuard
       },
       {
         path: 'admin/users',

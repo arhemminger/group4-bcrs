@@ -1,3 +1,13 @@
+/*
+=====================================
+  ; Title: summary-dialog.component.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: November 11 2019
+  ; Description: Component to handle invoice summary.
+======================================
+*/
 import { Component, OnInit } from '@angular/core';
 import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
 import { Inject } from '@angular/core';

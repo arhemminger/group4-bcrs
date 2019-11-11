@@ -5,6 +5,10 @@
         <mat-card-title>My Profile</mat-card-title>
         <mat-card-subtitle>Information:</mat-card-subtitle>
       </mat-card-header>
+
+      <!-- error message display -->
+      <small style="color: red;" *ngIf="errorMessage">{{errorMessage}}</small>
+
       <mat-divider></mat-divider>
       <br><br>
       <mat-card-content>
@@ -14,6 +18,12 @@
             <mat-list role="list">
               <mat-label>ID:</mat-label>
               <mat-list-item role="id"><strong>{{user._id}}</strong></mat-list-item>
+
+              <mat-label>User Role:</mat-label>
+              <mat-list-item role="role"><strong>{{user.role}}</strong></mat-list-item>
+
+              <mat-label>Username:</mat-label>
+              <mat-list-item role="username"><strong>{{user.username}}</strong></mat-list-item>
 
               <mat-label>First Name:</mat-label>
               <mat-list-item role="firstName"><strong>{{user.firstName}}</strong></mat-list-item>
@@ -32,6 +42,9 @@
 
               <mat-label>Date Created:</mat-label>
               <mat-list-item role="dateCreated"><strong>{{user.dateCreated}}</strong></mat-list-item>
+
+              <mat-label>Last Updated:</mat-label>
+              <mat-list-item role="dateUpdated"><strong>{{user.dateModified}}</strong></mat-list-item>
             </mat-list>
 
           </mat-card-content>
