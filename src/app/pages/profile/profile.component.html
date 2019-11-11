@@ -1,1 +1,54 @@
-<p>profile works!</p>
+<!-- Security questions management card -->
+<div fxLayout="column">
+    <mat-card fx-Flex style="margin-top: 5%; width: 60%; margin-left: 20%;" class="mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title>My Profile</mat-card-title>
+        <mat-card-subtitle>Information:</mat-card-subtitle>
+      </mat-card-header>
+
+      <!-- error message display -->
+      <small style="color: red;" *ngIf="errorMessage">{{errorMessage}}</small>
+
+      <mat-divider></mat-divider>
+      <br><br>
+      <mat-card-content>
+        <mat-card class="mat-elevation-z8">
+          <mat-card-content>
+
+            <mat-list role="list">
+              <mat-label>ID:</mat-label>
+              <mat-list-item role="id"><strong>{{user._id}}</strong></mat-list-item>
+
+              <mat-label>User Role:</mat-label>
+              <mat-list-item role="role"><strong>{{user.role}}</strong></mat-list-item>
+
+              <mat-label>Username:</mat-label>
+              <mat-list-item role="username"><strong>{{user.username}}</strong></mat-list-item>
+
+              <mat-label>First Name:</mat-label>
+              <mat-list-item role="firstName"><strong>{{user.firstName}}</strong></mat-list-item>
+
+              <mat-label>Last Name:</mat-label>
+              <mat-list-item role="lastName"><strong>{{user.lastName}}</strong></mat-list-item>
+
+              <mat-label>Email:</mat-label>
+              <mat-list-item role="email"><strong>{{user.email}}</strong></mat-list-item>
+
+              <mat-label>Phone:</mat-label>
+              <mat-list-item role="phone"><strong>{{user.phone}}</strong></mat-list-item>
+
+              <mat-label>Address:</mat-label>
+              <mat-list-item role="address"><strong>{{user.address}}</strong></mat-list-item>
+
+              <mat-label>Date Created:</mat-label>
+              <mat-list-item role="dateCreated"><strong>{{user.dateCreated}}</strong></mat-list-item>
+
+              <mat-label>Last Updated:</mat-label>
+              <mat-list-item role="dateUpdated"><strong>{{user.dateModified}}</strong></mat-list-item>
+            </mat-list>
+
+          </mat-card-content>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+</div>

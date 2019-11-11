@@ -18,10 +18,10 @@ font-family: 'Arimo', sans-serif;
 }
 .aboutBox{
   position: absolute;
-  width: 700px;
+  width: 50%;
   background-color: white;
-  margin-left: 32%;
   margin-top: 5%;
+  margin-left: 25%;
   border: 5px solid #b71c1c;
 }
 .aboutText{
