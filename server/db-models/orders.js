@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 
 let products = mongoose.Schema({
   name: {type: String},
-  cost: {type: String},
+  cost: {type: String},  //number
   id: {type: String}
 });
 
@@ -24,7 +24,7 @@ let ordersSchema = mongoose.Schema({
   dateOrdered: {type: Date, default: new Date()},
   parts: {type: String},
   labor: {type: String},
-  total: {type: String},
+  total: {type: String},   //number
   productsOrdered: [products]
 
 });
