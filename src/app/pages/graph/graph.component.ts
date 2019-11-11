@@ -12,7 +12,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
-
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
@@ -20,7 +20,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GraphComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http:HttpClient) {
+    this.http.get('/api/orders/all', {
+
+    }).subscribe(
+      res =>{
+
+        console.log(res);
+      },
+      err => {
+      },
+      () => {
+      });
+  }
 
   ngOnInit() {
   }

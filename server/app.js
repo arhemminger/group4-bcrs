@@ -560,15 +560,20 @@ app.post('/api/orders', function(req, res, next) {
 
 //GET ALL ORDERS
 app.get('/api/orders/all', function(req, res, next) {
-  Orders.find(function(err, orders) {
-    if (err) {
-      console.log(err);
-      return next(err);
-    }  else {
-      console.log(orders);
-      res.json(orders);
+Orders.aggregate([
+ {     $group: '$productsOrdered' },
+ {     $group:{_id:{service:"$productsOrdered.name"}}  },
+
+  ],
+
+  function(err,results){
+    if(results){
+      console.log(results)
+    }else{
+      console.log(err)
     }
   })
+
 });
 
 
