@@ -28,6 +28,8 @@ priceArray:any
     this.http.get('/api/orders/all').subscribe(res => {
       if (res) {
        this.orders = res;
+       console.log("Inside API Call!!!!!");
+       console.log(this.orders);
       } else {
         console.log("OH NO, I couldn't find any users!!!");
       }
@@ -35,7 +37,7 @@ priceArray:any
     })
 // for(var i = 0; i < this.orders.length;i++){
 //   this.serviceArray=this.orders[i].service
-   console.log(this.orders)
+  // console.log(this.orders)
 
 // }
 // console.log(this.serviceArray)
