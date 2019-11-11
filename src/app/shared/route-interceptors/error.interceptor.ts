@@ -32,7 +32,8 @@ export class ErrorInterceptor implements HttpInterceptor {
       }
 
       if ([401].indexOf(err.status) !== -1) {
-        this.router.navigate(['/session/unauthorized']);
+        console.log("401 interceptor triggered");
+        //this.router.navigate(['/session/unauthorized']);
       }
 
       // else, catch the error and throw

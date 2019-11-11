@@ -214,7 +214,7 @@ app.get('/api/users/:id', function(req, res, next) {
 /*
 *  Get User by email
 *  Pass the password so we can hash it and check against password returned from the DB
-*/
+
 app.post('/api/users/login', function(req, res, next) {
   console.log(req.body.email);
   console.log(req.body.password);
@@ -255,8 +255,59 @@ app.post('/api/users/login', function(req, res, next) {
         time_stamp: new Date()
       });
     }
-    */
+
 })
+})
+*/
+
+/*
+*  Login v2
+*  Pass the password so we can hash it and check against password returned from the DB
+*/
+app.post('/api/users/login', function(req, res, next) {
+
+  User.findOne({'email': req.body.email}, function(err, foundUser) {
+    if(err) {
+      console.log(err);
+      return next(err);
+    }
+    else{
+      console.log(foundUser);
+
+      // If user is registered
+      if (foundUser) {
+        let passwordIsValid = bcrypt.compareSync(req.body.password, foundUser.password); //compare saved password against sign in password
+
+        // If valid password entered
+        if (passwordIsValid) {
+          res.status(200).send({
+            type: 'success',
+            email: foundUser.email,
+            auth: true,
+            time_stamp: new Date()
+          })
+          // If password is invalid
+        } else {
+          console.log(`The password for user: ${req.body.email} is invalid.`);
+          res.status(401).send({
+            type: 'error',
+            text: `Invalid email and/or password`,
+            auth: false,
+            date_time: new Date()
+          })
+        }
+      } else {
+        // Invalid email
+        console.log(`Email: ${req.body.email} has not been registered with our system.`);
+        res.status(401).send({
+          type: 'error',
+          text: `Invalid email and/or password`,
+          auth: false,
+          time_stamp: new Date()
+        })
+      }
+    }
+  })
 })
 
 /**
