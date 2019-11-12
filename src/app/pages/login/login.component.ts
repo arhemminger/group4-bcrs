@@ -22,18 +22,18 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
 loginForm:FormGroup;
-userEmail:FormControl;
-userPassword:FormControl;
+email:FormControl;
+password:FormControl;
 
   constructor(private http:HttpClient,private router:Router,private cookieService:CookieService) {
   }
 
   ngOnInit() {
-    this.userEmail= new FormControl('',Validators.required)
-    this.userPassword = new FormControl('',Validators.required)
+    this.email= new FormControl('',Validators.required)
+    this.password = new FormControl('',Validators.required)
     this.loginForm = new FormGroup({
-    email:this.userEmail,
-    password:this.userPassword
+    email:this.email,
+    password:this.password
     });
   }
 
@@ -47,12 +47,16 @@ userPassword:FormControl;
 
     }).subscribe(
       res =>{
+        this.cookieService.set('userId', res['_id'], 1);
         this.cookieService.set('isAuthenticated', 'true', 1);
+        this.cookieService.set('email', res['email'], 1);
         this.router.navigate(['my-profile']);
+        console.log('RES is bellow!!!!!')
         console.log(res);
       },
       err => {
         console.log("POST login failed see error: ", err);
+        this.router.navigate(['/']);
       },
       () => {
         console.log("The POST login works, You are now logged in.");

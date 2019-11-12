@@ -11,8 +11,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MatDialog, throwMatDialogContentAlreadyAttachedError} from '@angular/material';
+import { MatDialog } from '@angular/material';
 import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
 
 @Component({
@@ -27,25 +26,7 @@ export class SecurityQuestionsComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'Question', 'Actions'];
   dataSource : any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private fb: FormBuilder,public dialog: MatDialog) {
-   this.http.get('/api/questions/all').subscribe(res => {
-    if (res){
-      console.log(res);
-      this.dataSource=res;
-    } else {
-      console.log("Error: Could not find Questions");
-    }
-    })
-  }
-
-  ngOnInit() {
-    this.form = this.fb.group({
-      text: [null, Validators.compose([Validators.required])]
-    })
-  }
-
-  getTableData(){
-
+  constructor(private http: HttpClient, private fb: FormBuilder,public dialog: MatDialog) {
     this.http.get('/api/questions/all').subscribe(res => {
       if (res){
         console.log(res);
@@ -53,12 +34,33 @@ export class SecurityQuestionsComponent implements OnInit {
       } else {
         console.log("Error: Could not find Questions");
       }
-      });
+    }), err => {
+      console.log(err);
+    }
+  }
 
+  ngOnInit() {
+    this.form = this.fb.group({
+      text: [null, Validators.compose([Validators.required])]
+    });
+  }
+
+  // Function to return all security questions to load the table.
+  getTableData(){
+    this.http.get('/api/questions/all').subscribe(res => {
+      if (res){
+        console.log(res);
+        this.dataSource=res;
+      } else {
+        console.log("Error: Could not find Questions");
+      }
+    }), err => {
+      console.log(err);
+    }
   }
 
   // Function to edit question record in table
-  editTable(typeEdit,obj){
+  editTable(typeEdit, obj){
     console.log(typeEdit);
     obj.action = typeEdit;
     const dialogRef= this.dialog.open(EditDialogComponent,{
@@ -68,58 +70,53 @@ export class SecurityQuestionsComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result=>{
       console.log('dialog is closed');
       console.log(result.event);
-          if(result.event === 'Update'){
+          if (result.event === 'Update'){
             this.updateData(result.data)
-          }else if(result.event === 'Delete'){
+          } else if(result.event === 'Delete'){
             this.deleteData(result.data)
-          }else if(result.event === 'Cancel'){
+          } else if(result.event === 'Cancel'){
             console.log(result.event);
-            //Do something
-            this.getTableData();
-
+            this.getTableData(); //Do something
           }
-    });
-    }
-
-
-    // Function to add new question record to db
-    create() {
-    this.http.post('/api/questions', {
-      questionText: this.form.controls['text'].value,
-    }).subscribe(res => {
-      //this will pull all questions from database and reload the table.
-      this.getTableData();
-
-      console.log("New security question added to DB: " + this.question);
-    }), err => {
-      console.log("Error adding question record: " + this.form.controls['text'].value);
-    }
-  }
-
-    // Function to update an existing question record in table
-    updateData(question_obj){
-    this.http.put('/api/questions/update/'+ question_obj._id,{
-      questionText:question_obj.questionText
-    }).subscribe(res=>{
-
-      this.getTableData();
-      console.log(res);
-
-    }), err => {
-      console.log("Error updating question record: " + question_obj._id);
-    }
-    }
-
-    // Function to remove an existing question record in db
-    deleteData(question_obj){
-      this.http.delete('/api/questions/delete/' + question_obj._id).subscribe(res=>{
-
-        this.getTableData();
-        console.log(res);
-
       }), err => {
-        console.log("Error deleting question record: " + question_obj._id);
+        console.log(err);
       }
     }
 
+  // Function to add new question record to db
+  create() {
+    this.http.post('/api/questions', {
+      questionText: this.form.controls['text'].value,
+    }).subscribe(res => {
+      this.getTableData(); //this will get all records from the database and reload the table.
+      console.log("New security question added to DB: " + res);
+    }), err => {
+      console.log("Error adding question record: " + this.form.controls['text'].value);
+      console.log(err);
+    }
+  }
+
+  // Function to update an existing question record in table
+  updateData(question_obj){
+    this.http.put('/api/questions/update/'+ question_obj._id,{
+      questionText:question_obj.questionText
+    }).subscribe(res=>{
+      this.getTableData();
+      console.log(res);
+    }), err => {
+      console.log("Error updating question record: " + question_obj._id);
+      console.log(err);
+    }
+  }
+
+  // Function to remove an existing question record in db
+  deleteData(question_obj){
+    this.http.delete('/api/questions/delete/' + question_obj._id).subscribe(res=>{
+      this.getTableData();
+      console.log(res);
+    }), err => {
+      console.log("Error deleting question record: " + question_obj._id);
+      console.log(err);
+    }
+  }
 }

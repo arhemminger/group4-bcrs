@@ -16,9 +16,9 @@ import { Component, OnInit } from '@angular/core';
   <div class="home">
     <div fxLayout="column">
       <mat-card fx-Flex style="margin-top: 15%; width: 50%; margin-left: 25%;" class="mat-elevation-z8">
-        <mat-card-title style="text-align: center; font-size: 48px" class="mat-headline">401 - Unauthorized</mat-card-title>
-        <mat-divider style="margin-top: 3%;" [inset]="true"></mat-divider>
-          <p style="text-align: center;">You are not authorized to access this page.</p>
+        <mat-card-title fxLayoutAlign="center">401 - Unauthorized</mat-card-title>
+        <mat-card-subtitle fxLayoutAlign="center">You are not authorized to access this page</mat-card-subtitle>
+        <mat-divider [inset]="true"></mat-divider>
           <p style="text-align: center;">Please login, return to the home page or contact the administrator for further assistance.</p>
         <mat-card-actions>
           <button fxFlex mat-raised-button color="primary" [routerLink]="['/']">Return to Homepage</button>

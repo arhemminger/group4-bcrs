@@ -1,8 +1,8 @@
 <!--Toolbar html-->
-<mat-toolbar class="menu" role="header" color="primary">
+<mat-toolbar class="menu navBorder" role="header" color="primary">
   <mat-toolbar-row>
     <button routerLink="/" mat-button class="toolbar__icon-button mat-button">
-      <span style="margin-left:5px !important">Bobs Repair Shop</span>
+      <span style="margin-left:5px !important">Bob's Repair Shop</span>
     </button>
     <button mat-button class="mat-button" [routerLink]="['/about-us']">About</button>
     <button mat-button class="mat-button" [routerLink]="['/contact-us']">Contact Us</button>
@@ -24,6 +24,7 @@
       </button>
         <mat-menu #admin="matMenu">
           <button routerLink="/admin/users" mat-menu-item>User Management</button>
+          <button routerLink="/admin/role-management" mat-menu-item>Role Management</button>
           <button routerLink="/admin/security-questions" mat-menu-item>Security Questions</button>
           <button routerLink="/admin/sales-chart" mat-menu-item>Sales Chart</button>
         </mat-menu>

@@ -62,7 +62,7 @@ export class UsersComponent implements OnInit {
 
     const dialogRef = this.dialog.open(UserDeleteConfirmationDialogComponent,{
       disableClose: true,
-      width:'250px',
+      width:'500px',
       data:obj
     });
 
@@ -140,7 +140,8 @@ export class UsersComponent implements OnInit {
         firstName: data.firstName,
         lastName: data.lastName,
         phone: data.phone,
-        address: data.address
+        address: data.address,
+        role: data.role
 
     }).subscribe(res=>{
       console.log(res)

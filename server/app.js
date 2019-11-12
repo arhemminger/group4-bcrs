@@ -18,6 +18,8 @@ const bcrypt = require('bcryptjs');
 
 const User = require('./db-models/users');
 const SecurityQuestion = require('./db-models/securityQuestions');
+const Roles = require('./db-models/roles');
+const Orders = require('./db-models/orders');
 
 let app = express();
 
@@ -99,6 +101,7 @@ app.post('/api/users/register', function(req, res, next){
                 email: req.body.email,
                 phone: req.body.phone,
                 address: req.body.address,
+                role: req.body.role,
                 dateCreated: new Date(),
                 dateModified: new Date(),
                 selectedSecurityQuestions: req.body.questions
@@ -156,6 +159,7 @@ app.put('/api/users/update/:id', function(req, res, next){
          lastName: req.body.lastName,
          phone: req.body.phone,
          address: req.body.address,
+         role: req.body.role,
          dateModified: new Date()
        })
 
@@ -191,6 +195,22 @@ app.get('/api/users/all', function(req, res, next) {
   })
 });
 
+/**
+ *  Get user by Id
+ */
+
+app.get('/api/users/:id', function(req, res, next) {
+  User.findOne({'_id': req.params.id}, function(err, user) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(user);
+      res.json(user);
+    }
+  })
+});
+
 /*
 *  Get User by email
 *  Pass the password so we can hash it and check against password returned from the DB
@@ -198,13 +218,54 @@ app.get('/api/users/all', function(req, res, next) {
 app.post('/api/users/login', function(req, res, next) {
   console.log(req.body.email);
   console.log(req.body.password);
-  //takes password and hashes it
-  const password = hashPassword(req.body.password);
-  console.log(password);
 
   User.findOne({'email': req.body.email}, function(err, foundUser) {
-    console.log("Password found: " + foundUser.password);
-    if( bcrypt.compare(req.body.password, foundUser.password)) { //checks hashed password in DB to the hashed password variable that we just hashed
+    console.log("inside findOne!!!!!")
+    //console.log("Password found: " + foundUser.password);
+
+
+    if (err) {
+      console.log("inside findOne error if statement!!!")
+          res.status(500).send({
+            text: "Couldn't find user with that email!",
+            time_stamp: new Date()
+          });
+    }
+    else {
+
+
+      bcrypt.compare(req.body.password, foundUser.password, (err, valid) => {
+        //if error than throw error
+        if (err){
+          console.log("inside compare error if statement!!!")
+          res.status(500).send({
+            text: 'You have entered an incorrect password. Please try again!',
+            time_stamp: new Date()
+          });
+        }
+        //if both match than you can do anything
+        if (valid) {
+          console.log("Inside if found User!!!!!!!!")
+          console.log("RES:  " + foundUser);
+          res.json(foundUser);
+        } else {
+          console.log("Password didn't match!");
+          res.status(500).send({
+            text: 'You have entered an incorrect password. Please try again!',
+            time_stamp: new Date()
+          });
+        }
+
+      })
+
+    }
+
+
+
+
+
+    /*
+    if( bcrypt.compare(req.body.password, foundUser.password)) {
       console.log(foundUser);
       res.json(foundUser);
     }
@@ -215,6 +276,7 @@ app.post('/api/users/login', function(req, res, next) {
         time_stamp: new Date()
       });
     }
+    */
 })
 })
 
@@ -231,6 +293,21 @@ app.delete('/api/users/delete/:id', function(req, res, next){
     else{
       console.log(deletedUser);
       res.json(deletedUser);
+    }
+  })
+});
+
+/***************************ROLEGUARD API*******************/
+
+// get user role by _Id
+app.get('/api/user/role/:id', function(req, res, next) {
+  User.findOne({'_id': req.params.id},function(err, user) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(user.role);
+      res.json(user.role);
     }
   })
 });
@@ -410,6 +487,162 @@ app.post('/api/users/reset-password/:email', function(req, res, next) {
   })
 });
 
+/***************************ROLE MANAGEMENT APIs*******************/
+//Create Role
+app.post('/api/create/role', function(req, res, next) {
+  const addedRole = {
+    role: req.body.role,
+    isAdmin: req.body.isAdmin
+  };
+  Roles.create(addedRole, function(err, newRole) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(newRole);
+      res.json(newRole);
+    }
+  });
+});
+
+//Get all Roles
+app.get('/api/roles/all', function(req, res, next) {
+  Roles.find(function(err, roles) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(roles);
+      res.json(roles);
+    }
+  })
+});
+
+//Delete Role by _id
+app.delete('/api/delete/role/:id', function(req, res, next){
+  Roles.findByIdAndDelete({'_id': req.params.id}, function(err, role){
+    if(err){
+      console.log(err);
+      return next(err);
+    }
+    else{
+      console.log(role + ' deleted');
+      res.json(role);
+    }
+  })
+});
+
+//Update Role by _id
+app.put('/api/update/role/:id', function(req, res, next){
+
+  Roles.findOne({'_id': req.params.id}, function(err, role){
+    console.log(role);
+    if(err){
+      console.log("ERROR inside the role update by _id");
+      console.log(err);
+      return next(err);
+    }
+    else{
+      role.set({
+        role: req.body.role,
+        isAdmin: req.body.isAdmin
+      })
+
+      role.save(function(err, savedRole){
+        if(err){
+         console.log("ERROR inside the Role.save of the update Role API");
+         console.log(err);
+         return next(err);
+        }
+        else{
+          console.log("Role was updated");
+          console.log(savedRole);
+          res.json(savedRole);
+        }
+      })
+    }
+  })
+});
+
+
+
+
+/************************* ORDERS API ROUTES *************************************/
+
+//CREATE ORDER
+app.post('/api/orders', function(req, res, next) {
+  const addedOrder = {
+    userId: req.body.userId,
+    total: req.body.total,
+    parts: req.body.parts,
+  labor: req.body.labor,
+    productsOrdered: req.body.lineItem
+
+    /*
+      * the req.body.productsOrdered is an array sent from the Angular UI
+      * the userId needs to be the _id that mongoDB generates
+      * the bellow example needs to be done on client
+      * Example:
+      * let products = [
+      * {productName: 'Keyboard', productRepairTime: 3, quantity: 3, productPrice: '1234'},
+      * {productName: 'Mouse', productRepairTime: 3, quantity: 3, productPrice: '1234'},
+      * {productName: 'Repair', productRepairTime: 3, quantity: 3, productPrice: '1234'}
+       * ]
+    */
+  };
+  Orders.create(addedOrder, function(err, newOrder) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    } else {
+      console.log(newOrder);
+      res.json(newOrder);
+    }
+  });
+});
+
+
+//GET ALL ORDERS
+app.get('/api/orders/all', function(req, res, next) {
+Orders.aggregate([
+ {     "$unwind": '$productsOrdered' },
+ {     "$group":{
+   "_id":{
+        "service":"$productsOrdered.name",
+        "price":"$productsOrdered.cost"
+       },
+       "count":{"$sum":1},
+  } },
+  {"$sort":{"_id.service":1}}
+
+  ],
+
+  function(err,results){
+    if(results){
+      console.log(results)
+      res.json(results);
+    }else{
+      console.log(err)
+    }
+  })
+
+});
+
+
+//GET ORDER BY ID
+app.get('/api/orders/:id', function(req, res, next) {
+  Quiz.findOne({'_id': req.params.id}, function(err, order) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }  else {
+      console.log(order);
+      res.json(order);
+    }
+  })
+});
+
+/***************************SERVER*******************/
 /**
  * Creates an express server and listens on port 3000
  */

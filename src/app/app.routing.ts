@@ -8,14 +8,13 @@
   ; Description: app.routing.ts
 ======================================
 */
-
-import {Routes} from '@angular/router';
-import {BaseLayoutComponent, SessionLayoutComponent} from './shared';
-import {LoginComponent} from './pages/login/login.component';
-import {HomeComponent} from './pages/home/home.component';
-import {NotFoundComponent} from './pages/not-found/not-found.component';
+import { Routes } from '@angular/router';
+import { BaseLayoutComponent, SessionLayoutComponent } from './shared';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
-import {UsersComponent} from './pages/users/users.component';
+import { UsersComponent } from './pages/users/users.component';
 import { UserEditComponent } from './shared/user-edit/user-edit.component';
 import { Status500Component } from './pages/status500/status500.component';
 import { AuthGuard } from './shared/guard/authGuard';
@@ -29,6 +28,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { VerifySecurityQuestionsComponent } from './pages/verify-security-questions/verify-security-questions.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { RoleManagementComponent } from './pages/role-management/role-management.component';
+import { RoleGuard } from './shared/guard/role.guard';
 
 export const AppRoutes: Routes = [
   {
@@ -38,27 +39,31 @@ export const AppRoutes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        //canActivate: [AuthGuard]
       },
       {
         path: 'admin/user-edit',
-        component: UserEditComponent
-        //canActivate: [AuthGuard]
+        component: UserEditComponent,
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'admin/security-questions',
-        component: SecurityQuestionsComponent
-        //canActivate: [AuthGuard]
+        component: SecurityQuestionsComponent,
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'admin/sales-chart',
-        component: GraphComponent
-        //canActivate: [AuthGuard]
+        component: GraphComponent,
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'admin/users',
-        component: UsersComponent
-        //canActivate: [AuthGuard]
+        component: UsersComponent,
+        canActivate: [AuthGuard, RoleGuard]
+      },
+      {
+        path: 'admin/role-management',
+        component: RoleManagementComponent,
+        canActivate: [AuthGuard, RoleGuard]
       },
       {
         path: 'my-profile',
@@ -67,18 +72,16 @@ export const AppRoutes: Routes = [
       },
       {
         path: 'shop',
-        component: ShopComponent
-        //canActivate: [AuthGuard]
+        component: ShopComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'contact-us',
         component: ContactComponent
-        //canActivate: [AuthGuard]
       },
       {
         path: 'about-us',
         component: AboutComponent
-        //canActivate: [AuthGuard]
       }
     ]
   },

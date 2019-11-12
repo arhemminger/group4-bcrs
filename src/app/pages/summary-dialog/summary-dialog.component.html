@@ -1,0 +1,18 @@
+<h1>Hello {{data.userName}}!</h1>
+
+<h2>Here is your order Summary</h2>
+<p>Submited on: {{data.dateOrdered}}</p>
+<hr>
+<p>You selected the following</p>
+<div *ngFor="let service of services">
+  <p>{{service.name}} ({{service.cost | currency}})</p>
+</div>
+<hr>
+<p>Parts: {{data.parts | currency}}</p>
+<p>Labor: {{data.labor | currency}}</p>
+
+
+<p>Your total is {{data.total}}</p>
+<p>If this correct please click the Sumbit</p>
+<button mat-raised-button type="reset" (click)="closeDialog('cancel')">Cancel</button> &nbsp;&nbsp;
+<button mat-raised-button color="primary" (click)="closeDialog('submit')">Submit</button>
