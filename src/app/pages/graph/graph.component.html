@@ -1,11 +1,13 @@
-<!--
-<div class="flex-container" fxLayout="row"  fxLayoutAlign="none" style="height: 100vh;">
+
+<div class="flex-container" fxLayout="row"  fxLayoutAlign="center center" style="height: 100vh;">
   <div fxFlex="80%">
-  <p-chart type="bar" [data]="graphData"></p-chart>
+    <div style="margin: 0 auto;">
+        <h1 fxLayoutAlign="center center">PrimeNG graph</h1>
+        <p-chart type='pie' [data]='data'></p-chart>
+    </div>
   </div>
 </div>
--->
 
-<h1>PrimeNG graph</h1>
-<p-chart type='pie' [data]='data'></p-chart>
+
+
 

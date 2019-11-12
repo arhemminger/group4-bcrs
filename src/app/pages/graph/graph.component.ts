@@ -80,10 +80,3 @@ export class GraphComponent implements OnInit {
   }
 }
 
-
-// for(var i = 0; i < this.orders.length;i++){
-//   this.serviceArray=this.orders[i].service
-  // console.log(this.orders)
-
-// }
-// console.log(this.serviceArray)
