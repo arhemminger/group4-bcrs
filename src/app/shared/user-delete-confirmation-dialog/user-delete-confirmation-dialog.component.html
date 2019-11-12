@@ -1,6 +1,9 @@
 <h1 mat-dialog-title>{{delete.action}}</h1>
-<div mat-dialog-actions>
-  <p>Are you sure you wish to Delete the user associated with {{delete.email}}</p>
-  <button mat-button (click)="deleteUser(delete._id)">{{delete.action}}</button>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+  <p>Are you sure you wish to delete the user associated with: <strong>{{delete.email}}</strong></p>
+</div>
+<div mat-dialog-actions fxLayoutAlign="end">
   <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button (click)="deleteUser(delete._id)">{{delete.action}}</button>
 </div>
