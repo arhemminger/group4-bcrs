@@ -56,6 +56,7 @@ password:FormControl;
       },
       err => {
         console.log("POST login failed see error: ", err);
+        this.router.navigate(['/']);
       },
       () => {
         console.log("The POST login works, You are now logged in.");

@@ -221,27 +221,47 @@ app.post('/api/users/login', function(req, res, next) {
 
   User.findOne({'email': req.body.email}, function(err, foundUser) {
     console.log("inside findOne!!!!!")
-    console.log("Password found: " + foundUser.password);
+    //console.log("Password found: " + foundUser.password);
 
 
-    bcrypt.compare(req.body.password, foundUser.password, (err, valid) => {
-      //if error than throw error
-      if (err) throw err
+    if (err) {
+      console.log("inside findOne error if statement!!!")
+          res.status(500).send({
+            text: "Couldn't find user with that email!",
+            time_stamp: new Date()
+          });
+    }
+    else {
 
-      //if both match than you can do anything
-      if (valid) {
-        console.log("Inside if found User!!!!!!!!")
-        console.log("RES:  " + foundUser);
-        res.json(foundUser);
-      } else {
-        console.log("Password didn't match!");
-        res.status(500).send({
-          text: 'You have entered an incorrect password. Please try again!',
-          time_stamp: new Date()
-        });
-      }
 
-  })
+      bcrypt.compare(req.body.password, foundUser.password, (err, valid) => {
+        //if error than throw error
+        if (err){
+          console.log("inside compare error if statement!!!")
+          res.status(500).send({
+            text: 'You have entered an incorrect password. Please try again!',
+            time_stamp: new Date()
+          });
+        }
+        //if both match than you can do anything
+        if (valid) {
+          console.log("Inside if found User!!!!!!!!")
+          console.log("RES:  " + foundUser);
+          res.json(foundUser);
+        } else {
+          console.log("Password didn't match!");
+          res.status(500).send({
+            text: 'You have entered an incorrect password. Please try again!',
+            time_stamp: new Date()
+          });
+        }
+
+      })
+
+    }
+
+
+
 
 
     /*
