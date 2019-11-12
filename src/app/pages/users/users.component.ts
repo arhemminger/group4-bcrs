@@ -62,7 +62,7 @@ export class UsersComponent implements OnInit {
 
     const dialogRef = this.dialog.open(UserDeleteConfirmationDialogComponent,{
       disableClose: true,
-      width:'250px',
+      width:'500px',
       data:obj
     });
 
