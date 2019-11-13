@@ -1,11 +1,11 @@
 <div class="flex-container" fxLayout="row"  fxLayoutAlign="none" style="height: 100vh;">
-  <div fxFlex="50%">
-    <div class="loginContainer" layout-align="center center">
-          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(); ">
-
-                <h1>User Information</h1>
+  <div fxFlex="50%" >
+    <div class="loginContainer" fxLayoutAlign="center center">
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit();">
+            <h1 style="margin: 0 auto;">Register Here</h1>
+                <h2>User Information</h2>
                 <div class="form-group">
-                    <mat-form-field appearance="fill" style="width:50%">
+                    <mat-form-field appearance="fill" style="width:75%">
                         <mat-label>First Name</mat-label>
                         <input type="text" [formControl]="registrationForm.controls['firstName']" required matInput placeholder="First Name">
                       </mat-form-field>
@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="form-group">
-                    <mat-form-field appearance="fill" style="width:50%">
+                    <mat-form-field appearance="fill" style="width:75%">
                         <mat-label>Last Name</mat-label>
                         <input type="text"  [formControl]="registrationForm.controls['lastName']" required matInput placeholder="Last Name">
                       </mat-form-field>
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group">
-                    <mat-form-field appearance="fill" style="width:50%">
+                    <mat-form-field appearance="fill" style="width:75%">
                         <mat-label>Phone Number</mat-label>
                         <input type="text"  [formControl]="registrationForm.controls['phone']" required matInput placeholder="Phone Number">
                       </mat-form-field>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    <mat-form-field appearance="fill" style="width:50%">
+                    <mat-form-field appearance="fill" style="width:75%">
                         <mat-label>Address</mat-label>
                         <input type="text" [formControl]="registrationForm.controls['address']" required matInput placeholder="Address">
                       </mat-form-field>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="form-group">
-                    <mat-form-field appearance="fill" style="width:50%">
+                    <mat-form-field appearance="fill" style="width:75%">
                         <mat-label>Email</mat-label>
                         <input type="email" [formControl]="registrationForm.controls['email']" (keyup)="checkEmail($event)" (blur)="checkEmail($event)" email required matInput placeholder="Email">
                       </mat-form-field>
@@ -56,11 +56,11 @@
                       </div>
                 </div>
 
-                <h1>Choose Username and Create Password</h1>
+                <h2>Choose Username and Create Password</h2>
                 <div class="form-group">
-                    <mat-form-field appearance="fill" style="width:50%">
+                    <mat-form-field appearance="fill" style="width:75%">
                         <mat-label>User Name</mat-label>
-                        <input type="text" [formControl]="registrationForm.controls['userName']" (keyup)="checkUserName($event)" (blur)="checkUserName($event)" required matInput placeholder="Groovy nickname">
+                        <input type="text" [formControl]="registrationForm.controls['userName']" (keyup)="checkUserName($event)" (blur)="checkUserName($event)" autocomplete="off" required matInput placeholder="Groovy nickname">
                       </mat-form-field>
                       <br>
                       <span *ngIf="userNameInUse" style="color:red;">{{userNameInUse}}</span>
@@ -73,7 +73,7 @@
                   <br/>
 
                   <div class="form-group">
-                    <mat-form-field appearance="fill" style="width:50%">
+                    <mat-form-field appearance="fill" style="width:75%">
                         <mat-label>Password</mat-label>
                         <input type="password" [formControl]="registrationForm.controls['password']"
                          minlength="8"
@@ -91,8 +91,8 @@
                   </div>
                   <br/>
 
-                <h1>Choose security questions and answers</h1>
-                <mat-form-field appearance="fill" style="width:50%">
+                <h2>Choose security questions and answers</h2>
+                <mat-form-field appearance="fill" style="width:75%">
                     <mat-label>Select your Security Questions</mat-label>
                     <mat-select  required [formControl]="registrationForm.controls['question1']" [(value)]="selectedValue1" name=question>
                       <mat-option [value]="option.questionText" *ngFor="let option of securityQuestions">
@@ -106,7 +106,7 @@
                   <br/>
 
                     <div class="form-group">
-                      <mat-form-field appearance="fill" style="width:50%">
+                      <mat-form-field appearance="fill" style="width:75%">
                           <mat-label>Answer</mat-label>
                           <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer1']" autocomplete="off"/>
                         </mat-form-field>
@@ -117,7 +117,7 @@
                     <br/>
                   <br/>
 
-                  <mat-form-field appearance="fill" style="width:50%">
+                  <mat-form-field appearance="fill" style="width:75%">
                     <mat-label>Select your Security Questions</mat-label>
                     <mat-select name=question  required [formControl]="registrationForm.controls['question2']" [(value)]="selectedValue2">
                       <mat-option [value]="option.questionText" *ngFor="let option of securityQuestions">
@@ -131,7 +131,7 @@
                   <br/>
 
                   <div class="form-group">
-                      <mat-form-field appearance="fill" style="width:50%">
+                      <mat-form-field appearance="fill" style="width:75%">
                           <mat-label>Answer</mat-label>
                           <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer2']" autocomplete="off"/>
                         </mat-form-field>
@@ -142,7 +142,7 @@
 
 
                   <br/>
-                  <mat-form-field appearance="fill" style="width:50%">
+                  <mat-form-field appearance="fill" style="width:75%">
                     <mat-label>Select your Security Questions</mat-label>
                     <mat-select name=question required [formControl]="registrationForm.controls['question3']" [(value)]="selectedValue3">
                       <mat-option [value]="option.questionText"  *ngFor="let option of securityQuestions">
@@ -156,7 +156,7 @@
                   <br/>
 
                   <div class="form-group">
-                      <mat-form-field appearance="fill" style="width:50%">
+                      <mat-form-field appearance="fill" style="width:75%">
                           <mat-label>Answer</mat-label>
                           <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer3']" autocomplete="off"/>
                         </mat-form-field>
