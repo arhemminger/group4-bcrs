@@ -10,7 +10,10 @@
                         <input type="text" [formControl]="registrationForm.controls['firstName']" required matInput placeholder="First Name">
                       </mat-form-field>
                       <div *ngIf="registrationForm.controls['firstName'].invalid && (registrationForm.controls['firstName'].dirty || registrationForm.controls['firstName'].touched)">
-                        <mat-error *ngIf="registrationForm.controls['firstName'].errors.required">First Name is required</mat-error>
+                        <mat-error *ngIf="registrationForm.controls['firstName'].errors.required">
+                            <p-message severity="error" text="First Name is required"></p-message> <!--First Name is required-->
+                        </mat-error>
+                        <br>
                       </div>
                 </div>
 
@@ -20,7 +23,10 @@
                         <input type="text"  [formControl]="registrationForm.controls['lastName']" required matInput placeholder="Last Name">
                       </mat-form-field>
                       <div *ngIf="registrationForm.controls['lastName'].invalid && (registrationForm.controls['lastName'].dirty || registrationForm.controls['lastName'].touched)">
-                        <mat-error *ngIf="registrationForm.controls['lastName'].errors.required">Last Name is required</mat-error>
+                        <mat-error *ngIf="registrationForm.controls['lastName'].errors.required">
+                          <p-message severity="error" text="Last Name is required"></p-message>
+                        </mat-error>
+                        <br>
                       </div>
                 </div>
 
@@ -30,7 +36,10 @@
                         <input type="text"  [formControl]="registrationForm.controls['phone']" required matInput placeholder="Phone Number">
                       </mat-form-field>
                       <div *ngIf="registrationForm.controls['phone'].invalid && (registrationForm.controls['phone'].dirty || registrationForm.controls['phone'].touched)">
-                        <mat-error *ngIf="registrationForm.controls['phone'].errors.required">Phone is required</mat-error>
+                        <mat-error *ngIf="registrationForm.controls['phone'].errors.required">
+                            <p-message severity="error" text="Phone is required"></p-message>
+                        </mat-error>
+                        <br>
                       </div>
                 </div>
 
@@ -40,7 +49,10 @@
                         <input type="text" [formControl]="registrationForm.controls['address']" required matInput placeholder="Address">
                       </mat-form-field>
                       <div *ngIf="registrationForm.controls['address'].invalid && (registrationForm.controls['address'].dirty || registrationForm.controls['address'].touched)">
-                        <mat-error *ngIf="registrationForm.controls['address'].errors.required">Address is required</mat-error>
+                        <mat-error *ngIf="registrationForm.controls['address'].errors.required">
+                          <p-message severity="error" text="Address is required"></p-message>
+                        </mat-error>
+                        <br>
                       </div>
                 </div>
 
@@ -50,9 +62,13 @@
                         <input type="email" [formControl]="registrationForm.controls['email']" (keyup)="checkEmail($event)" (blur)="checkEmail($event)" email required matInput placeholder="Email">
                       </mat-form-field>
                       <br>
-                      <span *ngIf="emailInUse" style="color:red;">{{emailInUse}}</span>
+                      <span *ngIf="emailInUse">
+                          <p-message severity="error" text="{{emailInUse}}"></p-message>
+                        </span>
                       <div *ngIf="registrationForm.controls['email'].invalid && (registrationForm.controls['email'].dirty || registrationForm.controls['email'].touched)">
-                        <mat-error *ngIf="registrationForm.controls['email'].errors.required">Email is required</mat-error>
+                        <mat-error *ngIf="registrationForm.controls['email'].errors.required">
+                          <p-message severity="error" text="Email is required"></p-message>
+                        </mat-error>
                       </div>
                 </div>
 
@@ -63,12 +79,18 @@
                         <input type="text" [formControl]="registrationForm.controls['userName']" (keyup)="checkUserName($event)" (blur)="checkUserName($event)" autocomplete="off" required matInput placeholder="Groovy nickname">
                       </mat-form-field>
                       <br>
-                      <span *ngIf="userNameInUse" style="color:red;">{{userNameInUse}}</span>
-                      <span *ngIf="userNameNotInUse" style="color:green;">{{userNameNotInUse}}</span>
+                      <span *ngIf="userNameInUse">
+                        <p-message severity="error" text="{{userNameInUse}}"></p-message>
+                      </span>
+                      <span *ngIf="userNameNotInUse">
+                          <p-message severity="success" text="{{userNameNotInUse}}"></p-message>
+                      </span>
                   </div>
 
                   <div *ngIf="registrationForm.controls['userName'].invalid && (registrationForm.controls['userName'].dirty || registrationForm.controls['userName'].touched)">
-                    <mat-error *ngIf="registrationForm.controls['userName'].errors.required">User Name is required</mat-error>
+                    <mat-error *ngIf="registrationForm.controls['userName'].errors.required">
+                        <p-message severity="error" text="User Name is required"></p-message>
+                      </mat-error>
                   </div>
                   <br/>
 
@@ -84,9 +106,16 @@
                       </mat-form-field>
 
                       <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)">
-                        <mat-error *ngIf="registrationForm.controls['password'].errors.required">Password is required</mat-error>
-                        <mat-error *ngIf="registrationForm.controls['password'].errors.minlength">Password must be at least 8 characters</mat-error>
-                        <mat-error *ngIf="registrationForm.controls['password'].errors.pattern">Password does not meet requirements</mat-error>
+                        <mat-error *ngIf="registrationForm.controls['password'].errors.required">
+                            <p-message severity="error" text="Password is required"></p-message> 
+                        </mat-error>
+                        <mat-error *ngIf="registrationForm.controls['password'].errors.minlength">
+                            <p-message severity="error" text="Password must be at least 8 characters"></p-message>
+                        </mat-error>
+                        <mat-error *ngIf="registrationForm.controls['password'].errors.pattern">
+                            <p-message severity="error" text="Password does not meet requirements"></p-message>
+                        </mat-error>
+                        <br>
                       </div>
                   </div>
                   <br/>
@@ -101,7 +130,10 @@
                     </mat-select>
                   </mat-form-field>
                   <div *ngIf="registrationForm.controls['question1'].invalid && (registrationForm.controls['question1'].dirty || registrationForm.controls['question1'].touched)">
-                    <mat-error *ngIf="registrationForm.controls['question1'].errors.required">Please Select a question!</mat-error>
+                    <mat-error *ngIf="registrationForm.controls['question1'].errors.required">
+                        <p-message severity="error" text="Please Select a question!"></p-message>
+                    </mat-error>
+                    <br>
                   </div>
                   <br/>
 
@@ -111,7 +143,10 @@
                           <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer1']" autocomplete="off"/>
                         </mat-form-field>
                         <div *ngIf="registrationForm.controls['securityAnswer1'].invalid && (registrationForm.controls['securityAnswer1'].dirty || registrationForm.controls['securityAnswer1'].touched)">
-                          <mat-error *ngIf="registrationForm.controls['securityAnswer1'].errors.required">Answer is required</mat-error>
+                          <mat-error *ngIf="registrationForm.controls['securityAnswer1'].errors.required">
+                              <p-message severity="error" text="Answer is required"></p-message>
+                          </mat-error>
+                          <br>
                         </div>
                     </div>
                     <br/>
@@ -126,7 +161,9 @@
                     </mat-select>
                   </mat-form-field>
                   <div *ngIf="registrationForm.controls['question2'].invalid && (registrationForm.controls['question2'].dirty || registrationForm.controls['question2'].touched)">
-                    <mat-error *ngIf="registrationForm.controls['question2'].errors.required">Please Select a question!</mat-error>
+                    <mat-error *ngIf="registrationForm.controls['question2'].errors.required">
+                        <p-message severity="error" text="Please Select a question!"></p-message>
+                    </mat-error>
                   </div>
                   <br/>
 
@@ -136,7 +173,10 @@
                           <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer2']" autocomplete="off"/>
                         </mat-form-field>
                         <div *ngIf="registrationForm.controls['securityAnswer2'].invalid && (registrationForm.controls['securityAnswer2'].dirty || registrationForm.controls['securityAnswer2'].touched)">
-                          <mat-error *ngIf="registrationForm.controls['securityAnswer2'].errors.required">Answer is required</mat-error>
+                          <mat-error *ngIf="registrationForm.controls['securityAnswer2'].errors.required">
+                              <p-message severity="error" text="Answer is required"></p-message>
+                            </mat-error>
+                            <br>
                         </div>
                     </div>
 
@@ -151,7 +191,9 @@
                     </mat-select>
                   </mat-form-field>
                   <div *ngIf="registrationForm.controls['question3'].invalid && (registrationForm.controls['question3'].dirty || registrationForm.controls['question3'].touched)">
-                    <mat-error *ngIf="registrationForm.controls['question3'].errors.required">Please Select a question!</mat-error>
+                    <mat-error *ngIf="registrationForm.controls['question3'].errors.required">
+                      <p-message severity="error" text="Please Select a question!"></p-message>
+                    </mat-error>
                   </div>
                   <br/>
 
@@ -161,7 +203,10 @@
                           <input type="text" matInput required [formControl]="registrationForm.controls['securityAnswer3']" autocomplete="off"/>
                         </mat-form-field>
                         <div *ngIf="registrationForm.controls['securityAnswer3'].invalid && (registrationForm.controls['securityAnswer3'].dirty || registrationForm.controls['securityAnswer3'].touched)">
-                          <mat-error *ngIf="registrationForm.controls['securityAnswer3'].errors.required">Answer is required</mat-error>
+                          <mat-error *ngIf="registrationForm.controls['securityAnswer3'].errors.required">
+                            <p-message severity="error" text="Answer is required"></p-message>
+                          </mat-error>
+                          <br>
                         </div>
                     </div>
 

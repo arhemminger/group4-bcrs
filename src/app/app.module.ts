@@ -70,6 +70,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 
@@ -135,7 +137,9 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     RouterModule.forRoot(AppRoutes, {useHash: true, enableTracing: false}),
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [
     CookieService,
