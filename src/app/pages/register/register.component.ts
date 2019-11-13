@@ -192,7 +192,7 @@ export class RegisterComponent implements OnInit {
       }).subscribe(
         res =>{
           this.cookieService.set('isAuthenticated','true',1);
-          this.router.navigate(['my-profile']);
+          this.router.navigate(['/my-profile']);
           console.log(res);
         },
         err => {
