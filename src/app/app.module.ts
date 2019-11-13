@@ -27,6 +27,7 @@ import { Status500Component } from './pages/status500/status500.component';
 import { GraphComponent } from './pages/graph/graph.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SecurityQuestionsComponent } from './pages/security-questions/security-questions.component';
+import { ForgotPasswordComponent } from './shared/forgot-password/forgot-password.component';
 import { CookieService } from 'ngx-cookie-service';
 import { UserDeleteConfirmationDialogComponent } from './shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component';
 import { EditDialogComponent } from './pages/edit-dialog/edit-dialog.component';
@@ -100,7 +101,8 @@ import { MatTableModule } from '@angular/material/table';
     ResetPasswordComponent,
     SummaryDialogComponent,
     RoleManagementComponent,
-    RoleEditDialogComponent
+    RoleEditDialogComponent,
+    ForgotPasswordComponent
   ],
   exports:[
     ReactiveFormsModule,
