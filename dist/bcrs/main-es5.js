@@ -437,7 +437,7 @@ module.exports = "<!-- Security questions management card -->\r\n<div fxLayout=\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Service Form</h1>\r\n<div mat-dialog-content>\r\n    <form #f=\"ngForm\" (ngSubmit)=\"onSubmit(f.value); f.reset();\">\r\n        <div ngModelGroup=\"checkGroup\">\r\n            <h2>Services</h2>\r\n            <div *ngIf=\"services\">\r\n              <div *ngIf=\"errorMessage\">\r\n                {{errorMessage}}\r\n              </div>\r\n              <div *ngFor=\"let service of services; index as i;\">\r\n                <mat-checkbox name=\"{{service.name}}\" ngModel >{{service.name}} ({{service.cost | currency}})</mat-checkbox>\r\n                <br />\r\n              </div>\r\n            </div>\r\n        </div>\r\n            <h2>Standard Fees</h2>\r\n\r\n                <input matInput type=\"text\" ngModel  name=\"parts\" required pattern=\"^[0-9]*$\" placeholder=\"Cost of Parts\" #parts=\"ngModel\" [class.hasError]=\"parts.invalid && parts.touched || parts.dirty\">\r\n                <div *ngIf=\"parts.invalid && (parts.dirty || parts.touched)\">\r\n                    <div class=\"error\" [hidden]=\"!parts.hasError('required')\">Cost of Parts required</div>\r\n                    <div class=\"error\" [hidden]=\"!parts.hasError('pattern')\">Only digits are allowed</div>\r\n                  </div>\r\n                  <br><br>\r\n                  <input matInput type=\"text\" ngModel  name=\"labor\" required pattern=\"^[0-9]*$\" placeholder=\"Labor Cost $50 hourly\" #labor=\"ngModel\" [class.hasError]=\"labor.invalid && labor.touched || labor.dirty\">\r\n                  <div *ngIf=\"labor.invalid && (labor.dirty || labor.touched)\">\r\n                      <div class=\"error\" [hidden]=\"!labor.hasError('required')\">Must enter the amount of hours </div>\r\n                      <div class=\"error\" [hidden]=\"!labor.hasError('pattern')\">Only digits are allowed</div>\r\n                    </div>\r\n                    <br><br>\r\n          <button mat-raised-button type=\"reset\" (click)=\"cancelForm()\">Cancel</button> &nbsp;&nbsp;\r\n          <button mat-raised-button color=\"primary\" [disabled]=\"!f.valid\" type=\"submit\">Submit</button>\r\n      </form>\r\n\r\n</div>\r\n"
+module.exports = "<h1>Service Form</h1>\r\n<div mat-dialog-content>\r\n    <form #f=\"ngForm\" (ngSubmit)=\"onSubmit(f.value); f.reset();\">\r\n        <div ngModelGroup=\"checkGroup\">\r\n            <h2>Services</h2>\r\n            <div *ngIf=\"services\">\r\n              <div *ngIf=\"errorMessage\">\r\n                {{errorMessage}}\r\n              </div>\r\n              <div *ngFor=\"let service of services; index as i;\">\r\n                <mat-checkbox name=\"{{service.name}}\" ngModel >{{service.name}} ({{service.cost | currency}})</mat-checkbox>\r\n                <br />\r\n              </div>\r\n            </div>\r\n        </div>\r\n            <h2>Standard Fees</h2>\r\n\r\n                <input matInput type=\"text\" ngModel  name=\"parts\" required pattern=\"^[0-9]*$\" placeholder=\"Cost of Parts\" #parts=\"ngModel\" [class.hasError]=\"parts.invalid && parts.touched || parts.dirty\">\r\n                <div *ngIf=\"parts.invalid && (parts.dirty || parts.touched)\">\r\n                    <div class=\"error\" [hidden]=\"!parts.hasError('required')\">Cost of Parts required</div>\r\n                    <div class=\"error\" [hidden]=\"!parts.hasError('pattern')\">Only digits are allowed</div>\r\n                  </div>\r\n                  <br><br>\r\n                  <input matInput type=\"text\" ngModel  name=\"labor\" required pattern=\"^[0-9]*$\" placeholder=\"Labor Cost $50 hourly\" #labor=\"ngModel\" [class.hasError]=\"labor.invalid && labor.touched || labor.dirty\">\r\n                  <div *ngIf=\"labor.invalid && (labor.dirty || labor.touched)\">\r\n                      <div class=\"error\" [hidden]=\"!labor.hasError('required')\">Must enter the amount of hours </div>\r\n                      <div class=\"error\" [hidden]=\"!labor.hasError('pattern')\">Only digits are allowed</div>\r\n                    </div>\r\n                    <br><br>\r\n          <button mat-raised-button type=\"reset\">Cancel</button> &nbsp;&nbsp;\r\n          <button mat-raised-button color=\"primary\" [disabled]=\"!f.valid\" type=\"submit\">Submit</button>\r\n      </form>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -496,6 +496,17 @@ module.exports = "<div>\r\n  <!-- Page header -->\r\n  <header><app-navigation><
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/shared/forgot-password/forgot-password.component.html":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/shared/forgot-password/forgot-password.component.html ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>forgot-password works!</p>\r\n"
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/index.js!./src/app/shared/invoice-summary/invoice-summary.component.html":
 /*!*************************************************************************************************!*\
   !*** ./node_modules/raw-loader!./src/app/shared/invoice-summary/invoice-summary.component.html ***!
@@ -536,7 +547,7 @@ module.exports = "<div>\r\n\r\n  <!-- Main page content -->\r\n  <main>\r\n    <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>{{delete.action}}</h1>\r\n<mat-divider></mat-divider>\r\n<div mat-dialog-content>\r\n  <p>Are you sure you wish to delete the user associated with: <strong>{{delete.email}}</strong></p>\r\n</div>\r\n<div mat-dialog-actions fxLayoutAlign=\"end\">\r\n  <button mat-button (click)=\"closeDialog()\">Cancel</button>\r\n  <button mat-button (click)=\"deleteUser(delete._id)\">{{delete.action}}</button>\r\n</div>\r\n"
+module.exports = "<h1 mat-dialog-title>{{delete.action}}</h1>\r\n<mat-divider></mat-divider>\r\n<div mat-dialog-content>\r\n  <p>Are you sure you wish to delete the user associated with: <strong>{{delete.email}}</strong></p>\r\n</div>\r\n<div mat-dialog-actions fxLayoutAlign=\"end\">\r\n  <button mat-button (click)=\"closeDialog()\">Cancel</button>\r\n  <button mat-button (click)=\"deleteUser()\">{{delete.action}}</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -618,43 +629,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_graph_graph_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/graph/graph.component */ "./src/app/pages/graph/graph.component.ts");
 /* harmony import */ var _pages_users_users_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./pages/users/users.component */ "./src/app/pages/users/users.component.ts");
 /* harmony import */ var _pages_security_questions_security_questions_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./pages/security-questions/security-questions.component */ "./src/app/pages/security-questions/security-questions.component.ts");
-/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/ngx-cookie-service.es5.js");
-/* harmony import */ var _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component */ "./src/app/shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component.ts");
-/* harmony import */ var _pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./pages/edit-dialog/edit-dialog.component */ "./src/app/pages/edit-dialog/edit-dialog.component.ts");
-/* harmony import */ var _pages_unauthorized_unauthorized_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pages/unauthorized/unauthorized.component */ "./src/app/pages/unauthorized/unauthorized.component.ts");
-/* harmony import */ var _pages_verify_email_verify_email_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./pages/verify-email/verify-email.component */ "./src/app/pages/verify-email/verify-email.component.ts");
-/* harmony import */ var _pages_verify_security_questions_verify_security_questions_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./pages/verify-security-questions/verify-security-questions.component */ "./src/app/pages/verify-security-questions/verify-security-questions.component.ts");
-/* harmony import */ var _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./pages/reset-password/reset-password.component */ "./src/app/pages/reset-password/reset-password.component.ts");
-/* harmony import */ var _pages_summary_dialog_summary_dialog_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./pages/summary-dialog/summary-dialog.component */ "./src/app/pages/summary-dialog/summary-dialog.component.ts");
-/* harmony import */ var _pages_role_management_role_management_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./pages/role-management/role-management.component */ "./src/app/pages/role-management/role-management.component.ts");
-/* harmony import */ var _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./pages/role-management/role-edit-dialog.component */ "./src/app/pages/role-management/role-edit-dialog.component.ts");
-/* harmony import */ var _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./shared/user-edit/user-edit.component */ "./src/app/shared/user-edit/user-edit.component.ts");
-/* harmony import */ var _shared_invoice_summary_invoice_summary_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./shared/invoice-summary/invoice-summary.component */ "./src/app/shared/invoice-summary/invoice-summary.component.ts");
-/* harmony import */ var _shared_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./shared/navigation/navigation.component */ "./src/app/shared/navigation/navigation.component.ts");
-/* harmony import */ var primeng_chart__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! primeng/chart */ "./node_modules/primeng/chart.js");
-/* harmony import */ var primeng_chart__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(primeng_chart__WEBPACK_IMPORTED_MODULE_29__);
-/* harmony import */ var _shared_guard_authGuard__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./shared/guard/authGuard */ "./src/app/shared/guard/authGuard.ts");
-/* harmony import */ var _shared_route_interceptors_error_interceptor__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./shared/route-interceptors/error.interceptor */ "./src/app/shared/route-interceptors/error.interceptor.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
-/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/esm5/menu.es5.js");
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm5/form-field.es5.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @angular/material/sidenav */ "./node_modules/@angular/material/esm5/sidenav.es5.js");
-/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
-/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
-/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
-/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
+/* harmony import */ var _shared_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/forgot-password/forgot-password.component */ "./src/app/shared/forgot-password/forgot-password.component.ts");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/ngx-cookie-service.es5.js");
+/* harmony import */ var _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component */ "./src/app/shared/user-delete-confirmation-dialog/user-delete-confirmation-dialog.component.ts");
+/* harmony import */ var _pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pages/edit-dialog/edit-dialog.component */ "./src/app/pages/edit-dialog/edit-dialog.component.ts");
+/* harmony import */ var _pages_unauthorized_unauthorized_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./pages/unauthorized/unauthorized.component */ "./src/app/pages/unauthorized/unauthorized.component.ts");
+/* harmony import */ var _pages_verify_email_verify_email_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./pages/verify-email/verify-email.component */ "./src/app/pages/verify-email/verify-email.component.ts");
+/* harmony import */ var _pages_verify_security_questions_verify_security_questions_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./pages/verify-security-questions/verify-security-questions.component */ "./src/app/pages/verify-security-questions/verify-security-questions.component.ts");
+/* harmony import */ var _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./pages/reset-password/reset-password.component */ "./src/app/pages/reset-password/reset-password.component.ts");
+/* harmony import */ var _pages_summary_dialog_summary_dialog_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./pages/summary-dialog/summary-dialog.component */ "./src/app/pages/summary-dialog/summary-dialog.component.ts");
+/* harmony import */ var _pages_role_management_role_management_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./pages/role-management/role-management.component */ "./src/app/pages/role-management/role-management.component.ts");
+/* harmony import */ var _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./pages/role-management/role-edit-dialog.component */ "./src/app/pages/role-management/role-edit-dialog.component.ts");
+/* harmony import */ var _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./shared/user-edit/user-edit.component */ "./src/app/shared/user-edit/user-edit.component.ts");
+/* harmony import */ var _shared_invoice_summary_invoice_summary_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./shared/invoice-summary/invoice-summary.component */ "./src/app/shared/invoice-summary/invoice-summary.component.ts");
+/* harmony import */ var _shared_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./shared/navigation/navigation.component */ "./src/app/shared/navigation/navigation.component.ts");
+/* harmony import */ var primeng_chart__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! primeng/chart */ "./node_modules/primeng/chart.js");
+/* harmony import */ var primeng_chart__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(primeng_chart__WEBPACK_IMPORTED_MODULE_30__);
+/* harmony import */ var _shared_guard_authGuard__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./shared/guard/authGuard */ "./src/app/shared/guard/authGuard.ts");
+/* harmony import */ var _shared_route_interceptors_error_interceptor__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./shared/route-interceptors/error.interceptor */ "./src/app/shared/route-interceptors/error.interceptor.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
+/* harmony import */ var _angular_material_menu__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/material/menu */ "./node_modules/@angular/material/esm5/menu.es5.js");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm5/form-field.es5.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! @angular/material/sidenav */ "./node_modules/@angular/material/esm5/sidenav.es5.js");
+/* harmony import */ var _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! @angular/material/checkbox */ "./node_modules/@angular/material/esm5/checkbox.es5.js");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
+/* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
 
 /*
 =====================================
@@ -669,6 +681,7 @@ __webpack_require__.r(__webpack_exports__);
 //Routes
 
 //Components
+
 
 
 
@@ -727,7 +740,7 @@ var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_34__["NgModule"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_35__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
                 _shared__WEBPACK_IMPORTED_MODULE_3__["BaseLayoutComponent"],
@@ -744,55 +757,56 @@ var AppModule = /** @class */ (function () {
                 _pages_graph_graph_component__WEBPACK_IMPORTED_MODULE_13__["GraphComponent"],
                 _pages_users_users_component__WEBPACK_IMPORTED_MODULE_14__["UsersComponent"],
                 _pages_security_questions_security_questions_component__WEBPACK_IMPORTED_MODULE_15__["SecurityQuestionsComponent"],
-                _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_26__["UserEditComponent"],
-                _shared_invoice_summary_invoice_summary_component__WEBPACK_IMPORTED_MODULE_27__["InvoiceSummaryComponent"],
-                _shared_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_28__["NavigationComponent"],
-                _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_17__["UserDeleteConfirmationDialogComponent"],
-                _pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_18__["EditDialogComponent"],
-                _pages_unauthorized_unauthorized_component__WEBPACK_IMPORTED_MODULE_19__["UnauthorizedComponent"],
-                _pages_verify_email_verify_email_component__WEBPACK_IMPORTED_MODULE_20__["VerifyEmailComponent"],
-                _pages_verify_security_questions_verify_security_questions_component__WEBPACK_IMPORTED_MODULE_21__["VerifySecurityQuestionsComponent"],
-                _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_22__["ResetPasswordComponent"],
-                _pages_summary_dialog_summary_dialog_component__WEBPACK_IMPORTED_MODULE_23__["SummaryDialogComponent"],
-                _pages_role_management_role_management_component__WEBPACK_IMPORTED_MODULE_24__["RoleManagementComponent"],
-                _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_25__["RoleEditDialogComponent"]
+                _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_27__["UserEditComponent"],
+                _shared_invoice_summary_invoice_summary_component__WEBPACK_IMPORTED_MODULE_28__["InvoiceSummaryComponent"],
+                _shared_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_29__["NavigationComponent"],
+                _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_18__["UserDeleteConfirmationDialogComponent"],
+                _pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_19__["EditDialogComponent"],
+                _pages_unauthorized_unauthorized_component__WEBPACK_IMPORTED_MODULE_20__["UnauthorizedComponent"],
+                _pages_verify_email_verify_email_component__WEBPACK_IMPORTED_MODULE_21__["VerifyEmailComponent"],
+                _pages_verify_security_questions_verify_security_questions_component__WEBPACK_IMPORTED_MODULE_22__["VerifySecurityQuestionsComponent"],
+                _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_23__["ResetPasswordComponent"],
+                _pages_summary_dialog_summary_dialog_component__WEBPACK_IMPORTED_MODULE_24__["SummaryDialogComponent"],
+                _pages_role_management_role_management_component__WEBPACK_IMPORTED_MODULE_25__["RoleManagementComponent"],
+                _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_26__["RoleEditDialogComponent"],
+                _shared_forgot_password_forgot_password_component__WEBPACK_IMPORTED_MODULE_16__["ForgotPasswordComponent"]
             ],
             exports: [
-                _angular_forms__WEBPACK_IMPORTED_MODULE_46__["ReactiveFormsModule"],
-                _pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_18__["EditDialogComponent"],
-                _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_25__["RoleEditDialogComponent"],
-                _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_17__["UserDeleteConfirmationDialogComponent"],
-                _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_26__["UserEditComponent"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_47__["ReactiveFormsModule"],
+                _pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_19__["EditDialogComponent"],
+                _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_26__["RoleEditDialogComponent"],
+                _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_18__["UserDeleteConfirmationDialogComponent"],
+                _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_27__["UserEditComponent"],
             ],
-            entryComponents: [_pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_18__["EditDialogComponent"], _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_17__["UserDeleteConfirmationDialogComponent"], _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_26__["UserEditComponent"], _pages_summary_dialog_summary_dialog_component__WEBPACK_IMPORTED_MODULE_23__["SummaryDialogComponent"], _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_25__["RoleEditDialogComponent"]],
+            entryComponents: [_pages_edit_dialog_edit_dialog_component__WEBPACK_IMPORTED_MODULE_19__["EditDialogComponent"], _shared_user_delete_confirmation_dialog_user_delete_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_18__["UserDeleteConfirmationDialogComponent"], _shared_user_edit_user_edit_component__WEBPACK_IMPORTED_MODULE_27__["UserEditComponent"], _pages_summary_dialog_summary_dialog_component__WEBPACK_IMPORTED_MODULE_24__["SummaryDialogComponent"], _pages_role_management_role_edit_dialog_component__WEBPACK_IMPORTED_MODULE_26__["RoleEditDialogComponent"]],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_33__["BrowserModule"],
-                primeng_chart__WEBPACK_IMPORTED_MODULE_29__["ChartModule"],
-                _angular_material_button__WEBPACK_IMPORTED_MODULE_38__["MatButtonModule"],
-                _angular_material_icon__WEBPACK_IMPORTED_MODULE_39__["MatIconModule"],
-                _angular_material_menu__WEBPACK_IMPORTED_MODULE_40__["MatMenuModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_41__["MatToolbarModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_42__["MatCardModule"],
-                _angular_material_form_field__WEBPACK_IMPORTED_MODULE_43__["MatFormFieldModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_44__["MatInputModule"],
-                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_45__["FlexLayoutModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_46__["FormsModule"],
-                _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_47__["MatSidenavModule"],
-                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_37__["MatDialogModule"],
-                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_48__["MatCheckboxModule"],
-                _angular_material_form_field__WEBPACK_IMPORTED_MODULE_43__["MatFormFieldModule"],
-                _angular_material_list__WEBPACK_IMPORTED_MODULE_49__["MatListModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_35__["BrowserAnimationsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_46__["ReactiveFormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_32__["HttpClientModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_36__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_1__["AppRoutes"], { useHash: true, enableTracing: false }),
-                _angular_material_table__WEBPACK_IMPORTED_MODULE_51__["MatTableModule"],
-                _angular_material_select__WEBPACK_IMPORTED_MODULE_50__["MatSelectModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_34__["BrowserModule"],
+                primeng_chart__WEBPACK_IMPORTED_MODULE_30__["ChartModule"],
+                _angular_material_button__WEBPACK_IMPORTED_MODULE_39__["MatButtonModule"],
+                _angular_material_icon__WEBPACK_IMPORTED_MODULE_40__["MatIconModule"],
+                _angular_material_menu__WEBPACK_IMPORTED_MODULE_41__["MatMenuModule"],
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_42__["MatToolbarModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_43__["MatCardModule"],
+                _angular_material_form_field__WEBPACK_IMPORTED_MODULE_44__["MatFormFieldModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_45__["MatInputModule"],
+                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_46__["FlexLayoutModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_47__["FormsModule"],
+                _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_48__["MatSidenavModule"],
+                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_38__["MatDialogModule"],
+                _angular_material_checkbox__WEBPACK_IMPORTED_MODULE_49__["MatCheckboxModule"],
+                _angular_material_form_field__WEBPACK_IMPORTED_MODULE_44__["MatFormFieldModule"],
+                _angular_material_list__WEBPACK_IMPORTED_MODULE_50__["MatListModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_36__["BrowserAnimationsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_47__["ReactiveFormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_33__["HttpClientModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_37__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_1__["AppRoutes"], { useHash: true, enableTracing: false }),
+                _angular_material_table__WEBPACK_IMPORTED_MODULE_52__["MatTableModule"],
+                _angular_material_select__WEBPACK_IMPORTED_MODULE_51__["MatSelectModule"]
             ],
             providers: [
-                ngx_cookie_service__WEBPACK_IMPORTED_MODULE_16__["CookieService"],
-                _shared_guard_authGuard__WEBPACK_IMPORTED_MODULE_30__["AuthGuard"],
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_32__["HTTP_INTERCEPTORS"], useClass: _shared_route_interceptors_error_interceptor__WEBPACK_IMPORTED_MODULE_31__["ErrorInterceptor"], multi: true }
+                ngx_cookie_service__WEBPACK_IMPORTED_MODULE_17__["CookieService"],
+                _shared_guard_authGuard__WEBPACK_IMPORTED_MODULE_31__["AuthGuard"],
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_33__["HTTP_INTERCEPTORS"], useClass: _shared_route_interceptors_error_interceptor__WEBPACK_IMPORTED_MODULE_32__["ErrorInterceptor"], multi: true }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
@@ -3029,6 +3043,60 @@ var BaseLayoutComponent = /** @class */ (function () {
         })
     ], BaseLayoutComponent);
     return BaseLayoutComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/forgot-password/forgot-password.component.css":
+/*!**********************************************************************!*\
+  !*** ./src/app/shared/forgot-password/forgot-password.component.css ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NoYXJlZC9mb3Jnb3QtcGFzc3dvcmQvZm9yZ290LXBhc3N3b3JkLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/shared/forgot-password/forgot-password.component.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/shared/forgot-password/forgot-password.component.ts ***!
+  \*********************************************************************/
+/*! exports provided: ForgotPasswordComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ForgotPasswordComponent", function() { return ForgotPasswordComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/*
+=====================================
+  ; Title: forgot-password.component.spec.ts
+  ; Authors: William Thomason
+  ;          Griselda Balmaceda
+  ;          Andrew Hemminger
+  ; Date: October 21 2019
+  ; Description: forgot-password.component.spec.ts
+======================================
+*/
+
+
+var ForgotPasswordComponent = /** @class */ (function () {
+    function ForgotPasswordComponent() {
+    }
+    ForgotPasswordComponent.prototype.ngOnInit = function () {
+    };
+    ForgotPasswordComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-forgot-password',
+            template: __webpack_require__(/*! raw-loader!./forgot-password.component.html */ "./node_modules/raw-loader/index.js!./src/app/shared/forgot-password/forgot-password.component.html"),
+            styles: [__webpack_require__(/*! ./forgot-password.component.css */ "./src/app/shared/forgot-password/forgot-password.component.css")]
+        })
+    ], ForgotPasswordComponent);
+    return ForgotPasswordComponent;
 }());
 
 
