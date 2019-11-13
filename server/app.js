@@ -21,6 +21,7 @@ const SecurityQuestion = require('./db-models/securityQuestions');
 const Roles = require('./db-models/roles');
 const Orders = require('./db-models/orders');
 
+// App configurations
 let app = express();
 
 app.use(bodyParser.json());
@@ -30,8 +31,7 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../dist/bcrs')));
 app.use('/', express.static(path.join(__dirname, '../dist/bcrs')));
 
-// Global variables
-const serverPort = 3000;
+const serverPort = process.env.PORT || 3000; // server port
 const saltRounds = 10; //default salt rounds for hashing algorithm
 
 //Use this function to Hash the passwords.
