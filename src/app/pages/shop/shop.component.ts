@@ -166,7 +166,7 @@ console.log(lineItem)
         }else{
           console.log('order was canceled')
           this.servicesArray=[]
-          this.messageText = "Your order was cancled!";
+          this.messageText = "Your order was canceled!";
           this.messageType = "warn";
         }
       },
