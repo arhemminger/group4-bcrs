@@ -6,7 +6,10 @@
         <h1>Log In</h1>
 
         <!-- error message display -->
-        <small style="color: red;" *ngIf="errorMessage">{{errorMessage}}</small>
+        <small  *ngIf="errorMessage">
+            <p-message severity="error" text="{{errorMessage}}"></p-message>
+            <br>
+          </small>
 
           <form [formGroup]="loginForm" >
         <div class="form-group">
