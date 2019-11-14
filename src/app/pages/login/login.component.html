@@ -4,6 +4,13 @@
   <div fxFlex="50%">
     <div class="loginContainer">
         <h1>Log In</h1>
+
+        <!-- error message display -->
+        <small  *ngIf="errorMessage">
+            <p-message severity="error" text="{{errorMessage}}"></p-message>
+            <br>
+          </small>
+
           <form [formGroup]="loginForm" >
         <div class="form-group">
             <mat-form-field appearance="fill" style="width:50%">
@@ -11,7 +18,7 @@
                 <input type="text" [formControl]="email" required matInput placeholder="yourEmail@email.com">
               </mat-form-field>
           <div *ngIf="email.invalid && (email.dirty || email.touched)">
-             <p *ngIf="email.errors.required">Email is required!</p>
+             <p style="color: red;" *ngIf="email.errors.required">Email is required!</p>
           </div>
           </div>
           <br/>
@@ -22,7 +29,7 @@
                 </mat-form-field>
           </div>
            <div *ngIf="password.invalid && (password.dirty || password.touched)">
-             <p *ngIf="password.errors.required">Password is required!</p>
+             <p style="color: red;" *ngIf="password.errors.required">Password is required!</p>
           </div>
         </form>
         <button mat-raised-button (click)="onSubmit(loginForm)" [disabled]="!loginForm.valid" color=primary style="margin-top: 20px; width:50%">Login</button>
