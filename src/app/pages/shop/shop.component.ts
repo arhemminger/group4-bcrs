@@ -30,6 +30,8 @@ export class ShopComponent implements OnInit {
   servicesArray=[];
   userLoggedIn:any;
   errorMessage:string;
+  messageType:string;
+  messageText:string;
 
 
   services = [{
@@ -158,10 +160,14 @@ console.log(lineItem)
             res =>{
               console.log(res)
               this.servicesArray=[];
+              this.messageText = "Thank you for placing a service request!";
+              this.messageType = "success";
          })
         }else{
           console.log('order was canceled')
           this.servicesArray=[]
+          this.messageText = "Your order was cancled!";
+          this.messageType = "warn";
         }
       },
       err=>{

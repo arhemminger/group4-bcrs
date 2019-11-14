@@ -1,12 +1,15 @@
 <div style="margin-left: 5%;">
   <h1>Service Form</h1>
+  <div *ngIf="messageText">
+      <p-message severity="{{messageType}}" text="{{messageText}}"></p-message>
+  </div>
   <div mat-dialog-content>
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value); f.reset();">
       <div ngModelGroup="checkGroup">
         <h2>Services</h2>
         <div *ngIf="services">
           <div *ngIf="errorMessage">
-            {{errorMessage}}
+              <p-message severity="error" text="{{errorMessage}}"></p-message>
           </div>
           <div *ngFor="let service of services; index as i;">
             <mat-checkbox name="{{service.name}}" ngModel >{{service.name}} ({{service.cost | currency}})</mat-checkbox>
@@ -17,14 +20,22 @@
         <h2>Standard Fees</h2>
         <input matInput type="text" ngModel  name="parts" required pattern="^[0-9]*$" placeholder="Cost of Parts" #parts="ngModel" [class.hasError]="parts.invalid && parts.touched || parts.dirty">
         <div *ngIf="parts.invalid && (parts.dirty || parts.touched)">
-          <div class="error" [hidden]="!parts.hasError('required')">Cost of Parts required</div>
-          <div class="error" [hidden]="!parts.hasError('pattern')">Only digits are allowed</div>
+          <div class="error" [hidden]="!parts.hasError('required')">
+            <p-message severity="error" text="Cost of Parts required"></p-message>
+          </div>
+          <div class="error" [hidden]="!parts.hasError('pattern')">
+              <p-message severity="error" text="Only digits are allowed"></p-message>
+          </div>
         </div>
           <br><br>
         <input matInput type="text" ngModel  name="labor" required pattern="^[0-9]*$" placeholder="Labor Cost $50 hourly" #labor="ngModel" [class.hasError]="labor.invalid && labor.touched || labor.dirty">
         <div *ngIf="labor.invalid && (labor.dirty || labor.touched)">
-          <div class="error" [hidden]="!labor.hasError('required')">Must enter the amount of hours </div>
-          <div class="error" [hidden]="!labor.hasError('pattern')">Only digits are allowed</div>
+          <div class="error" [hidden]="!labor.hasError('required')">
+            <p-message severity="error" text="Must enter the amount of hours"></p-message>
+          </div>
+          <div class="error" [hidden]="!labor.hasError('pattern')">
+            <p-message severity="error" text="Only digits are allowed"></p-message>
+          </div>
         </div>
           <br><br>
         <button mat-raised-button type="reset">Cancel</button> &nbsp;&nbsp;
