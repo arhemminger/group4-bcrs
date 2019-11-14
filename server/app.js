@@ -70,6 +70,7 @@ app.post('/api/users/register', function(req, res, next){
       if(user){
         res.status(500).send({
           text: 'The selected userName: ' + req.body.userName + ' is already in use',
+          type: 'error',
           time_stamp: new Date()
         });
       }
@@ -222,24 +223,22 @@ app.post('/api/users/login', function(req, res, next) {
   User.findOne({'email': req.body.email}, function(err, foundUser) {
     console.log("inside findOne!!!!!")
     //console.log("Password found: " + foundUser.password);
-
-
     if (err) {
       console.log("inside findOne error if statement!!!")
-          res.status(500).send({
+          res.status(200).send({
             text: "Couldn't find user with that email!",
+            type: 'error',
             time_stamp: new Date()
           });
     }
     else {
-
-
       bcrypt.compare(req.body.password, foundUser.password, (err, valid) => {
         //if error than throw error
         if (err){
           console.log("inside compare error if statement!!!")
-          res.status(500).send({
+          res.status(401).send({
             text: 'You have entered an incorrect password. Please try again!',
+            type: 'error',
             time_stamp: new Date()
           });
         }
@@ -250,34 +249,15 @@ app.post('/api/users/login', function(req, res, next) {
           res.json(foundUser);
         } else {
           console.log("Password didn't match!");
-          res.status(500).send({
+          res.status(401).send({
             text: 'You have entered an incorrect password. Please try again!',
+            type: 'error',
             time_stamp: new Date()
           });
         }
-
       })
-
     }
-
-
-
-
-
-    /*
-    if( bcrypt.compare(req.body.password, foundUser.password)) {
-      console.log(foundUser);
-      res.json(foundUser);
-    }
-    else{
-      console.log("Password didn't match!");
-      res.status(500).send({
-        text: 'You have entered an incorrect password. Please try again!',
-        time_stamp: new Date()
-      });
-    }
-    */
-})
+  })
 })
 
 /**

@@ -21,9 +21,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-loginForm:FormGroup;
-email:FormControl;
-password:FormControl;
+loginForm: FormGroup;
+email: FormControl;
+password: FormControl;
+errorMessage: string;
 
   constructor(private http:HttpClient,private router:Router,private cookieService:CookieService) {
   }
@@ -56,7 +57,9 @@ password:FormControl;
       },
       err => {
         console.log("POST login failed see error: ", err);
-        this.router.navigate(['/']);
+        this.errorMessage = "Invalid email or password"
+        return this.errorMessage;
+        //this.router.navigate(['/']);
       },
       () => {
         console.log("The POST login works, You are now logged in.");
